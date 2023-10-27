@@ -63,7 +63,17 @@
     }
 
 .prod-cat-menu-cont {
-    display:block; padding-bottom:60px; overflow:hidden; text-align:center; padding-top:20px;
+    /*display:block; */
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, 350px));
+    grid-gap: 10px;
+    justify-content: center;
+
+
+    padding-bottom: 60px;
+    overflow: hidden;
+    text-align: center;
+    padding-top: 20px;
 }
 
     .prod-cat-menu-cont span {
@@ -71,7 +81,7 @@
     }
 
     .prod-cat-menu-cont .item {
-        display:inline-block; padding:20px 25px;
+        /*display:inline-block;*/ padding:20px 25px;
     }
 
     .prod-cat-menu-cont .item .img {
