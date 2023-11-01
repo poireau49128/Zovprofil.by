@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using Zovprofil.zovprofil.Controls;
+using System.IO;
 
 namespace Zovprofil.zovprofil
 {
@@ -239,8 +240,16 @@ namespace Zovprofil.zovprofil
                 string sDescription = "";
                 string sMaterial = "";
                 string sSizes = "";
+                string sConfigID = "";
+                string sTechID = "";
+                string sProductType = "";
+                string sColor = "";
+                string sBasic = "";
+                string sCategory = "";
+                string sPatinaID = "";
+                string sColorID = "";
 
-                Catalog.GetItemDetail(Convert.ToInt32(ItemID), ref sFileName, ref sName, ref sDescription, ref sMaterial, ref sSizes);
+                Catalog.GetItemDetail(Convert.ToInt32(ItemID), ref sFileName, ref sName, ref sDescription, ref sMaterial, ref sSizes, ref sConfigID, ref sProductType, ref sTechID, ref sColor, ref sBasic, ref sCategory, ref sPatinaID, ref sColorID);
 
                 if (sDescription.Length == 0)
                     DescriptionDiv.Visible = false;
@@ -249,13 +258,24 @@ namespace Zovprofil.zovprofil
                 if (sSizes.Length == 0)
                     SizesDiv.Visible = false;
 
-                ProductItemImage.Src = Catalog.URL + "Thumbs/" + sFileName;
+
+
+
+                string sTechStoreFile = Catalog.GetTechStoreImage(Convert.ToInt32(sTechID));
+                FillProductSlider(sFileName, sTechStoreFile, bool.Parse(sBasic), Type);
+
+
+
+
+                /*ProductItemImage.Src = Catalog.URL + "Thumbs/" + sFileName;*/
                 ProductItemName.InnerHtml = sName;
+
+
                 Description.InnerHtml = sDescription.Replace("\n", "<br />");
                 Material.InnerHtml = sMaterial.Replace("\n", "<br />");
                 Sizes.InnerHtml = sSizes.Replace("\n", "<br />");
 
-                ProductItem.ID = sFileName;
+                /*ProductItem.ID = sFileName;*/
             }
             else
             {
@@ -315,6 +335,79 @@ namespace Zovprofil.zovprofil
                     hSlidesCount.Value = MainSliderDT.Rows.Count.ToString();
                 }
             }
+        }
+
+        public void FillProductSlider(string ProductFile, string TechStoreFile, bool Basic, int Type)
+        {
+            string sliderUrls = "";
+
+            int count = 1;
+
+            if (Basic == true || Type == 1)
+                count = 2;
+
+
+            for (int i = 0; i < count; i++)
+            {
+                System.Web.UI.HtmlControls.HtmlGenericControl img = new System.Web.UI.HtmlControls.HtmlGenericControl("img");
+                img.Attributes.Add("class", "im");
+                img.ID = "im" + (i + 1).ToString();
+                img.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                img.Attributes.Add("onclick", "OpenFrontSliderImage()");
+
+                if (i == 1)
+                {
+
+                    /*sliderUrls += "/Images/TechStore/" + TechStoreFile.ToString() + ";";*/
+                    /*sliderUrls += Catalog.URL + ProductFile.ToString() + ";";*/
+
+                    string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "TechStore", TechStoreFile.ToString());
+                    if (File.Exists(imagePath))
+                    {
+                        img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
+                        sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
+                    }
+                    else
+                    {
+                        img.Attributes.Add("src", "/Images/TechStore/pict_stub.png");
+                        sliderUrls += "/Images/TechStore/pict_stub.png;";
+                    }
+
+                    img.Attributes.Add("cache-control", "no-cache");
+                }
+                else
+                {
+                    img.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
+                    sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
+                }
+
+                if (i == 0)
+                {
+                    img.Style.Add("opacity", "1");
+                }
+
+                System.Web.UI.HtmlControls.HtmlGenericControl pdiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                if (i == 0)
+                {
+                    pdiv.Attributes.Add("class", "sl-p");
+                }
+
+                pdiv.ID = "slp" + (i + 1).ToString();
+                pdiv.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+
+                System.Web.UI.HtmlControls.HtmlGenericControl div = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
+                div.Attributes.Add("class", "sl");
+                div.ID = "sl" + (i + 1).ToString();
+                div.Attributes.Add("onclick", "SelectImage(" + (i + 1) + ")");
+                div.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+                div.Controls.Add(pdiv);
+
+                FrontSliderNavCont.Controls.Add(div);
+                FrontImagesSliderCont.Controls.Add(img);
+            }
+            ScriptManager.RegisterStartupScript(this, this.GetType(), "SetSliderUrls", "SetSliderUrls('" + sliderUrls + "');", true);
+
+            hSlidesCount.Value = count.ToString();
         }
     }
 }

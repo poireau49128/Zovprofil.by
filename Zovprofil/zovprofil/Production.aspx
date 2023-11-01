@@ -86,7 +86,7 @@
             <div style="display:inline-block; width:680px; text-align:left">
                 <div id="ProductItemCont" runat="server">
                     <span id="ProductItemName" runat="server"></span>
-                    <div class="image-div">
+                    <%--<div class="image-div">
                         <div id="ProductItem" runat="server" onclick="OpenImage(this)">
                             <div class="prod-item-back">
                                 <div>
@@ -94,7 +94,22 @@
                                 </div>
                             </div>
                         </div>
+                    </div>--%>
+
+                    <div class="image-div">
+                        <div id="FrontSliderCont" runat="server" class="im-sl-back-f noselect">
+                            <div>
+                                <div id="FrontImagesSliderCont" style="position:relative" runat="server">
+                                    <div>
+                                        <div class="nav" id="FrontSliderNavCont" runat="server"></div>
+                                    </div>
+                                    <div id="FrontImageName" class="image-name" style="visibility: hidden"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+
                     <div class="prod-item-inf">
                         <div id="MaterialDiv" runat="server">
                             <span class="head">Материал:</span>

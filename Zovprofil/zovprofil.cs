@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 
 namespace Zovprofil
@@ -54,8 +56,13 @@ namespace Zovprofil
 
     public class Catalog
     {
-        public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
-        //public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
+
+        //public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        //public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
+
+
         public static string URL = "https://zovprofil.by/Images/ClientsCatalogImages/";
 
         public static DataTable FillCategories(int Type)
@@ -141,9 +148,9 @@ namespace Zovprofil
             }
         }
 
-        public static void GetItemDetail(int ImageID, ref string FileName, ref string Name, ref string Description, ref string Material, ref string Sizes)
+        /*public static void GetItemDetail(int ImageID, ref string FileName, ref string Name, ref string Description, ref string Material, ref string Sizes, ref string Basic)
         {
-            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT FileName, Name, Description, Material, Sizes FROM ClientsCatalogImages WHERE ImageID = " + ImageID, ConnectionString))
+            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT FileName, Name, Description, Material, Sizes, Basic FROM ClientsCatalogImages WHERE ImageID = " + ImageID, ConnectionString))
             {
                 using (DataTable DT = new DataTable())
                 {
@@ -154,6 +161,64 @@ namespace Zovprofil
                     Description = DT.Rows[0]["Description"].ToString();
                     Material = DT.Rows[0]["Material"].ToString();
                     Sizes = DT.Rows[0]["Sizes"].ToString();
+                    Basic = DT.Rows[0]["Basic"].ToString();
+                }
+            }
+        }*/
+
+        public static void GetItemDetail(int ImageID, ref string FileName, ref string Name, ref string Description, ref string Material, ref string Sizes, ref string ConfigID, ref string ProductType, ref string TechID, ref string Color, ref string Basic, ref string Category, ref string PatinaID, ref string ColorID)
+        {
+
+            //using (SqlDataAdapter DA = new SqlDataAdapter("SELECT FileName, Name, Description, Material, Sizes, ConfigID, ProductType FROM ClientsCatalogImages WHERE ImageID = " + ImageID, ConnectionString))
+            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT FileName, " +
+                                                                    "Name, " +
+                                                                    "Category, " +
+                                                                    "Description, " +
+                                                                    "Material, " +
+                                                                    "Sizes, " +
+                                                                    "CI.ConfigID, " +
+                                                                    "ProductType, " +
+                                                                    "Color, " +
+                                                                    "FrontID, " +
+                                                                    "DecorID, " +
+                                                                    "Basic, " +
+                                                                    "CF.PatinaID AS CFPatinaID, " +
+                                                                    "CF.ColorID AS CFColorID, " +
+                                                                    "CD.PatinaID AS CDPatinaID, " +
+                                                                    "CD.ColorID  AS CDColorID " +
+                                                            "FROM ClientsCatalogImages as CI " +
+                                                            "LEFT JOIN [infiniu2_catalog].[dbo].[ClientsCatalogFrontsConfig] as CF ON CI.ConfigID = CF.ConfigID " +
+                                                            "LEFT JOIN [infiniu2_catalog].[dbo].[ClientsCatalogDecorConfig] as CD ON CI.ConfigID = CD.ConfigID " +
+                                                            "WHERE ImageID = " + ImageID, ConnectionString))
+            {
+
+                using (DataTable DT = new DataTable())
+                {
+                    DA.Fill(DT);
+
+                    FileName = DT.Rows[0]["FileName"].ToString();
+                    Name = DT.Rows[0]["Name"].ToString();
+                    Description = DT.Rows[0]["Description"].ToString();
+                    Material = DT.Rows[0]["Material"].ToString();
+                    Sizes = DT.Rows[0]["Sizes"].ToString();
+                    ConfigID = DT.Rows[0]["ConfigID"].ToString();
+                    ProductType = DT.Rows[0]["ProductType"].ToString();
+                    Color = DT.Rows[0]["Color"].ToString();
+                    Basic = DT.Rows[0]["Basic"].ToString();
+                    Category = DT.Rows[0]["Category"].ToString();
+
+                    if (ProductType == "0")
+                    {
+                        TechID = DT.Rows[0]["FrontID"].ToString();
+                        PatinaID = DT.Rows[0]["CFPatinaID"].ToString();
+                        ColorID = DT.Rows[0]["CFColorID"].ToString();
+                    }
+                    else
+                    {
+                        TechID = DT.Rows[0]["DecorID"].ToString();
+                        PatinaID = DT.Rows[0]["CDPatinaID"].ToString();
+                        ColorID = DT.Rows[0]["CDColorID"].ToString();
+                    }
                 }
             }
         }
@@ -176,6 +241,88 @@ namespace Zovprofil
             }
 
             return res;
+        }
+
+
+        public static string GetTechStoreImage(int TechStoreID)
+        {
+            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT * FROM TechStoreDocuments" +
+                " WHERE DocType = 0 AND TechID = " + TechStoreID, ConnectionString))
+            {
+                using (DataTable DT = new DataTable())
+                {
+                    if (DA.Fill(DT) == 0)
+                        return "pict_stub.png";
+
+                    if (DT.Rows[0]["FileName"] == DBNull.Value)
+                        return "pict_stub.png";
+
+                    string FileName = DT.Rows[0]["FileName"].ToString();
+                    string FileSize = DT.Rows[0]["FileSize"].ToString();
+                    string FilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\TechStore", FileName);
+
+                    FileInfo fi = new FileInfo(FilePath);
+
+                    if (File.Exists(FilePath) && fi.Length == Convert.ToInt32(FileSize))
+                        return FileName;
+
+                    if (File.Exists(FilePath))
+                        File.Delete(FilePath);
+                    try
+                    {
+                        string savePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images\\TechStore", FileName);
+
+                        // Создаем объект запроса FTP
+                        FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftpPath + FileName);
+                        request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                        // Устанавливаем данные для авторизации на FTP-сервере
+                        request.Credentials = new NetworkCredential("infiniu2_infinium", "vqju]nkca8ygtfibrQop");
+
+                        // Получаем ответ от FTP-сервера
+                        using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                        {
+                            // Получаем поток ответа
+                            using (Stream responseStream = response.GetResponseStream())
+                            {
+                                // Создаем файловый поток для сохранения изображения
+                                using (FileStream fileStream = new FileStream(savePath, FileMode.Create))
+                                {
+                                    // Считываем данные из потока ответа и записываем их в файловый поток
+                                    byte[] buffer = new byte[1024];
+                                    int bytesRead = responseStream.Read(buffer, 0, buffer.Length);
+                                    while (bytesRead > 0)
+                                    {
+                                        fileStream.Write(buffer, 0, bytesRead);
+                                        bytesRead = responseStream.Read(buffer, 0, buffer.Length);
+                                    }
+                                }
+                            }
+                        }
+                        return FileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        string filePath = @"D:\log\FTPlog.txt";
+                        string content = DateTime.Now + "\r\n" + ftpPath + FileName + "\r\n" + ex.ToString() + "\r\n" + "--------------------------" + "\r\n";
+
+                        // создание файла (если его нет)
+                        if (!File.Exists(filePath))
+                            File.Create(filePath).Close();
+
+                        // запись в файл (если он уже существует)
+                        using (StreamWriter sw = File.AppendText(filePath))
+                        {
+                            // дописываем информацию
+                            sw.Write(content);
+                        }
+
+                        //MessageBox.Show(ex.ToString());
+
+                        return "pict_stub.png";
+                    }
+                }
+            }
         }
 
     }

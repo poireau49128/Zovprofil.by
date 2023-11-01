@@ -8,7 +8,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>--%>
 
 
-    
+    <input type="hidden" runat="server" id="hSlidesCount" />
+        <div class="im-sl-back noselect">
+            <div>
+                <div id="ImagesSliderCont" runat="server">
+                    <div>
+                        <div class="nav" id="SliderNavCont" runat="server"></div>
+                    </div>
+                </div>
+                <div class="image-nameee image-name">
+                    <i class="fa-sharp fa-regular fa-circle-question fa-2x" data-html="true" data-toggle="tooltip" data-placement="top" title="<u><b>Нажмите один раз</b></u> на картинку, чтобы перейти к нужному товару. <u><b>Двойное нажатие</b></u> откроет картинку для просмотра"></i>
+                </div>
+            </div>
+        </div>
 
     <div class="hd">
         <p>ПРОИЗВОДСТВО ПРОФИЛЯ ПОГОНАЖНОГО,<br />ФАСАДОВ И КОРПУСНОЙ МЕБЕЛИ В РЕСПУБЛИКЕ БЕЛАРУСЬ</p>
@@ -37,71 +49,6 @@
                 </div>
             </a>
             <span>Декор и погонаж</span>
-        </div>
-
-        <div class="item">
-            <a href="/Production?type=2">
-                <div class="img">
-                    <img src="/Images/Main/korp.png" ondragstart="return false;" />
-                </div>
-            </a>
-            <span>Корпусная мебель</span>
-        </div>
-        <div class="item" style="">
-            <a href="/Production?type=0">
-                <div class="img">
-                    <img src="/Images/Main/front.png" ondragstart="return false;" />
-                </div>
-            </a>
-            <span>Фасады</span>
-        </div>
-        <div class="item" style="">
-            <a href="/Production?type=1">
-                <div class="img">
-                    <img src="/Images/Main/prof.png" ondragstart="return false;" />
-                </div>
-            </a>
-            <span>Декор и погонаж</span>
-        </div>
-
-                <div class="item">
-            <a href="/Production?type=2">
-                <div class="img">
-                    <img src="/Images/Main/korp.png" ondragstart="return false;" />
-                </div>
-            </a>
-            <span>Корпусная мебель</span>
-        </div>
-        <div class="item" style="">
-            <a href="/Production?type=0">
-                <div class="img">
-                    <img src="/Images/Main/front.png" ondragstart="return false;" />
-                </div>
-            </a>
-            <span>Фасады</span>
-        </div>
-        <div class="item" style="">
-            <a href="/Production?type=1">
-                <div class="img">
-                    <img src="/Images/Main/prof.png" ondragstart="return false;" />
-                </div>
-            </a>
-            <span>Декор и погонаж</span>
-        </div>
-    </div>
-
-
-    <input type="hidden" runat="server" id="hSlidesCount" />
-    <div class="im-sl-back noselect">
-        <div>
-            <div id="ImagesSliderCont" runat="server">
-                <div>
-                    <div class="nav" id="SliderNavCont" runat="server"></div>
-                </div>
-            </div>
-            <div class="image-nameee image-name">
-                <i class="fa-sharp fa-regular fa-circle-question fa-2x" data-html="true" data-toggle="tooltip" data-placement="top" title="<u><b>Нажмите один раз</b></u> на картинку, чтобы перейти к нужному товару. <u><b>Двойное нажатие</b></u> откроет картинку для просмотра"></i>
-            </div>
         </div>
     </div>
 
