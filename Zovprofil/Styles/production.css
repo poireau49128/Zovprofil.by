@@ -1,4 +1,18 @@
-﻿#LeftLink {
+﻿/*.slider-container {
+    width: 90%;*/ /* Установите нужную ширину блока слайдера */
+    /*height: 400px;*/ /* Установите нужную высоту блока слайдера */
+    /*overflow: hidden;
+}
+
+    .slider-container img {
+        object-fit: cover;
+        object-position: center;
+    }*/
+
+
+
+
+#LeftLink {
     display:table;
 }
 
@@ -228,6 +242,9 @@
     z-index: 0;
     opacity: 0;
     cursor:pointer;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
 }
 
 .im-sl-back .nav {

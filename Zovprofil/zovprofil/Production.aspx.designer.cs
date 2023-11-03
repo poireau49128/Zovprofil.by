@@ -285,6 +285,42 @@ namespace Zovprofil.zovprofil
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Description;
 
         /// <summary>
+        /// NotBasicFrontsDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotBasicFrontsDiv;
+
+        /// <summary>
+        /// NotBasicFronts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotBasicFronts;
+
+        /// <summary>
+        /// RelatedDecorsDiv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RelatedDecorsDiv;
+
+        /// <summary>
+        /// RelatedDecors control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl RelatedDecors;
+
+        /// <summary>
         /// ProductMenu control.
         /// </summary>
         /// <remarks>

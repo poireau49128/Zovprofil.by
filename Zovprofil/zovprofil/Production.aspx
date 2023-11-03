@@ -109,6 +109,19 @@
                         </div>
                     </div>
 
+                    <%--<div class="image-div">
+                        <div id="FrontSliderCont" runat="server" class="im-sl-back-f noselect">
+                            <div>
+                                <div id="FrontImagesSliderCont" style="position:relative" runat="server" class="slider-container">
+                                    <div>
+                                        <div class="nav" id="FrontSliderNavCont" runat="server"></div>
+                                    </div>
+                                    <div id="FrontImageName" class="image-name"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>--%>
+
 
                     <div class="prod-item-inf">
                         <div id="MaterialDiv" runat="server">
@@ -125,6 +138,28 @@
                         </div>
                     </div>
                 </div>
+
+
+
+
+
+
+                <div class="prod-item-inf">
+                    <div id="NotBasicFrontsDiv" runat="server" style="padding-top:30px; display: none;">
+                        <span class="head" style="font-weight: bold">Фасады:</span>
+                        <div id="NotBasicFronts" runat="server" class="pr-menu-cont"></div>
+                    </div>
+
+                    <div id="RelatedDecorsDiv" runat="server" style="padding-top:30px; display: none;">
+                        <span class="head" style="font-weight: bold">Декоры:</span>
+                        <div id="RelatedDecors" runat="server" class="pr-menu-cont"></div>
+                    </div>
+                </div>
+
+
+
+
+
                 <div id="ProductMenu" runat="server" class="pr-menu-cont">
                     <span id="MainDescriptionDiv" runat="server" style="-webkit-text-size-adjust: none; display:none; font-size:15px; text-align:justify; margin-top:0px; margin-left:20px; margin-right:20px; margin-bottom:20px;">
 

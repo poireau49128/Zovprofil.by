@@ -275,7 +275,61 @@ namespace Zovprofil.zovprofil
                 Material.InnerHtml = sMaterial.Replace("\n", "<br />");
                 Sizes.InnerHtml = sSizes.Replace("\n", "<br />");
 
-                /*ProductItem.ID = sFileName;*/
+
+
+
+                int sMatrixID = 0;
+                Catalog.GetMatrixIdFromConfID(Convert.ToInt32(sConfigID), ref sMatrixID);
+
+                DataTable ProductsDT = Catalog.FillRelatedDecors(sMatrixID);
+
+
+                bool haveDecors = false;
+                foreach (DataRow Row in ProductsDT.Rows)
+                {
+                    ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
+
+                    Item.Name = Row["Name"].ToString().ToUpper() + "</br>" + Row["Color"].ToString();
+                    Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+                    Item.URL = "/Production?type=" + 1 + "&cat=" + Row["Category"] + "&item=" + Row["ImageID"].ToString();
+
+                    RelatedDecors.Controls.Add(Item);
+
+                    haveDecors = true;
+                }
+
+                if (haveDecors)
+                    RelatedDecorsDiv.Style["display"] = "block";
+
+                DataTable NotBasicDT = Catalog.FillNotBasicFronts(sMatrixID);
+
+                if (sProductType == "0" && NotBasicDT.Rows.Count > 0)
+                    NotBasicFrontsDiv.Style["display"] = "block";
+
+
+                //MessageBox.Show(NotBasicDT.Rows.Count.ToString());
+                foreach (DataRow Row in NotBasicDT.Rows)
+                {
+                    if (Row["ImageID"].ToString() == ItemID)
+                        continue;
+
+                    ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
+
+                    string nCategory = Row["Category"].ToString().Replace("Эксклюзив ZOV: ", "");
+                    nCategory = nCategory.Replace("ЭП ", "").ToLower();
+                    nCategory = nCategory.Replace(" ", "").ToLower();
+                    nCategory = char.ToUpper(nCategory[0]) + nCategory.Substring(1);
+
+                    Item.Name = Row["Name"].ToString().Replace(nCategory, nCategory + "</br>") + "</br>" + sColor.ToString();
+                    Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+                    //Item.URL = "/Production?type=" + 0 + "&cat=" + Row["Category"] + "&item=" + Row["ImageID"].ToString();
+                    string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
+                    Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
+
+                    NotBasicFronts.Controls.Add(Item);
+                }
+
+
             }
             else
             {

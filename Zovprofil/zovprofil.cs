@@ -325,5 +325,109 @@ namespace Zovprofil
             }
         }
 
+        // Возвращает MatrixID фасада по ConfigID из таблицы ClientCatalogImages
+        public static void GetMatrixIdFromConfID(int ConfigID, ref int MatrixID)
+        {
+            string Select = "SELECT MatrixId " +
+                            "FROM [infiniu2_catalog].[dbo].[FrontsConfig] as FC " +
+                            "LEFT JOIN [ClientsCatalogFrontsConfig] AS CCF " +
+                                "ON CCF.FrontID = FC.FrontID " +
+                                "AND CCF.ColorID = FC.ColorID " +
+                                "AND CCF.InsetTypeID = FC.InsetTypeID " +
+                                "AND CCF.PatinaID = FC.PatinaID " +
+                                "AND CCF.InsetColorID = FC.InsetColorID " +
+                            "WHERE ConfigID = @configid";
+
+            using (SqlConnection conn = new SqlConnection(ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(Select, conn);
+                cmd.Parameters.Add("@configid", SqlDbType.Int);
+                cmd.Parameters["@configid"].Value = ConfigID;
+
+                try
+                {
+                    conn.Open();
+                    MatrixID = Convert.ToInt32(cmd.ExecuteScalar());
+                }
+                catch (Exception ex)
+                {
+                    MatrixID = 0;
+                }
+            }
+        }
+
+
+        // Создает таблицу декоров, связанных с фасадом с переданным MatrixID
+        public static DataTable FillRelatedDecors(int matrixid)
+        {
+            string Select = "SELECT DISTINCT [ImageID], [FileName], [ToSite], [Category], [Name], [Color], [Basic] " +
+                            "FROM CollectionsConfig " +
+                            "INNER JOIN DecorConfig " +
+                                "ON CollectionsConfig.ConfigId2 = DecorConfig.MatrixID " +
+                            "INNER JOIN ClientsCatalogDecorConfig " +
+                                "ON DecorConfig.DecorID = ClientsCatalogDecorConfig.DecorID " +
+                                "AND ClientsCatalogDecorConfig.ColorID = DecorConfig.ColorID " +
+                                "AND ClientsCatalogDecorConfig.PatinaID = DecorConfig.PatinaID " +
+                            "INNER JOIN ClientsCatalogImages " +
+                                "ON ClientsCatalogDecorConfig.ConfigID = ClientsCatalogImages.ConfigID " +
+                            "WHERE CollectionsConfig.ConfigId1 = @MatrixID AND ToSite = 1 and ProductType = 1 ORDER BY Category";
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(Select, connection))
+                {
+
+                    SqlParameter matrID = new SqlParameter("@MatrixID", matrixid);
+                    command.Parameters.Add(matrID);
+
+                    SqlDataAdapter da = new SqlDataAdapter(command);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    da.Dispose();
+
+                    return dt;
+                }
+            }
+        }
+
+
+        public static DataTable FillNotBasicFronts(int MatrixID)
+        {
+            string Select = "SELECT DISTINCT[ImageID], [FileName], [ProductType], [ToSite], [Category], [Name], [Color], [Basic]" +
+                            "FROM CollectionsConfig " +
+                            "INNER JOIN FrontsConfig " +
+                                "ON CollectionsConfig.ConfigId2 = FrontsConfig.MatrixID " +
+                            "INNER JOIN ClientsCatalogFrontsConfig " +
+                                "ON FrontsConfig.FrontID = ClientsCatalogFrontsConfig.FrontID " +
+                                    "AND ClientsCatalogFrontsConfig.ColorID = FrontsConfig.ColorID " +
+                                    "AND ClientsCatalogFrontsConfig.PatinaID = FrontsConfig.PatinaID " +
+                                    "AND ClientsCatalogFrontsConfig.InsetColorID = FrontsConfig.InsetColorID " +
+                                    "AND ClientsCatalogFrontsConfig.InsetTypeID = FrontsConfig.InsetTypeID " +
+                            "INNER JOIN ClientsCatalogImages " +
+                                "ON ClientsCatalogFrontsConfig.ConfigID = ClientsCatalogImages.ConfigID " +
+                            "WHERE CollectionsConfig.ConfigId1 = @MatrixID AND ProductType = 0 AND ToSite = 1";
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(Select, connection))
+                {
+                    connection.Open();
+                    SqlParameter mtrx = new SqlParameter("@MatrixID", MatrixID);
+
+                    command.Parameters.Add(mtrx);
+
+                    using (SqlDataAdapter DA = new SqlDataAdapter(command))
+                    {
+                        using (DataTable DT = new DataTable())
+                        {
+                            DA.Fill(DT);
+                            return DT;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 }
