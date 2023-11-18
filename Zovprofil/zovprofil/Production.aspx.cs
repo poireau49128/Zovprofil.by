@@ -259,9 +259,16 @@ namespace Zovprofil.zovprofil
                     SizesDiv.Visible = false;
 
 
+                
+                string sTechStoreFile = "";
+                try
+                {
+                    sTechStoreFile = Catalog.GetTechStoreImage(Convert.ToInt32(sTechID));
+                }
+                catch
+                {
 
-
-                string sTechStoreFile = Catalog.GetTechStoreImage(Convert.ToInt32(sTechID));
+                }
                 FillProductSlider(sFileName, sTechStoreFile, bool.Parse(sBasic), Type);
 
 
