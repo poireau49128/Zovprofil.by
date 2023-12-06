@@ -222,8 +222,19 @@
             document.getElementById("DescriptionText").style.display = "none";
     })
 
-    function OpenImage(e)
-    {
+    //function OpenImage(e)
+    //{
+    //    $('#ImageDialogModal').modal('show');
+
+    //    document.getElementById('ItemImage').src = document.getElementById('URL').value + e.id;
+    //}
+
+    //function OpenSliderImage() {
+    //    $('#ImageDialogModal').modal('show');
+
+    //    document.getElementById('ItemImage').src = Catalog.URL + SliderUrls[ci - 1];
+    //}
+    function OpenImage(e) {
         $('#ImageDialogModal').modal('show');
 
         document.getElementById('ItemImage').src = document.getElementById('URL').value + e.id;
@@ -232,7 +243,17 @@
     function OpenSliderImage() {
         $('#ImageDialogModal').modal('show');
 
-        document.getElementById('ItemImage').src = Catalog.URL + SliderUrls[ci - 1];
+        document.getElementById('ItemImage').src = /*'/Images/ClientsCatalogImages/' + */SliderUrls[ci - 1];
+    }
+
+
+    function OpenFrontSliderImage() {
+        $('#ImageDialogModal').modal('show');
+
+        //if(ci == 0)
+        //    document.getElementById('ItemImage').src = '/Images/ClientsCatalogImages/' + SliderUrls[ci - 1];
+        //else
+        document.getElementById('ItemImage').src = SliderUrls[ci - 1];
     }
 
     function Loop()

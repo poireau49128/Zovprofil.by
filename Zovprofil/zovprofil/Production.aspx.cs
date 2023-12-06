@@ -407,6 +407,9 @@ namespace Zovprofil.zovprofil
             if (Basic == true || Type == 1)
                 count = 2;
 
+            if (TechStoreFile == "")
+                count = 1;
+
 
             for (int i = 0; i < count; i++)
             {
@@ -418,27 +421,30 @@ namespace Zovprofil.zovprofil
 
                 if (i == 1)
                 {
+                    //string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "TechStore", TechStoreFile.ToString());
+                    //if (File.Exists(imagePath))
+                    //{
+                    //    img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
+                    //    sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
+                    //}
+                    //else
+                    //{
+                    //    img.Attributes.Add("src", "/Images/TechStore/pict_stub.png");
+                    //    sliderUrls += "/Images/TechStore/pict_stub.png;";
+                    //}
 
-                    /*sliderUrls += "/Images/TechStore/" + TechStoreFile.ToString() + ";";*/
-                    /*sliderUrls += Catalog.URL + ProductFile.ToString() + ";";*/
-
-                    string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "TechStore", TechStoreFile.ToString());
-                    if (File.Exists(imagePath))
-                    {
-                        img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
-                        sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
-                    }
-                    else
-                    {
-                        img.Attributes.Add("src", "/Images/TechStore/pict_stub.png");
-                        sliderUrls += "/Images/TechStore/pict_stub.png;";
-                    }
-
+                    //img.Attributes.Add("cache-control", "no-cache");
+                    img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
+                    sliderUrls += "/Images/TechStore/" + TechStoreFile.ToString() + ";";
                     img.Attributes.Add("cache-control", "no-cache");
                 }
                 else
                 {
-                    img.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
+                    if(Catalog.IsFileExist(Catalog.URL + "Thumbs/" + ProductFile))
+                        img.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
+                    else
+                        img.Attributes.Add("src", Catalog.URL + ProductFile);
+
                     sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
                 }
 

@@ -428,6 +428,32 @@ namespace Zovprofil
                 }
             }
         }
+        
+        // Проверяет существование файла по ссылке
+        public static bool IsFileExist(string url)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "HEAD";
+
+            try
+            {
+                using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+                {
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (WebException ex)
+            {
+                return false;
+            }
+        }
 
     }
 }
