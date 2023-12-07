@@ -152,6 +152,11 @@ ga('send', 'pageview');
                     </a>
                 </div>
                 <div class="numb" style="margin-right:20px">
+                    <a target="_blank" href="https://t.me/OMC_Profil">
+                        <img src="/Images/telegram.png" class="img" />
+                    </a>
+                </div>
+                <div class="numb" style="margin-right:20px">
                     <a target="_blank" href="https://www.instagram.com/omcprofil.by/">
                         <img src="/Images/inst.png" class="img" />
                     </a>
@@ -160,6 +165,7 @@ ga('send', 'pageview');
                     <img src="/Images/call.png" class="img" />
                     <span class="phonem">+375 (152) 60-81-63</span>
                 </div>
+                
                 <a href="http://www.wm-shop.by/" onclick="ymetr()" target="_blank" style="margin-right:-4px;">
                     <div class="shop noselect">
                         <img src="/Images/cart.png" class="img" />
