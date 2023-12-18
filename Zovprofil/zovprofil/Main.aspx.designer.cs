@@ -15,39 +15,39 @@ namespace Zovprofil.zovprofil
     {
 
         /// <summary>
-        /// hSlidesCount control.
+        /// NewProductsContainer1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputHidden hSlidesCount;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewProductsContainer1;
 
         /// <summary>
-        /// ImagesSliderCont control.
+        /// NewProductsRepeater1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ImagesSliderCont;
+        protected global::System.Web.UI.WebControls.Repeater NewProductsRepeater1;
 
         /// <summary>
-        /// SliderNavCont control.
+        /// NewProductsContainer2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl SliderNavCont;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewProductsContainer2;
 
         /// <summary>
-        /// NewProductsContainer control.
+        /// NewProductsRepeater2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NewProductsContainer;
+        protected global::System.Web.UI.WebControls.Repeater NewProductsRepeater2;
     }
 }

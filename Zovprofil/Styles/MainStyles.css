@@ -1,4 +1,4 @@
-﻿.popover {
+﻿/*.popover {
     max-width:1000px;
     border-radius:0px;
 }
@@ -197,12 +197,12 @@
     }
     .tooltip.bottom-right .tooltip-arrow {
         border-bottom-color: rgb(130,130,130);
-    }
+    }*/
 
 
 
     /* font-family: "SegoeUIRegular"; */
-@font-face {
+/*@font-face {
     font-family: "SegoeUIRegular";
     src: url("../../Fonts/SegoeUIRegular/SegoeUIRegular.eot");
     src: url("../../Fonts/SegoeUIRegular/SegoeUIRegular.eot?#iefix")format("embedded-opentype"),
@@ -210,9 +210,9 @@
     url("../../Fonts/SegoeUIRegular/SegoeUIRegular.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
-}
+}*/
 /* font-family: "SegoeUIBold"; */
-@font-face {
+/*@font-face {
     font-family: "SegoeUIBold";
     src: url("../fonts/SegoeUIBold/SegoeUIBold.eot");
     src: url("../fonts/SegoeUIBold/SegoeUIBold.eot?#iefix")format("embedded-opentype"),
@@ -220,9 +220,9 @@
     url("../fonts/SegoeUIBold/SegoeUIBold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
-}
+}*/
 /* font-family: "SegoeUIItalic"; */
-@font-face {
+/*@font-face {
     font-family: "SegoeUIItalic";
     src: url("../fonts/SegoeUIItalic/SegoeUIItalic.eot");
     src: url("../fonts/SegoeUIItalic/SegoeUIItalic.eot?#iefix")format("embedded-opentype"),
@@ -230,9 +230,9 @@
     url("../fonts/SegoeUIItalic/SegoeUIItalic.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
-}
+}*/
 /* font-family: "SegoeUILight"; */
-@font-face {
+/*@font-face {
     font-family: "SegoeUILight";
     src: url("../../fonts/SegoeUILight/SegoeUILight.eot");
     src: url("../fonts/SegoeUILight/SegoeUILight.eot?#iefix")format("embedded-opentype"),
@@ -240,9 +240,9 @@
     url("../fonts/SegoeUILight/SegoeUILight.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
-}
+}*/
 /* font-family: "SegoeUISemiBold"; */
-@font-face {
+/*@font-face {
     font-family: "SegoeUISemiBold";
     src: url("../fonts/SegoeUISemiBold/SegoeUISemiBold.eot");
     src: url("../fonts/SegoeUISemiBold/SegoeUISemiBold.eot?#iefix")format("embedded-opentype"),
@@ -250,7 +250,7 @@
     url("../fonts/SegoeUISemiBold/SegoeUISemiBold.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
-}
+}*/
 
 /*@font-face {
   font-family: 'Lato';
@@ -260,7 +260,7 @@
   unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }*/
 
-@font-face {
+/*@font-face {
     font-family: "OpenSans-Light";
     src: url("../../fonts/OpenSans/OpenSans-Light.ttf") format('truetype');
 }
@@ -278,4 +278,4 @@
 @font-face {
     font-family: "OpenSans-Regular";
     src: url("../../fonts/OpenSans/OpenSans-Regular.ttf") format('truetype');
-}
+}*/

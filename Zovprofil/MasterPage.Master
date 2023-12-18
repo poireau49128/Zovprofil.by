@@ -4,18 +4,25 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<%--<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>--%>
+    <meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
     <link runat="server" rel="shortcut icon" href="/Images/favicon.ico" type="image/x-icon"/>
     <link href="Styles/master.css" rel="stylesheet" />
-    <link href="Styles/bootstrap.css" rel="stylesheet" />
-    <script src="Scripts/jquery-3.1.0.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/xregexp-all-min.js"></script>
     <script src="https://mc.yandex.ru/metrika/tag.js"></script>
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script src="Scripts/burger.js"></script>
 
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -140,87 +147,117 @@ ga('send', 'pageview');
 
 </head>
 <body>
-    <div class="header">
-        <div class="header-top">
-            <div class="header-top-logo">
-                <img src="/Images/mainlogo.png" style="height:24px;" />
-            </div>
-            <div class="header-top-cont">
-                <div class="numb" style="margin-right:20px">
+    <header>
+		<div class="container">
+			<div class="header-top">
+				<div class="logo">
+                    <img src="/Images/mainlogo.png" alt=""/>
+				</div>
+
+				<div class="facebook">
                     <a target="_blank" href="https://www.facebook.com/%D0%A1-%D0%9E%D0%9E%D0%9E-%D0%97%D0%9E%D0%92-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C-150153668848633/">
-                        <img src="/Images/facebook.png" class="img" />
+					    <img src="/Images/facebook.svg" alt=""/>
                     </a>
-                </div>
-                <div class="numb" style="margin-right:20px">
-                    <a target="_blank" href="https://t.me/OMC_Profil">
-                        <img src="/Images/telegram.png" class="img" />
-                    </a>
-                </div>
-                <div class="numb" style="margin-right:20px">
+				</div>
+				<div class="instagram">
                     <a target="_blank" href="https://www.instagram.com/omcprofil.by/">
-                        <img src="/Images/inst.png" class="img" />
+					    <img src="/Images/instagram.svg" alt=""/>
                     </a>
-                </div>
-                <div class="numb">
-                    <img src="/Images/call.png" class="img" />
-                    <span class="phonem">+375 (152) 60-81-63</span>
-                </div>
-                
-                <a href="http://www.wm-shop.by/" onclick="ymetr()" target="_blank" style="margin-right:-4px;">
-                    <div class="shop noselect">
-                        <img src="/Images/cart.png" class="img" />
-                        <span class="but">ИНТЕРНЕТ-МАГАЗИН</span>
-                    </div>
+				</div>
+				<div class="telegram">
+                    <a target="_blank" href="https://t.me/OMC_Profil">
+					    <img src="/Images/telegram.svg" alt=""/>
+                    </a>
+				</div>
+				<div class="number">
+					<img src="/Images/whatsapp.svg" alt=""/>
+					<div style="margin: auto;">+375 (152) 60-81-63</div>
+				</div>
+
+                <a href="http://www.wm-shop.by/" onclick="ymetr()" target="_blank">
+				    <div class="button-shop">
+					    <img src="/Images/cart.png" alt=""/>
+					    <div style="margin: auto;">ИНТЕРНЕТ-МАГАЗИН</div>
+				    </div>
                 </a>
-                <div class="write noselect" style="margin:0" onclick="ShowMessage()">
-                    <img src="/Images/write_w.png" class="img" />
-                    <span class="but">НАПИСАТЬ</span>
-                </div>
-            </div>
-        </div>
-        <div class="noselect main-menu">
-            <div class="back">
-                <div class="back-cont">
-                    <a href="/Main" class="item">
-                        <div id="MainItem" runat="server" class="text">
-                            Главная
-                        </div>
-                    </a>                
-                    <a href="/Production" class="item">
-                        <div id="ProdItem" runat="server" class="text">
-                            Каталог
-                        </div>
-                    </a>
-                    <a href="/News"  class="item">
-                        <div id="NewsItem" runat="server" class="text">
-                            Новости
-                        </div>
-                    </a>
-                    <a href="/Wheretobuy"  class="item">
-                        <div id="WhereItem" runat="server" class="text">
-                            Где купить?
-                        </div>
-                    </a>
-                    <a href="/Downloads"  class="item">
-                        <div id="DownloadsItem" runat="server" class="text">
-                            Клиентам
-                        </div>
-                    </a>
-                    <a href="/About"  class="item">
-                        <div id="AboutItem" runat="server" class="text">
-                            О компании
-                        </div>
-                    </a>
-                    <a href="/Contacts"  class="item">
-                        <div id="ContactsItem" runat="server" class="text">
-                            Контакты
-                        </div>
-                    </a>
-                </div>
-            </div>
-            
-        </div>
-    </div>
+
+				<div class="button-contact" onclick="ShowMessage()">
+					<img src="/Images/letter.png" alt=""/>
+					<div style="margin: auto;">НАПИСАТЬ</div>
+				</div>
+
+
+				<div class="header-burger">
+		      		<span></span>
+		        </div>
+
+		        <div class="menu-overlay">
+					<div class="menu">
+						<ul>
+							<li class="menu-mobile"><a href="/News">Новости</a></li>
+							<li class="menu-tablet"><a href="/About">О компании</a></li>
+							<li class="menu-tablet"><a href="/Contacts">Контакты</a></li>
+							<li class="but menu-buttons">
+								<img src="/Images/cart.png" alt=""/>
+								<div style="color: white">ИНТЕРНЕТ-МАГАЗИН</div>
+							</li>
+							<li class="but menu-buttons">
+								<img src="/Images/letter.png" alt=""/>
+								<div style="color: white;">НАПИСАТЬ</div>
+							</li>	
+							<li><a href="#">+375 (152) 60-81-63</a></li>
+							<li>
+								<a target="_blank" href="https://www.facebook.com/%D0%A1-%D0%9E%D0%9E%D0%9E-%D0%97%D0%9E%D0%92-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C-150153668848633/">
+									<img src="/Images/facebook.svg" alt=""/>
+								</a>
+								<a target="_blank" href="https://www.instagram.com/omcprofil.by/">
+									<img src="/Images/instagram.svg" alt=""/>
+								</a>
+								<a target="_blank" href="https://t.me/OMC_Profil">
+									<img src="/Images/telegram.svg" alt=""/>
+								</a>
+								<a href="#">
+									<img src="/Images/whatsapp.svg" alt=""/>
+								</a>
+							</li>	
+						</ul>
+					</div>
+				</div>
+			</div>
+
+			
+
+			<div class="menu">
+				<a href="/Main" class="item">
+					<div class="nav-main" runat="server">Главная</div>
+				</a>
+				<a href="/Production" class="item">
+					<div class="nav-catalog" runat="server">Каталог</div>
+				</a>
+				<a href="/News" class="item mobile">
+					<div class="nav-news" runat="server">Новости</div>
+				</a>
+				<a href="/Wheretobuy" class="item">
+					<div class="nav-wheretobuy" runat="server">Где купить</div>
+				</a>
+				<a href="/Downloads" class="item">
+					<div class="nav-clients" runat="server">Клиентам</div>
+				</a>
+				<a href="/About" class="item tablet mobile">
+					<div class="nav-about" runat="server">О компании</div>
+				</a>
+				<a href="/Contacts" class="item tablet mobile">
+					<div class="nav-contacts" runat="server">Контакты</div>
+				</a>
+			</div>
+		</div>
+	</header>
+
+
+    <%--<asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>--%>
+
+
     <form id="MasterForm" runat="server">
         <asp:ScriptManager runat="server" ID="ScriptManager1">
             <Services>
@@ -233,25 +270,39 @@ ga('send', 'pageview');
                 </asp:ContentPlaceHolder>
             </div>
         </div>
-        <div class="footer">
-            <div class="left">
-                <a href="/Production" style="display:block; margin-top:8px;">• Каталог</a>
-                <a href="/Contacts" style="display:block; margin-top:8px;">• Контакты</a>
-                <a href="/Wheretobuy" style="display:block; margin-top:8px;">• Где купить</a>
-            </div>
-            <div class="center">
-                <div class="cont">
-                    <img src="/Images/foot.png"  style="margin-top:15px; width:190px;"/>
-                    <span class="f-text" style="padding-top:12px;">2017-2022 © ООО "ОМЦ-Профиль"</span>
-                </div>
-            </div>
-            <div class="right">
-                <span style="text-align:right; font-family:OpenSans-Semibold; color:white; font-size:14px;">Адрес фабрики и склада</span>
-                <span class="f-text" style="font-size:14px; padding-top:12px;">ул. Герасимовича, 1-3<br />230011 г. Гродно<br />Республика Беларусь</span>
-            </div>
-        </div>
+
+       <footer>
+		<div class="container">
+			<div class="footer">
+				<div class="links">
+					<ul>
+						<li><a href="/Main">Главная</a></li>
+						<li><a href="/Contacts">Контакты</a></li>
+						<li><a href="/Wheretobuy">Где купить</a></li>
+					</ul>
+				</div>
+				<div class="social">
+					<span>Мы в соцсетях:</span>
+					<div class="soc">
+						<a target="_blank" href="https://www.facebook.com/%D0%A1-%D0%9E%D0%9E%D0%9E-%D0%97%D0%9E%D0%92-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C-150153668848633/"><img src="Images/facebook.svg" alt=""></a>
+						<a target="_blank" href="https://www.instagram.com/omcprofil.by/"><img src="Images/instagram.svg" alt=""></a>
+						<a target="_blank" href="https://t.me/OMC_Profil"><img src="Images/telegram.svg" alt=""></a>
+						<a href="#"><img src="Images/whatsapp.svg" alt=""></a>
+					</div>
+				</div>
+				<div class="copyright">2017-2024 © ООО "ОМЦ-Профиль"</div>
+				<div></div>
+				<div class="address">
+					<span>Адрес фабрики и склада</span>
+					<span>ул. Герасимовича, 1-3</span>
+					<span>230011 г. Гродно</span>
+					<span>Республика Беларусь</span>
+				</div>
+			</div>
+		</div>
+	</footer>
     </form>
-    <div class="modal fade" id="MessageDialogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-family:OpenSans-Regular, sans-serif,  Arial;">
+    <%--<div class="modal fade" id="MessageDialogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-family:OpenSans-Regular, sans-serif,  Arial;">
         <div class="modal-dialog" runat="server" style="width:650px; height:525px; margin:120px auto;">
             <div class="modal-content" runat="server" style="width:100%; height:100%;">
                 <div class="modal-cont">
@@ -334,6 +385,6 @@ ga('send', 'pageview');
                 </div>              
             </div>
         </div>
-    </div>
+    </div>--%>
 </body>
 </html>
