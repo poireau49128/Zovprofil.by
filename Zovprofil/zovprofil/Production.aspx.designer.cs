@@ -42,24 +42,6 @@ namespace Zovprofil.zovprofil
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hDesc;
 
         /// <summary>
-        /// FrontsCat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrontsCat;
-
-        /// <summary>
-        /// ExpImageFronts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ExpImageFronts;
-
-        /// <summary>
         /// FrontsContainer control.
         /// </summary>
         /// <remarks>
@@ -67,24 +49,6 @@ namespace Zovprofil.zovprofil
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrontsContainer;
-
-        /// <summary>
-        /// CabCat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CabCat;
-
-        /// <summary>
-        /// ExpImageCup control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ExpImageCup;
 
         /// <summary>
         /// CabsContainer control.
@@ -96,24 +60,6 @@ namespace Zovprofil.zovprofil
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CabsContainer;
 
         /// <summary>
-        /// DecorCat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DecorCat;
-
-        /// <summary>
-        /// ExpImageProfile control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ExpImageProfile;
-
-        /// <summary>
         /// DecorContainer control.
         /// </summary>
         /// <remarks>
@@ -123,24 +69,6 @@ namespace Zovprofil.zovprofil
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DecorContainer;
 
         /// <summary>
-        /// PromCat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PromCat;
-
-        /// <summary>
-        /// ExpImagePromotion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ExpImagePromotion;
-
-        /// <summary>
         /// PromotionContainer control.
         /// </summary>
         /// <remarks>
@@ -148,24 +76,6 @@ namespace Zovprofil.zovprofil
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PromotionContainer;
-
-        /// <summary>
-        /// InteriorCat control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl InteriorCat;
-
-        /// <summary>
-        /// ExpImageInterior control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage ExpImageInterior;
 
         /// <summary>
         /// InteriorContainer control.

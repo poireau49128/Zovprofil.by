@@ -73,6 +73,7 @@
     <Content Include="CheckBox.ascx" />
     <Content Include="home\produkcziya\korpusnay-mebel\patricziya1.html" />
     <Content Include="Scripts\burger.js" />
+    <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\swiper.js" />
     <Content Include="Service.asmx" />
     <Content Include="Styles\MainStyles.css" />

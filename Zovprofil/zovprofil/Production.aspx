@@ -2,17 +2,20 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
     <link href="../Styles/production.css" rel="stylesheet" />
-    <link href="../Styles/bootstrap.css" rel="stylesheet" />
+    <%--<link href="../Styles/bootstrap.css" rel="stylesheet" />--%>
     <script src="../Scripts/jquery-3.1.0.min.js"></script>
-    <script src="../Scripts/bootstrap.min.js"></script>
+    <%--<script src="../Scripts/bootstrap.min.js"></script>--%>
     
     <input type="hidden" id="URL" runat="server" />
     <input type="hidden" runat="server" id="hSlidesCount" />
     <input type="hidden" runat="server" id="hDesc" />
 
-    <div style="text-align:center">
-        <div style="width:1000px; display:inline-block; margin-top:30px; margin-bottom:30px;">
-            <div style="display:inline-block; float:left;  width:300px; border: 1px solid #f5f5f5;">
+    <div style="text-align:center" class="main-container">
+        <%--<div style="/*width:1000px;*/ display:inline-block; margin-top:30px; margin-bottom:30px;">--%>
+
+
+
+            <%--<div style="display:inline-block; float:left; /* width:300px*/; border: 1px solid #f5f5f5;">
                 <div style="text-align:left; background-color:white; padding-left:15px; padding-top:3px; padding-bottom:5px;">
                     <div>
                         <a href="/Production?type=0">
@@ -82,7 +85,159 @@
                         <span class="but">ИНТЕРНЕТ-МАГАЗИН</span>
                     </div>
                 </a>
-            </div>
+            </div>--%>
+
+
+
+
+
+
+
+            <nav>
+			    <div id="Sidebar" class="sidebar">
+			      <div class="sidebar-content">
+			        <article class="category-container">
+                        
+			    	        <div class="category" onclick="toggleCategory('FrontsContainer', 0, event)">
+                                <a id="FrontsLink" href="/Production?type=0">
+			    		            <img class="category-img" src="/Images/fronts.png" alt="">
+				                    <span>ФАСАДЫ</span>
+				                    <span class="arrow"></span>
+                                </a>
+				            </div>
+                        
+				        <div id="FrontsContainer"  runat="server" class="category-content">
+				          <!-- Список категорий фасадов -->
+				        </div>
+			        </article>
+
+			        <article class="category-container">
+                        
+			    	        <div class="category" onclick="toggleCategory('CabsContainer', 2, event)">
+                                <a id="CabsLink" href="/Production?type=2">
+			    		            <img class="category-img" src="/Images/cup.png" alt="">
+				                  <span>МЕБЕЛЬ</span>
+				                  <span class="arrow"></span>
+                                </a>
+				            </div>
+                        
+				        <div id="CabsContainer" runat="server" class="category-content">
+				          <!-- Список категорий мебели -->
+				        </div>
+			        </article>
+
+			        <article class="category-container">
+			    	    <div class="category" onclick="toggleCategory('DecorContainer', 1, event)">
+                            <a id="DecorLink" href="/Production?type=1">
+			    		        <img class="category-img" src="/Images/profile.png" alt="">
+				              <span>ДЕКОРЫ</span>
+				              <span class="arrow"></span>
+                            </a>
+				        </div>
+				        <div id="DecorContainer"  runat="server" class="category-content">
+				          <!-- Список категорий декоров -->
+				        </div>
+			        </article>
+
+                      <article class="category-container">
+			    	    <div class="category" onclick="toggleCategory('PromotionContainer', 4, event)">
+                            <a id="PromotionLink" href="/Production?type=4">
+			    		        <img class="category-img" src="/Images/promotion.png" alt="">
+				              <span>РЕКЛАМНАЯ ПРОДУКЦИЯ</span>
+				              <span class="arrow"></span>
+                            </a>
+				        </div>
+				        <div id="PromotionContainer" runat="server" class="category-content">
+				          <!-- Список категорий декоров -->
+				        </div>
+			        </article>
+
+			        <article class="category-container">
+			    	    <div class="category" onclick="toggleCategory('InteriorContainer', 5, event)">
+                            <a id="InteriorLink" href="/Production?type=5">
+			    		        <img class="category-img" src="/Images/interior.png" alt="">
+				              <span>ИНТЕРЬЕРНЫЕ ДЕКОРЫ</span>
+				              <span class="arrow"></span>
+                            </a>
+				        </div>
+				        <div id="InteriorContainer" runat="server" class="category-content">
+				          <!-- Список категорий декоров -->
+				        </div>
+			        </article>
+
+                      <div id="ReadyContainer" runat="server" class=""></div>
+			      </div>
+			    </div>
+
+
+
+			    <script>
+                    function toggleCategory(containerId, link, event) {
+                        event.preventDefault();
+                        var container = document.getElementById(containerId);
+                        var arrow = container.previousElementSibling.querySelector('.arrow');
+                        var siblings = container.parentElement.parentElement.getElementsByClassName('category-content');
+
+                        var currentPageType = parseInt(getParameterByName('type'));
+                        
+                        if (currentPageType !== link) {
+                            window.location.href = "/Production?type=" + link;
+                            //return;
+                        }
+
+                        container.classList.toggle('show');
+                        arrow.classList.toggle('up');
+
+                        for (var i = 0; i < siblings.length; i++) {
+                            var sibling = siblings[i];
+                            var siblingArrow = sibling.previousElementSibling.querySelector('.arrow');
+                            if (sibling !== container) {
+                                sibling.classList.remove('show');
+                                siblingArrow.classList.remove('up');
+                            }
+                        }
+
+                        //container.classList.toggle('show');
+                        //arrow.classList.toggle('up');
+                        localStorage.setItem('containerId', containerId);
+                    }
+
+
+                    // Функция для получения значения параметра из URL
+                    function getParameterByName(name) {
+                        name = name.replace(/[\[\]]/g, '\\$&');
+                        var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                            results = regex.exec(window.location.href);
+                        if (!results) return null;
+                        if (!results[2]) return '';
+                        return decodeURIComponent(results[2].replace(/\+/g, ' '));
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Код для выполнения после полной загрузки DOM
+                        var containerId = localStorage.getItem("containerId");
+
+                        var container = document.getElementById(containerId);
+                        var arrow = container.previousElementSibling.querySelector('.arrow');
+
+                        container.classList.toggle('show');
+                        arrow.classList.toggle('up');
+                    });
+                </script>	
+		    </nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
             <div style="display:inline-block; width:680px; text-align:left">
                 <div id="ProductItemCont" runat="server">
                     <span id="ProductItemName" runat="server"></span>
@@ -178,14 +333,14 @@
                 </div>
             </div>
         </div>
-    </div>
+    <%--</div>--%>
 
     <div>
          
     </div>
 
 
-    <div class="modal fade" id="ImageDialogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="">
+    <div class="modal fade" id="ImageDialogModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: none">
         <div class="modal-dialog" runat="server" style="width:80%; height:80%; margin:80px auto;">
             <div class="modal-content" runat="server" style="width:100%; height:100%;">
                  <div style="background-color:rgb(250,250,250); position:absolute; float:left; left:0px; right:0px; top:0px; bottom:0px; border-style:solid; border-width:1px; border-color:rgb(160,160,160);
