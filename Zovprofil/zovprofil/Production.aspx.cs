@@ -440,10 +440,10 @@ namespace Zovprofil.zovprofil
                 }
                 else
                 {
-                    if(Catalog.IsFileExist(Catalog.URL + "Thumbs/" + ProductFile))
+                    //if(Catalog.IsFileExist(Catalog.URL + "Thumbs/" + ProductFile))
                         img.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
-                    else
-                        img.Attributes.Add("src", Catalog.URL + ProductFile);
+                    //else
+                    //    img.Attributes.Add("src", Catalog.URL + ProductFile);
 
                     sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
                 }

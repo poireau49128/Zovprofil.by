@@ -32,10 +32,10 @@ namespace Zovprofil.zovprofil
             {
                 ProductItemMain Item = (ProductItemMain)Page.LoadControl("~/zovprofil/Controls/ProductItemMain.ascx");
                 Item.Name = Row["Name"].ToString() + " " + Row["Color"].ToString();
-                if (File.Exists(Catalog.URL + "Thumbs/" + Row["FileName"].ToString()))
+                //if (Catalog.IsFileExist(Catalog.URL + "Thumbs/" + Row["FileName"].ToString()))
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
-                else
-                    Item.ProductImageUrl = Catalog.URL + Row["FileName"].ToString();
+                //else
+                //    Item.ProductImageUrl = Catalog.URL + Row["FileName"].ToString();
                 Item.URL = "/Production?type=" + Row["ProductType"].ToString() + "&cat=" + Row["Category"].ToString() + "&item=" + Row["ImageID"].ToString();
 
                 NewProductsContainer.Controls.Add(Item);

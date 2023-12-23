@@ -76,7 +76,7 @@ namespace Zovprofil
 
                     foreach (DataRow Row in DT.Rows)
                     {
-                        using (SqlDataAdapter sDA = new SqlDataAdapter("SELECT TOP 1 FileName FROM ClientsCatalogImages WHERE Category = '" + Row["Category"].ToString() + "' AND ToSite = 1", ConnectionString))
+                        using (SqlDataAdapter sDA = new SqlDataAdapter("SELECT TOP 1 FileName FROM ClientsCatalogImages WHERE Category = '" + Row["Category"].ToString() + "' AND ToSite = 1 AND ProductType != 3", ConnectionString))
                         {
                             using (DataTable sDT = new DataTable())
                             {
