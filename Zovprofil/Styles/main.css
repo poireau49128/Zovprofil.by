@@ -508,14 +508,14 @@ button {
 
 .latest-front {
     text-align: center;
-    max-width: 212px;
-    max-height: 212px;
+    max-width: 200px;
+    max-height: 200px;
     margin-bottom: 110px;
 }
 
 .front-image {
-    /*width: 212px;
-	height: 212px;*/
+/*    width: 212px;*/
+	height: 212px;
     padding: 10px;
     display: flex;
     justify-content: center;

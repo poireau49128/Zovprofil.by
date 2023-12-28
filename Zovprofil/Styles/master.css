@@ -6,7 +6,7 @@ body {
 }
 
 body {
-    background: #eee;
+    /*background: #eee;*/
     /*font-family: Helvetica Neue, Helvetica, Arial, sans-serif;*/
     font-family: Montserrat;
     font-weight: 400;
@@ -114,6 +114,7 @@ header{
 .button-contact {
     background-color: #337363;
     text-decoration: underline;
+    margin-right: 0 !important;
 }
 
 .menu {
@@ -140,10 +141,10 @@ header{
     padding-top: 50px;
     padding-bottom: 0;
     margin: 0 !important;
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
-    z-index: 99;
+    z-index: 999;
     display: none;
 }
 
@@ -388,7 +389,9 @@ footer {
 
 
 
-
+.header-burger{
+    display: none;
+}
 
 
 @media (max-width: 960px) {

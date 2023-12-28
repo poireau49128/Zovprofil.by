@@ -76,7 +76,7 @@ namespace Zovprofil
 
                     foreach (DataRow Row in DT.Rows)
                     {
-                        using (SqlDataAdapter sDA = new SqlDataAdapter("SELECT TOP 1 FileName FROM ClientsCatalogImages WHERE Category = '" + Row["Category"].ToString() + "' AND ToSite = 1", ConnectionString))
+                        using (SqlDataAdapter sDA = new SqlDataAdapter("SELECT TOP 1 FileName FROM ClientsCatalogImages WHERE Category = '" + Row["Category"].ToString() + "' AND ToSite = 1 AND ProductType != 3", ConnectionString))
                         {
                             using (DataTable sDT = new DataTable())
                             {
@@ -252,10 +252,12 @@ namespace Zovprofil
                 using (DataTable DT = new DataTable())
                 {
                     if (DA.Fill(DT) == 0)
-                        return "pict_stub.png";
+                        //return "pict_stub.png";
+                        return null;
 
                     if (DT.Rows[0]["FileName"] == DBNull.Value)
-                        return "pict_stub.png";
+                        //return "pict_stub.png";
+                        return null;
 
                     string FileName = DT.Rows[0]["FileName"].ToString();
                     string FileSize = DT.Rows[0]["FileSize"].ToString();

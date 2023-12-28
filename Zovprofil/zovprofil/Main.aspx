@@ -82,7 +82,7 @@
 		<h1 class="h1-header">ФАСАДЫ РАМОЧНЫЕ И ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ДЛЯ МЕБЕЛИ И ИНТЕРЬЕРА</h1>
 		<div class="categories">
 			<div class="category">
-				<a href="https://zovprofil.by/Production?type=0">
+				<a href="/Production?type=0">
 					<div class="cat-image">
 						<img src="/Images/fronts.jpg" alt=""/>
 					</div>
@@ -90,7 +90,7 @@
 				</a>
 			</div>
 			<div class="category">
-				<a href="https://zovprofil.by/Production?type=5">
+				<a href="/Production?type=5">
 					<div class="cat-image">
 						<img src="/Images/decors.jpg" alt=""/>
 					</div>
@@ -98,7 +98,7 @@
 				</a>
 			</div>
 			<div class="category">
-				<a href="https://zovprofil.by/Production?type=1">
+				<a href="/Production?type=1">
 					<div class="cat-image">
 						<img src="/Images/pogon.jpg" alt=""/>
 					</div>
@@ -106,15 +106,15 @@
 				</a>
 			</div>
 			<div class="category">
-				<a href="https://zovprofil.by/Production?type=2">
+				<a href="/Production?type=2">
 					<div class="cat-image">
-						<img src="/Images/furniture.jpg" alt=""/>
+						<img src="/Images/furniture.png" alt=""/>
 					</div>
 					<h3>Мебель</h3>
 				</a>
 			</div>
 			<div class="category">
-				<a href="https://zovprofil.by/Production?type=1">
+				<a href="/Production?type=1">
 					<div class="cat-image">
 						<img src="/Images/dec-elements.jpg" alt=""/>
 					</div>
@@ -122,7 +122,7 @@
 				</a>
 			</div>
 			<div class="category">
-				<a href="https://zovprofil.by/Production?type=4">
+				<a href="/Production?type=4">
 					<div class="cat-image">
 						<img src="/Images/plintus.jpeg" alt=""/>
 					</div>

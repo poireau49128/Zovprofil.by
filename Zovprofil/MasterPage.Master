@@ -24,6 +24,9 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="Scripts/burger.js"></script>
 
+    <%--<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="../Scripts/swiper.js"></script>--%>
+
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -284,10 +287,10 @@ ga('send', 'pageview');
 				<div class="social">
 					<span>Мы в соцсетях:</span>
 					<div class="soc">
-						<a target="_blank" href="https://www.facebook.com/%D0%A1-%D0%9E%D0%9E%D0%9E-%D0%97%D0%9E%D0%92-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C-150153668848633/"><img src="Images/facebook.svg" alt=""></a>
-						<a target="_blank" href="https://www.instagram.com/omcprofil.by/"><img src="Images/instagram.svg" alt=""></a>
-						<a target="_blank" href="https://t.me/OMC_Profil"><img src="Images/telegram.svg" alt=""></a>
-						<a href="#"><img src="Images/whatsapp.svg" alt=""></a>
+						<a target="_blank" href="https://www.facebook.com/%D0%A1-%D0%9E%D0%9E%D0%9E-%D0%97%D0%9E%D0%92-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C-150153668848633/"><img src="/Images/facebook.svg" alt=""></a>
+						<a target="_blank" href="https://www.instagram.com/omcprofil.by/"><img src="/Images/instagram.svg" alt=""></a>
+						<a target="_blank" href="https://t.me/OMC_Profil"><img src="/Images/telegram.svg" alt=""></a>
+						<%--<a href="#"><img src="/Images/whatsapp.svg" alt=""></a>--%>
 					</div>
 				</div>
 				<div class="copyright">2017-2024 © ООО "ОМЦ-Профиль"</div>

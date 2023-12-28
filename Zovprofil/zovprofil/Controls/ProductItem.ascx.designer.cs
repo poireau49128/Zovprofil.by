@@ -7,11 +7,13 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace Zovprofil.zovprofil.Controls {
-    
-    
-    public partial class ProductItem {
-        
+namespace Zovprofil.zovprofil.Controls
+{
+
+
+    public partial class ProductItem
+    {
+
         /// <summary>
         /// Link элемент управления.
         /// </summary>
@@ -20,7 +22,7 @@ namespace Zovprofil.zovprofil.Controls {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor Link;
-        
+
         /// <summary>
         /// Image элемент управления.
         /// </summary>
@@ -29,7 +31,7 @@ namespace Zovprofil.zovprofil.Controls {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Image;
-        
+
         /// <summary>
         /// ProdImage элемент управления.
         /// </summary>
@@ -38,7 +40,7 @@ namespace Zovprofil.zovprofil.Controls {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage ProdImage;
-        
+
         /// <summary>
         /// ProdCategory элемент управления.
         /// </summary>

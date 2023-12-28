@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Zovprofil.zovprofil.Controls
 {
+    // Товары внутри выбранной категории
     public partial class ProductItem : System.Web.UI.UserControl
     {
         public string Name = "";

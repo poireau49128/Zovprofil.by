@@ -99,9 +99,9 @@
 			        <article class="category-container">
                         
 			    	        <div class="category" onclick="toggleCategory('FrontsContainer', 0, event)">
-                                <a id="FrontsLink" href="/Production?type=0">
+                                <a id="FrontsLink" href="/Production?type=0" class="category-link">
 			    		            <img class="category-img" src="/Images/fronts.png" alt="">
-				                    <span>ФАСАДЫ</span>
+				                    <span class="category-name">ФАСАДЫ</span>
 				                    <span class="arrow"></span>
                                 </a>
 				            </div>
@@ -114,9 +114,9 @@
 			        <article class="category-container">
                         
 			    	        <div class="category" onclick="toggleCategory('CabsContainer', 2, event)">
-                                <a id="CabsLink" href="/Production?type=2">
+                                <a id="CabsLink" href="/Production?type=2" class="category-link">
 			    		            <img class="category-img" src="/Images/cup.png" alt="">
-				                  <span>МЕБЕЛЬ</span>
+				                  <span class="category-name">МЕБЕЛЬ</span>
 				                  <span class="arrow"></span>
                                 </a>
 				            </div>
@@ -128,9 +128,9 @@
 
 			        <article class="category-container">
 			    	    <div class="category" onclick="toggleCategory('DecorContainer', 1, event)">
-                            <a id="DecorLink" href="/Production?type=1">
+                            <a id="DecorLink" href="/Production?type=1" class="category-link">
 			    		        <img class="category-img" src="/Images/profile.png" alt="">
-				              <span>ДЕКОРЫ</span>
+				              <span class="category-name">ДЕКОРЫ</span>
 				              <span class="arrow"></span>
                             </a>
 				        </div>
@@ -141,9 +141,9 @@
 
                       <article class="category-container">
 			    	    <div class="category" onclick="toggleCategory('PromotionContainer', 4, event)">
-                            <a id="PromotionLink" href="/Production?type=4">
+                            <a id="PromotionLink" href="/Production?type=4" class="category-link">
 			    		        <img class="category-img" src="/Images/promotion.png" alt="">
-				              <span>РЕКЛАМНАЯ ПРОДУКЦИЯ</span>
+				              <span class="category-name">РЕКЛАМНАЯ ПРОДУКЦИЯ</span>
 				              <span class="arrow"></span>
                             </a>
 				        </div>
@@ -154,9 +154,9 @@
 
 			        <article class="category-container">
 			    	    <div class="category" onclick="toggleCategory('InteriorContainer', 5, event)">
-                            <a id="InteriorLink" href="/Production?type=5">
+                            <a id="InteriorLink" href="/Production?type=5" class="category-link">
 			    		        <img class="category-img" src="/Images/interior.png" alt="">
-				              <span>ИНТЕРЬЕРНЫЕ ДЕКОРЫ</span>
+				              <span class="category-name">ИНТЕРЬЕРНЫЕ ДЕКОРЫ</span>
 				              <span class="arrow"></span>
                             </a>
 				        </div>
@@ -175,18 +175,24 @@
                     function toggleCategory(containerId, link, event) {
                         event.preventDefault();
                         var container = document.getElementById(containerId);
+
                         var arrow = container.previousElementSibling.querySelector('.arrow');
+
                         var siblings = container.parentElement.parentElement.getElementsByClassName('category-content');
 
                         var currentPageType = parseInt(getParameterByName('type'));
-                        
-                        if (currentPageType !== link) {
+                        var currentCategory = getParameterByName('cat');
+
+                        //alert(currentCategory);
+
+                        if (event.target.classList.contains('category-name') || (event.target.classList.contains('arrow') && currentPageType !== link)) {
                             window.location.href = "/Production?type=" + link;
                             //return;
                         }
 
                         container.classList.toggle('show');
                         arrow.classList.toggle('up');
+                        
 
                         for (var i = 0; i < siblings.length; i++) {
                             var sibling = siblings[i];
@@ -220,8 +226,15 @@
                         var container = document.getElementById(containerId);
                         var arrow = container.previousElementSibling.querySelector('.arrow');
 
-                        container.classList.toggle('show');
-                        arrow.classList.toggle('up');
+
+
+                        var urlParams = new URLSearchParams(window.location.search);
+                        var hasCatParam = urlParams.has('cat');
+                        if (!hasCatParam) {
+                            container.classList.toggle('show');
+                            arrow.classList.toggle('up');
+                        }
+                        
                     });
                 </script>	
 		    </nav>
@@ -238,9 +251,182 @@
 
 
 
-            <div style="display:inline-block; width:680px; text-align:left">
-                <div id="ProductItemCont" runat="server">
-                    <span id="ProductItemName" runat="server"></span>
+            <div class="production-main">
+                <div id="Swiper1" runat="server" class="swiper swiper-main swiper-cat" rewind="true">
+                    <div id="swiperWrapper1" runat="server" class="swiper-wrapper">
+                    <%-- Слайды --%>
+                        </div>
+                    <div class="swiper-scrollbar"></div>
+                    </div>
+                <span id="DescriptionText1" class="cat-description" runat="server"></span>
+
+
+
+                <div id="ProductItemCont" runat="server" class="product-container">
+                    <%--<div class="product-images">
+                        <img id="product_image_main" runat="server" src="#" alt="" />
+                        <img id="product_image_tech" runat="server" src="#" alt="" />
+                    </div>--%>
+
+
+                    <%--<div id="prod-im" class="swiper swiper-main" rewind="true">
+                        <div id="prod-im-w" class="swiper-wrapper">
+                            <div id="prod-im-s1" class="swiper-slide">
+                                <img id="product_image_main" runat="server" src="#" alt="" />
+                            </div>
+                            <div id="prod-im-s2" class="swiper-slide">
+                                <img id="product_image_tech" runat="server" src="#" alt="" />
+                            </div>
+                        </div>
+                        <div class="swiper-scrollbar"></div>
+                    </div>--%>
+
+
+
+                    <div id="prod-im" class="product-images" rewind="true">
+                        <div id="prod-im-w">
+                            <div id="prod-im-s1">
+                                <img id="product_image_main" runat="server" src="#" alt="" />
+                            </div>
+                            <div id="prod_im_s2" runat="server">
+                                <img id="product_image_tech" runat="server" src="#" alt="" />
+                            </div>
+                        </div>
+                        <div class="swiper-scrollbar"></div>
+                    </div>
+
+
+
+                    <script>
+                        function checkScreenSize() {
+                            const block = document.getElementById('prod-im');
+                            const block_w = document.getElementById('prod-im-w');
+                            const block_s1 = document.getElementById('prod-im-s1');
+                            const block_s2 = document.getElementById('prod_im_s2');
+
+                            const img = document.getElementById('product_image_tech');
+                            var src = img.getAttribute("src");
+
+                            const screenSize = window.innerWidth;
+
+
+
+                            //console.log(screenSize <= 768);
+                            //console.log(src);
+                            //console.log(!src.includes('###'));
+                            //console.log(screenSize <= 768 && src && !src.includes('###'));
+
+
+
+                            if (screenSize <= 768 && src && !src.includes('#')) {
+                                
+                                block.classList.add('swiper');
+                                block.classList.add('swiper-main');
+                                block_w.classList.add('swiper-wrapper');
+                                block_s1.classList.add('swiper-slide');
+                                block_s2.classList.add('swiper-slide');
+
+                                block.classList.remove('product-images');
+
+
+                                const swiper_main = new Swiper('.swiper-main', {
+                                    direction: 'horizontal',
+                                    /*loop: true,*/
+                                    rewind: true,
+                                    autoplay: {
+                                        delay: 25000,
+                                        disableOnInteraction: false,
+                                    },
+                                    scrollbar: {
+                                        el: '.swiper-scrollbar',
+                                        draggable: true,
+                                    },
+                                });
+                            } else {
+                                block.classList.remove('swiper');
+                                block.classList.remove('swiper-main');
+                                block_w.classList.remove('swiper-wrapper');
+                                block_s1.classList.remove('swiper-slide');
+                                block_s2.classList.remove('swiper-slide');
+
+                                block_s1.removeAttribute("style");
+                                block_s2.removeAttribute("style");
+
+                                block.classList.add('product-images');
+                            }
+                        }
+
+                        window.addEventListener('load', checkScreenSize);
+                        window.addEventListener('resize', checkScreenSize);
+                    </script>
+
+
+
+
+                    <div class="product-info">
+                        <div class="product-name">
+                            <span id="ProductItemName" runat="server"></span>
+                        </div>
+                        
+
+                        <div id="MaterialDiv" runat="server">
+                            <span class="head"><b>Материал:</b><br /></span>
+                            <span class="text" id="Material" runat="server"></span>
+                        </div>
+                        <div id="SizesDiv" runat="server" style="padding-top:30px;">
+                            <span class="head"><b>Размеры:</b><br /></span>
+                            <span id="Sizes" runat="server" class="text"></span>
+                        </div>
+                        <div id="DescriptionDiv" runat="server" style="padding-top:30px;">
+                            <span class="head"><b>Описание:</b><br /></span>
+                            <span id="Description" runat="server" class="text"></span>
+                        </div>
+
+                        <div id="ColorDiv" runat="server" style="padding-top:30px;">
+                            <span class="head"><b>Цвета:</b><br /></span>
+                            <div id="Colors" runat="server" class="product-colors"></div>
+                        </div>
+
+
+
+
+
+                        <script>
+                            window.addEventListener('DOMContentLoaded', function () {
+                                adjustColorBlockWidths();
+                                window.addEventListener('resize', adjustColorBlockWidths);
+                            });
+
+                            function adjustColorBlockWidths() {
+                                var colorBlocks = document.getElementsByClassName('product-color-block');
+
+                                // Reset the width for accurate measurement
+                                Array.from(colorBlocks).forEach(function (colorBlock) {
+                                    colorBlock.style.width = '';
+                                });
+
+                                // Get the maximum width
+                                var maxWidth = Array.from(colorBlocks).reduce(function (maxWidth, colorBlock) {
+                                    var blockWidth = colorBlock.offsetWidth;
+                                    if (blockWidth > maxWidth) {
+                                        return blockWidth;
+                                    }
+                                    return maxWidth;
+                                }, 0);
+
+                                // Apply the maximum width to all color blocks
+                                Array.from(colorBlocks).forEach(function (colorBlock) {
+                                    colorBlock.style.width = maxWidth + 'px';
+                                });
+                            }
+                        </script>
+
+
+
+
+                    </div>
+
+                    
                     <%--<div class="image-div">
                         <div id="ProductItem" runat="server" onclick="OpenImage(this)">
                             <div class="prod-item-back">
@@ -251,18 +437,10 @@
                         </div>
                     </div>--%>
 
-                    <div class="image-div">
-                        <div id="FrontSliderCont" runat="server" class="im-sl-back-f noselect">
-                            <div>
-                                <div id="FrontImagesSliderCont" style="position:relative" runat="server">
-                                    <div>
-                                        <div class="nav" id="FrontSliderNavCont" runat="server"></div>
-                                    </div>
-                                    <div id="FrontImageName" class="image-name" style="visibility: hidden"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
+
+
+
 
                     <%--<div class="image-div">
                         <div id="FrontSliderCont" runat="server" class="im-sl-back-f noselect">
@@ -278,20 +456,7 @@
                     </div>--%>
 
 
-                    <div class="prod-item-inf">
-                        <div id="MaterialDiv" runat="server">
-                            <span class="head">Материал:</span>
-                            <span class="text" id="Material" runat="server"></span>
-                        </div>
-                        <div id="SizesDiv" runat="server" style="padding-top:30px;">
-                            <span class="head">Размеры:</span>
-                            <span id="Sizes" runat="server" class="text"></span>
-                        </div>
-                        <div id="DescriptionDiv" runat="server" style="padding-top:30px;">
-                            <span class="head">Описание:</span>
-                            <span id="Description" runat="server" class="text"></span>
-                        </div>
-                    </div>
+                    
                 </div>
 
 
@@ -300,12 +465,12 @@
 
 
                 <div class="prod-item-inf">
-                    <div id="NotBasicFrontsDiv" runat="server" style="padding-top:30px; display: none;">
+                    <div id="NotBasicFrontsDiv" runat="server" class="related">
                         <span class="head" style="font-weight: bold">Фасады:</span>
                         <div id="NotBasicFronts" runat="server" class="pr-menu-cont"></div>
                     </div>
 
-                    <div id="RelatedDecorsDiv" runat="server" style="padding-top:30px; display: none;">
+                    <div id="RelatedDecorsDiv" runat="server" class="related">
                         <span class="head" style="font-weight: bold">Декоры:</span>
                         <div id="RelatedDecors" runat="server" class="pr-menu-cont"></div>
                     </div>
@@ -314,22 +479,46 @@
 
 
 
+                <div class="production-top">
+                    <img id="MainImageDiv" runat="server" style="display: none" class="main-image">
+                    <span id="MainDescriptionDiv" runat="server" class="main-description">
+                    </span>              
 
-                <div id="ProductMenu" runat="server" class="pr-menu-cont">
-                    <span id="MainDescriptionDiv" runat="server" style="-webkit-text-size-adjust: none; display:none; font-size:15px; text-align:justify; margin-top:0px; margin-left:20px; margin-right:20px; margin-bottom:20px;">
-
-                    </span>
-                    <div id="SliderCont" runat="server" class="im-sl-back noselect">
-                        <div>
-                            <div id="ImagesSliderCont" style="position:relative" runat="server">
-                                <div>
-                                    <div class="nav" id="SliderNavCont" runat="server"></div>
-                                </div>
-                                <div id="ImageName" class="image-name"></div>
-                            </div>
-                        </div>
+                    <div id="Swiper2" runat="server" class="swiper swiper-main swiper-cat" rewind="true">
+                      <div id="swiperWrapper2" runat="server" class="swiper-wrapper">
+                        <%-- Слайды --%>
+                      </div>
+                      <div class="swiper-scrollbar"></div>
                     </div>
-                    <span id="DescriptionText" runat="server" style="-webkit-text-size-adjust: none; font-size:15px; margin-top: 10px; margin-bottom:20px;"></span>
+
+                    <span id="DescriptionText2" class="cat-description" runat="server"></span>
+                </div>
+                <div id="ProductMenu" runat="server" class="pr-menu-cont" style="position: relative">
+                    
+                </div>
+
+                <div class="promotion">
+                    <h1 class="h1-header">РЕКЛАМНАЯ ПРОДУКЦИЯ</h1>
+                    <div class="prom">
+                        <p class="prom-text">
+                            <img src="/Images/prod.png" class="prom-img"/>
+                            Для удобного представления наших продуктов в вашем салоне предлагаем разнообразные рекламные образцы. 
+                            В случае ограниченного пространства у нас есть компактные комплекты(стенды), специально созданные для эффективной демонстрации
+                            в ограниченных условиях. Если вам нужно что-то особенное и индивидуальное, мы также предоставляем услуги по индивидуальному заказу стендов.
+                            Наши образцы подходят для выездной работы дизайнера, обеспечивая вас всем необходимым для успешного продвижения наших продуктов в вашем салоне.
+                        </p>
+                        <button>
+                            <a href="/Production?type=4">Подробнее</a>
+                        </button>
+                    </div>
+
+                    <script>
+                        var currentUrl = window.location.href;
+
+                        if (currentUrl.includes('/Production?type=4')) {
+                            document.querySelector('.promotion').style.display = 'none';
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -351,6 +540,15 @@
             </div>
         </div>
     </div>
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="../Scripts/swiper.js"></script>
+
+
+
 
 <script>
     var ci = 1;
