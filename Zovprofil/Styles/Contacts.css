@@ -132,3 +132,93 @@
     .map-c img {
         margin-top:40px;
     }
+
+
+span {
+    font-family: Montserrat;
+    font-size: 19px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 27px;
+}
+
+.block{
+    border: solid 1px gray;
+}
+    .header {
+        background-color: #64998C;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        color: white;
+        min-height: 55px;
+    }
+    @media (max-width: 450px){
+        .header{
+            flex-direction: column;
+        }
+        .header-right {
+            margin-left: 10px;
+        }
+    }
+        .header-right{
+            display: flex;
+            flex-direction: column;
+            margin-right: 10px;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .header-left{
+            margin-top: auto;
+            margin-bottom: auto;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+            .header-left span {
+                font-weight: bold;
+            }
+    .contacts{
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 5px;
+    }
+        .contact-item{
+            display: flex;
+            flex-direction: column;
+            width: 280px;
+            min-height: 290px;
+            background-color: #f7f7f7;
+            text-align: center;
+            border: 1px solid #CDCDCD; 
+            margin: 10px;
+            padding: 10px;
+        }
+            .contact-avatar{
+                border-radius: 50%;
+                width: 100px;
+                margin: 0 auto;
+            }
+            .contact-name{
+                font-weight: bold;
+            }
+            .contact-post{
+                font-weight: 100;
+                font-size: 15px;
+            }
+            .contact-lang{
+                color: #64998C
+            }
+            .contact-info{
+                font-weight: 100;
+                font-size: 13px;
+            }
+
+.scheme{
+    display: flex;
+    flex-direction: column;
+}
+    .scheme img{
+        max-width: 600px;
+        width: 90%;
+        margin: 0 auto;
+    }

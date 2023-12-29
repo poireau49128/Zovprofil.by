@@ -3,7 +3,7 @@ const swiper_main = new Swiper('.swiper-main', {
   /*loop: true,*/
   rewind: true,
   autoplay: {
-    delay: 25000,
+    delay: 5000,
     disableOnInteraction: false,
   },
   scrollbar: {
@@ -24,7 +24,7 @@ const swiper_latest = new Swiper('.swiper-latest', {
   /*loop: true,*/
   rewind: true,
   autoplay: {
-    delay: 25000,
+    delay: 5000,
     disableOnInteraction: false,
   },
   scrollbar: {

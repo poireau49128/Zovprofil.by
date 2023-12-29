@@ -12,9 +12,9 @@
         <div class="im2"></div>
     </div>--%>
 
-    <div class="news-cont">
-        <div id="NewsContainer" runat="server"></div>
-    </div>
+    <%--<div class="news-cont">--%>
+        <div id="NewsContainer" runat="server" class="container"></div>
+    <%--</div>--%>
 
     <script>
         $(document).ready(function () {

@@ -12,7 +12,7 @@
         <div class="im2"></div>
     </div>--%>
 
-    <div class="about-cont">
+    <div class="container">
         
         <div style="text-align:justify; margin-bottom:30px; margin-top:30px;">
             <span class="cont-t">
