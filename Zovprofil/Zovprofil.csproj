@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CheckBox.ascx" />
+    <Content Include="favicon.ico" />
     <Content Include="home\produkcziya\korpusnay-mebel\patricziya1.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -82,13 +83,20 @@
     <Content Include="Scripts\jquery-3.1.0.min.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.js" />
     <Content Include="Scripts\jquery-3.1.0.slim.min.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\mscr.js" />
     <Content Include="Scripts\swiper.js" />
     <Content Include="Scripts\where.js" />
     <Content Include="Scripts\xregexp-all-min.js" />
     <Content Include="Service.asmx" />
+    <Content Include="Styles\about.css" />
+    <Content Include="Styles\Contacts.css" />
+    <Content Include="Styles\downloads.css" />
     <Content Include="Styles\MainStyles.css" />
+    <Content Include="Styles\news.css" />
     <Content Include="Styles\production.css" />
+    <Content Include="Styles\where.css" />
     <Content Include="zovprofil\Contacts.aspx" />
     <Content Include="WebForm2.aspx" />
     <Content Include="zovprofil\About.aspx" />
