@@ -52,6 +52,8 @@
 
     .lmenu-item:hover {
         color: #659D91;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
     }
 
 .pr-menu {
@@ -471,7 +473,7 @@ nav{
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 960px) {
     .main-container {
         display: block;
     }
@@ -686,7 +688,7 @@ nav{
     width: calc(100% - 320px - 40px);
     text-align: left
 }
-@media(max-width: 767px){
+@media(max-width: 960px){
     .production-main{
         width: 100%;
     }
@@ -743,7 +745,7 @@ button {
 
 .product-container {
     display: none;
-    margin-top: 100px;
+    margin-top: 10px;
     flex-direction: row;
 }
     .product-images{

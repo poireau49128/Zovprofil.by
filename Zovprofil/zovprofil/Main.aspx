@@ -40,34 +40,92 @@
 		          <div class="sub-content">
 					<h1>Фасады</h1>
 					<div class="text">
-					Мебельные фасады для кухонь, гостинных, гардеробов и другой корпусной мебели
+					Мебельные фасады для кухонь, гостиных, гардеробов и другой корпусной мебели
 					</div>
-                      
-                          <button><a href="https://zovprofil.by/Production?type=0" style="color: white">Подробнее</a></button>
-                      
-					
+                    <button><a href="/Production?type=0" style="color: white">Подробнее</a></button>
 		          </div>
 		        </div>
 		      <div class="image">
-		        <img src="https://i.pinimg.com/originals/cd/bc/f0/cdbcf077b62246123f74fcc919587b0b.jpg" alt=""/>
+		        <img src="/Images/fronts.jpg" alt=""/>
 		        <div class="sub-block">
 		          <h1>Фасады</h1>
 		          <div class="text">
-		            Мебельные фасады для кухонь, гостинных,<br> гардеробов и другой корпусной мебели
+		            Мебельные фасады для кухонь, гостиных,<br> гардеробов и другой корпусной мебели
 		          </div>
-		          <button>
-		            Подробнее
-		          </button>
+		          <button><a href="/Production?type=0" style="color: white">Подробнее</a></button>
 		        </div>
 		      </div>
 		    </div>
 	    </div>
-	    <div class="swiper-slide">Slide 2</div>
-	    <div class="swiper-slide">Slide 3</div>
-	    <div class="swiper-slide">Slide 4</div>
-	    <div class="swiper-slide">Slide 5</div>
-	    <div class="swiper-slide">Slide 6</div>
-	    <div class="swiper-slide">Slide 7</div>
+	    <div class="swiper-slide">
+	    	<div class="block">
+		      	<div class="sub-block">
+		          <div class="sub-content">
+					<h1>Интерьерные декоры</h1>
+					<div class="text">
+					Декоративные рейки в интерьере - современный прием для отделки стен и зонирования
+					</div>
+                    <button><a href="/Production?type=5" style="color: white">Подробнее</a></button>
+		          </div>
+		        </div>
+		      <div class="image">
+		        <img src="/Images/decors.jpg" alt=""/>
+		        <div class="sub-block">
+		          <h1>Интерьерные декоры</h1>
+		          <div class="text">
+		            Декоративные рейки в интерьере -<br> современный прием для отделки стен и зонирования
+		          </div>
+		          <button><a href="/Production?type=5" style="color: white">Подробнее</a></button>
+		        </div>
+		      </div>
+		    </div>
+	    </div>
+        <div class="swiper-slide">
+	        <div class="block">
+		        <div class="sub-block">
+		            <div class="sub-content">
+				    <h1>Декор и погонаж</h1>
+				    <div class="text">
+				    Декоротивные элементы придают кухне особенный индивидуальный вид.
+				    </div>
+                    <button><a href="/Production?type=1" style="color: white">Подробнее</a></button>
+		            </div>
+		        </div>
+		        <div class="image">
+		        <img src="/Images/pogon.jpg" alt=""/>
+		        <div class="sub-block">
+		            <h1>Декор и погонаж</h1>
+		            <div class="text">
+		            Декоротивные элементы придают кухне <br> особенный индивидуальный вид.
+		            </div>
+		            <button><a href="/Production?type=1" style="color: white">Подробнее</a></button>
+		        </div>
+		        </div>
+		    </div>
+	    </div>
+        <div class="swiper-slide">
+	        <div class="block">
+		        <div class="sub-block">
+		            <div class="sub-content">
+				    <h1>Мебель</h1>
+				    <div class="text">
+				    В нашем каталоге мебели можно выбрать как классические модели гостиных и стенок, так и ультра современные комплекты.
+				    </div>
+                    <button><a href="/Production?type=2" style="color: white">Подробнее</a></button>
+		            </div>
+		        </div>
+		        <div class="image">
+		        <img src="/Images/furniture.png" alt=""/>
+		        <div class="sub-block">
+		            <h1>Мебель</h1>
+		            <div class="text">
+		            В нашем каталоге мебели можно выбрать как классические модели <br> гостиных и стенок, так и ультра современные комплекты.
+		            </div>
+		            <button><a href="/Production?type=2" style="color: white">Подробнее</a></button>
+		        </div>
+		        </div>
+		    </div>
+	    </div>
 	  </div>
 
 	  <div class="swiper-scrollbar"></div>
@@ -113,7 +171,7 @@
 					<h3>Мебель</h3>
 				</a>
 			</div>
-			<div class="category">
+			<div class="not_available category" >
 				<a href="/Production?type=1">
 					<div class="cat-image">
 						<img src="/Images/dec-elements.jpg" alt=""/>
@@ -121,7 +179,7 @@
 					<h3>Декор элементы</h3>
 				</a>
 			</div>
-			<div class="category">
+			<div class="not_available category">
 				<a href="/Production?type=4">
 					<div class="cat-image">
 						<img src="/Images/plintus.jpeg" alt=""/>

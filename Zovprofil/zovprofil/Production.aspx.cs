@@ -348,7 +348,7 @@ namespace Zovprofil.zovprofil
 
                 DataTable NotBasicDT = Catalog.FillNotBasicFronts(sMatrixID);
 
-                if (sProductType == "0" && NotBasicDT.Rows.Count > 0)
+                if (sProductType == "0" && NotBasicDT.Rows.Count > 1)
                     NotBasicFrontsDiv.Style["display"] = "flex";
 
 
