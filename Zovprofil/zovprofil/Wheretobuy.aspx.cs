@@ -104,15 +104,14 @@ namespace Zovprofil.zovprofil
                 }
 
                 {
-                    HtmlGenericControl div = new HtmlGenericControl("div");
-                    div.Attributes.Add("class", "DropListItem");
-                    div.Attributes.Add("onclick", "CountryClick(this)");
-                    div.ClientIDMode = ClientIDMode.Static;
-                    div.InnerHtml = CountriesDT.Rows[i]["Country"].ToString();
-                    div.ID = "Country_" + div.InnerHtml;
-                    div.Attributes.Add("title", div.InnerHtml);
+                    HtmlGenericControl li = new HtmlGenericControl("li");
+                    li.Attributes.Add("onclick", "CountryClick(this)");
+                    li.ClientIDMode = ClientIDMode.Static;
+                    li.InnerHtml = CountriesDT.Rows[i]["Country"].ToString();
+                    li.ID = "Country_" + li.InnerHtml;
+                    li.Attributes.Add("title", li.InnerHtml);
 
-                    CountryDiv.Controls.Add(div);
+                    CountryDiv.Controls.Add(li);
                 }
             }
 
@@ -125,15 +124,14 @@ namespace Zovprofil.zovprofil
             }      
 
             {
-                HtmlGenericControl div = new HtmlGenericControl("div");
-                div.Attributes.Add("class", "DropListItem");
-                div.Attributes.Add("onclick", "CityClick(this)");
-                div.ClientIDMode = ClientIDMode.Static;
-                div.InnerHtml = "-";
-                div.ID = "City_-";
-                div.Attributes.Add("title", div.InnerHtml);
+                HtmlGenericControl li = new HtmlGenericControl("li");
+                li.Attributes.Add("onclick", "CityClick(this)");
+                li.ClientIDMode = ClientIDMode.Static;
+                li.InnerHtml = "-";
+                li.ID = "City_" + li.InnerHtml;
+                li.Attributes.Add("title", li.InnerHtml);
 
-                CityDiv.Controls.Add(div);
+                CityDiv.Controls.Add(li);
             }
 
             for (int i = 0; i < CitiesDT.Rows.Count; i++)
@@ -146,15 +144,14 @@ namespace Zovprofil.zovprofil
                 }
 
                 {
-                    HtmlGenericControl div = new HtmlGenericControl("div");
-                    div.Attributes.Add("class", "DropListItem");
-                    div.Attributes.Add("onclick", "CityClick(this)");
-                    div.ClientIDMode = ClientIDMode.Static;
-                    div.InnerHtml = CitiesDT.Rows[i]["City"].ToString();
-                    div.ID = "City_" + div.InnerHtml;
-                    div.Attributes.Add("title", div.InnerHtml);
+                    HtmlGenericControl li = new HtmlGenericControl("li");
+                    li.Attributes.Add("onclick", "CityClick(this)");
+                    li.ClientIDMode = ClientIDMode.Static;
+                    li.InnerHtml = CitiesDT.Rows[i]["City"].ToString();
+                    li.ID = "City_" + li.InnerHtml;
+                    li.Attributes.Add("title", li.InnerHtml);
 
-                    CityDiv.Controls.Add(div);
+                    CityDiv.Controls.Add(li);
                 }
             }
 

@@ -172,7 +172,7 @@
 				</a>
 			</div>
 			<div class="not_available category" >
-				<a href="/Production?type=1">
+				<a href="/">
 					<div class="cat-image">
 						<img src="/Images/dec-elements.jpg" alt=""/>
 					</div>
@@ -180,7 +180,7 @@
 				</a>
 			</div>
 			<div class="not_available category">
-				<a href="/Production?type=4">
+				<a href="/">
 					<div class="cat-image">
 						<img src="/Images/plintus.jpeg" alt=""/>
 					</div>
