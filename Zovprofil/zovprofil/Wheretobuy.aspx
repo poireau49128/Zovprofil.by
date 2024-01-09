@@ -164,7 +164,141 @@
         </div>
     </div>
     
-    <div class="modal fade" id="DealerPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-family:OpenSans-Regular, sans-serif,  Arial;">
+
+
+    <div class="modal" id="DealerPopup">    
+        <div class="modal-content">
+
+
+            <div class="info">
+                <div class="info-block">
+                    <span id="ShopNameSpan" style="font-size:18px; font-family:OpenSans-Semibold; display:block;"></span>  
+                    <a href="#" id="WebsiteSpan" style="font-size:15px; color:#38b8ee; display:block;"></a>
+                </div>
+
+                <div class="info-block">
+                    <span style="font-size:15px; color:rgb(120,120,120); font-family:OpenSans-Regular; display:block;">АДРЕС</span>
+                    <span id="AddressSpan" style="font-size:16px; font-family:OpenSans-Regular; display:block; margin-top:4px; padding-right:5px;"></span>
+                </div>
+            </div>
+            
+            <div class="info">
+                
+                <div class="info-block">
+                    <span style="font-size:15px; color:rgb(120,120,120); font-family:OpenSans-Regular; display:block; margin-top:4px;">КОНТАКТЫ</span>
+                    <span id="ContactsSpan" style="font-size:16px; font-family:OpenSans-Regular; display:block; margin-top:4px; padding-right:5px;"></span>
+                    <a id="EmailSpan" style="font-size:16px; color:#38b8ee; font-family:OpenSans-Regular; display:block; margin-top:4px; padding-right:5px;" href="#"></a>
+                </div>
+
+                <div class="info-block">
+                    <span style="font-size:15px; color:rgb(120,120,120); font-family:OpenSans-Regular; display:block;">ВРЕМЯ РАБОТЫ</span>
+                    <span id="WorkTimeSpan" style="font-size:16px; font-family:OpenSans-Regular; display:block; margin-top:4px; padding-right:5px;"></span>
+                </div>
+            </div>
+
+
+            <div style="clear:left;">
+                
+                    <span style="font-size:15px; color:rgb(120,120,120); font-family:OpenSans-Regular; display:block;">ВИД ПРОДУКЦИИ</span>
+                    <div style="display: flex; flex-wrap: wrap;">
+                        <span id="FurnitureSpan" style="font-size:16px; font-family:OpenSans-Regular; display:block; margin-top:4px;">- мебель</span>
+                        <span id="ProfileSpan" style="font-size:16px; font-family:OpenSans-Regular; display:block; margin-top:4px;">- погонаж</span>
+                        <span id="FrontsSpan" style="font-size:16px; font-family:OpenSans-Regular; display:block; margin-top:4px;">- фасады</span>
+                    </div>
+            </div>
+            <div style="padding-top:30px; text-align:center; width:100%;">
+                <div style="display:inline-block">
+                    <div class="sendbutton" onclick="HidePopup()">ЗАКРЫТЬ</div>
+                </div>
+            </div>
+
+
+
+             <%--<div  class="info">
+                 <div class="info-block">
+                    <span id="ShopNameSpan" style="font-size:18px; font-family:OpenSans-Semibold; display:block;"></span>  
+                    <a href="#" id="WebsiteSpan" style="font-size:15px; color:#38b8ee; display:block;"></a>
+                </div>
+                <div class="info-block">
+                    <span class="text-span">Название компании</span>  
+                    <input id="CompanyInput" type="text" class="name-input"/>
+                </div>
+             </div>
+            <div class="info">
+                <div class="info-block">
+                    <span class="text-span">Email*</span>  
+                    <input id="EmailInput" type="text" class="name-input"/>
+                </div>
+                <div class="info-block">
+                    <span class="text-span">Телефон</span>  
+                    <input id="PhoneInput" type="text" class="name-input" />
+                </div>
+            </div>
+            <div style="clear:left; margin-top:20px">
+                <span class="text-span">Тип компании*</span>
+                <div class="radio-wrapper">
+                    <div class="radio-button">
+                        <input type="radio" id="FRadio" name="type" value="F" checked="checked" />
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Физ. лицо</label>
+                    </div>
+                    <div class="radio-button">
+                        <input type="radio" id="RRadio" name="type" value="R" />
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Розница</label>
+                    </div>
+                    <div class="radio-button">
+                        <input type="radio" id="MRadio"  name="type" value="M"/>
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Мелкий опт</label>
+                    </div>
+                    <div class="radio-button">
+                        <input type="radio" id="KRadio"  name="type" value="K"/>
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Крупный опт</label>
+                    </div>
+                    <div class="radio-button">
+                        <input type="radio" id="DRadio"  name="type" value="D"/>
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Диз. студия</label>
+                    </div>
+                </div>
+                        
+            </div>
+            <div style="clear:left; margin-top:20px">
+                <span class="text-span">Интересующая продукция*</span>
+                <div class="radio-wrapper">
+                    <div class="radio-button">
+                        <input type="radio" id="PRadio" name="prod" value="P" checked="checked" />
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Профиль</label>
+                    </div>
+                    <div class="radio-button">
+                        <input type="radio" id="FrRadio" name="prod" value="Fr"/>
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Фасады</label>
+                    </div>
+                    <div class="radio-button">
+                        <input type="radio" id="MeRadio"  name="prod" value="Me"/>
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Мебель</label>
+                    </div>
+                    <div class="radio-button">
+                        <input type="radio" id="IRadio"  name="prod" value="I"/>
+                        <label for="PersonRadio" style="font-family:OpenSans-Regular; font-size:15px; font-weight:100; margin-left:5px;">Интерьерные панели</label>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:left">
+                <span style="display:block; margin-top:10px">Текст</span>
+                <textarea id="TextInput" class="text-input"></textarea>
+            </div>
+                    
+            <div style="padding-top:15px; text-align:center; width:100%;">
+                <div style="display:inline-block">
+                    <div id="SendButton" class="sendbutton" onclick="SendMessage()">Отправить</div>
+                    <span class="cancelbutton" onclick="hideModal()">Отмена</span>
+                </div>
+            </div>--%>
+        </div>       
+
+    </div>
+
+
+
+    <%--<div class="modal fade" id="DealerPopup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-family:OpenSans-Regular, sans-serif,  Arial;">
         <div class="modal-dialog" runat="server" style="width:650px; min-height:230px; margin:120px auto;">
             <div class="modal-content" runat="server" style="width:100%; min-height:230px">
                 <div class="modal-container">
@@ -203,7 +337,7 @@
                 </div>              
             </div>
         </div>
-    </div>
+    </div>--%>
 
     <div id="CountryListPopoverContainer" style="display:none;" >
        <%-- <div id="CountryDiv" runat="server" style="width:330px; height:185px; overflow:auto; font-size:14px; background-color:white; border-color:rgb(240,240,240); border-style:solid; border-width:1px;">
