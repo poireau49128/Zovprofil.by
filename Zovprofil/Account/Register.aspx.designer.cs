@@ -42,6 +42,24 @@ namespace Zovprofil
         protected global::System.Web.UI.WebControls.TextBox UserName;
 
         /// <summary>
+        /// Email элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Email;
+
+        /// <summary>
+        /// ClientName элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ClientName;
+
+        /// <summary>
         /// Password элемент управления.
         /// </summary>
         /// <remarks>
