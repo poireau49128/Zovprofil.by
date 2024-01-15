@@ -249,15 +249,16 @@
                 <div class="header-right">
                     <span>e-mail: <a href="mailto:marketing@zovprofil.by" style="font-size:15px; color:white; text-decoration:underline">marketing@zovprofil.by</a></span>
                     <span>тел/факс: +375 (152) 60-81-63</span>
+                    <span>тел.: +375 (29) 155-58-94</span>
                 </div>
             </div>
             <div class="contacts">
-                <div class="contact-item">
+                <%--<div class="contact-item">
                     <img src="/Images/img_avatar2.png" alt="Alternate Text" class="contact-avatar"/>
                     <span class="contact-name">Елена Лозовицкая</span>
                     <span class="contact-post">специалист отдела маркетинга</span>
                     <span class="contact-phone">моб. +375 (29) 155-58-94</span>
-                </div>
+                </div>--%>
             </div>
         </div>
         <div class="block">
@@ -287,12 +288,12 @@
                     <span class="contact-info">Работа с клиентами РБ, РФ и Польши.<br />Основные направления: мебельный и строительный погонаж</span>
                 </div>
 
-                <div class="contact-item">
+                <%--<div class="contact-item">
                     <img src="/Images/img_avatar2.png" alt="Alternate Text" class="contact-avatar"/>
                     <span class="contact-name">Дарья Трубина</span>
                     <span class="contact-post">специалист по продаже</span>
                     <span class="contact-phone">моб. +375 (44) 742-08-33</span>
-                </div>
+                </div>--%>
             </div>
         </div>
         <div class="block">
@@ -306,11 +307,25 @@
             </div>
             <div class="contacts">
                 <div class="contact-item">
+                    <img src="/Images/img_avatar.png" alt="Alternate Text" class="contact-avatar"/>
+                    <span class="contact-name">Юрий Карась</span>
+                    <span class="contact-post">Логист</span>
+                    <span class="contact-phone">моб. +375 (33) 624-03-40</span>
+                    <span class="contact-info">Планирование отгрузок</span>
+                </div>
+                <div class="contact-item">
                     <img src="/Images/img_avatar2.png" alt="Alternate Text" class="contact-avatar"/>
-                    <span class="contact-name">Елена Скоморошко</span>
-                    <span class="contact-post">специалист по продаже</span>
-                    <span class="contact-phone">моб. +375 (29) 111-68-68</span>
-                    <span class="contact-info">Планирование отгрузок. Выставление счетов и выписка документов.</span>
+                    <span class="contact-name">Елена Эйсмонт</span>
+                    <span class="contact-post">комплектовщик</span>
+                    <span class="contact-phone">моб. +375 (29) 180-18-52</span>
+                    <span class="contact-info">Прием товара</span>
+                </div>
+                <div class="contact-item">
+                    <img src="/Images/img_avatar2.png" alt="Alternate Text" class="contact-avatar"/>
+                    <span class="contact-name">Екатерина Марцулевич</span>
+                    <span class="contact-post">ведущий экономист</span>
+                    <span class="contact-phone">моб. +375 (29) 338-64-00</span>
+                    <span class="contact-info">Выставление счетов и выписка документов.</span>
                 </div>
             </div>
         </div>
