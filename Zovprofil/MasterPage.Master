@@ -197,6 +197,20 @@ ga('send', 'pageview');
 				</div>
 
 
+                <a href="Account/Login.aspx" id="LogIn" runat="server">Войти</a>
+
+                <div class="button-contact" id="UserAuth" runat="server">
+                    <div id="Username" runat="server"></div>
+                    <%--<asp:PlaceHolder runat="server" ID="LogoutButton">
+                        <div>
+                           <div>
+                              <asp:Button runat="server" OnClick="SignOut" Text="Log out" />
+                           </div>
+                        </div>
+                     </asp:PlaceHolder>--%>
+				</div>
+
+
 				<div class="header-burger">
 		      		<span></span>
 		        </div>

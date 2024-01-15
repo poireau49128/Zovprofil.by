@@ -11,6 +11,19 @@ namespace Zovprofil
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                LogIn.Visible = false;
+                UserAuth.Visible = true;
+                Username.InnerText = "Hello, " + Context.User.Identity.Name;
+            }
+            else
+            {
+                LogIn.Visible = true;
+                UserAuth.Visible = false;
+            }
+
+
             string pageName = this.ContentPlaceHolder.Page.GetType().BaseType.Name;
 
             //if (pageName == "Main")

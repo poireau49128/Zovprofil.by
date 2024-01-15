@@ -51,6 +51,33 @@ namespace Zovprofil.zovprofil
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrontsContainer;
 
         /// <summary>
+        /// FrontsExclusive элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrontsExclusive;
+
+        /// <summary>
+        /// FrontsForAll элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrontsForAll;
+
+        /// <summary>
+        /// FrontsZov элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl FrontsZov;
+
+        /// <summary>
         /// CabsContainer элемент управления.
         /// </summary>
         /// <remarks>
@@ -85,6 +112,15 @@ namespace Zovprofil.zovprofil
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl InteriorContainer;
+
+        /// <summary>
+        /// ExclusiveContainer элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ExclusiveContainer;
 
         /// <summary>
         /// ReadyContainer элемент управления.

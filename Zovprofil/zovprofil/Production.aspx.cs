@@ -153,9 +153,24 @@ namespace Zovprofil.zovprofil
                     if (Item.Name == Category)
                         Item.Selected = true;
 
+
+
+                
+
+
+
+
                 if (Type == 0)
                 {
-                    FrontsContainer.Controls.Add(Item);
+                    
+                    if (Row["Category"].ToString().Contains("Эксклюзив ZOV"))
+                    {
+                        FrontsZov.Controls.Add(Item);
+                    }
+                    else
+                    {
+                        FrontsForAll.Controls.Add(Item);
+                    }
 
                 }
                 if (Type == 1)
@@ -178,6 +193,10 @@ namespace Zovprofil.zovprofil
                     InteriorContainer.Controls.Add(Item);
                 }
             }
+            HtmlGenericControl horizontalLine = new HtmlGenericControl("hr");
+            horizontalLine.Style.Add("border", "none");
+            horizontalLine.Style.Add("border-top", "1px solid #000");
+            FrontsContainer.Controls.Add(horizontalLine);
 
             if (Category.Length > 0 && ItemID.Length == 0)
             {
@@ -675,6 +694,8 @@ namespace Zovprofil.zovprofil
             }
             return "";
         }
+
+
 
         //public void FillProductSlider(string ProductFile, string TechStoreFile, bool Basic, int Type)
         //{

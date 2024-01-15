@@ -23,11 +23,6 @@
         </div>--%>
 
 
-
-
-
-
-
     <!-- Slider main container -->
 	<div class="swiper swiper-main" rewind="true">
 	  <!-- Additional required wrapper -->

@@ -107,7 +107,18 @@
 				            </div>
                         
 				        <div id="FrontsContainer"  runat="server" class="category-content">
+                            <div id="FrontsExclusive" runat="server">
+
+                            </div>
+                            <hr style="width:100%;"/>
+                            <div id="FrontsForAll" runat="server">
+
+                            </div>
+                            <hr style="width:100%;"/>
 				          <!-- Список категорий фасадов -->
+                            <div id="FrontsZov" runat="server">
+
+                            </div>
 				        </div>
 			        </article>
 
@@ -162,6 +173,20 @@
 				        </div>
 				        <div id="InteriorContainer" runat="server" class="category-content">
 				          <!-- Список категорий декоров -->
+				        </div>
+			        </article>
+
+
+                      <article class="category-container">
+			    	    <div class="category" onclick="toggleCategory('ExclusiveContainer', 6, event)">
+                            <a id="ExclusiveLink" href="/Production?type=6" class="category-link">
+			    		        <img class="category-img" src="/Images/interior.png" alt="">
+				              <span class="category-name">Exclusive</span>
+				              <span class="arrow"></span>
+                            </a>
+				        </div>
+				        <div id="ExclusiveContainer" runat="server" class="category-content">
+				          <!-- Список эксклюзивов -->
 				        </div>
 			        </article>
 

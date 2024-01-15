@@ -7,7 +7,7 @@
 // </автоматически создаваемое>
 //------------------------------------------------------------------------------
 
-namespace Zovprofil.Account
+namespace Zovprofil
 {
 
 
@@ -15,31 +15,49 @@ namespace Zovprofil.Account
     {
 
         /// <summary>
-        /// ErrorMessage элемент управления.
+        /// form1 элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// FailureText элемент управления.
+        /// LoginStatus элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal FailureText;
+        protected global::System.Web.UI.WebControls.PlaceHolder LoginStatus;
 
         /// <summary>
-        /// Email элемент управления.
+        /// StatusText элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email;
+        protected global::System.Web.UI.WebControls.Literal StatusText;
+
+        /// <summary>
+        /// LoginForm элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder LoginForm;
+
+        /// <summary>
+        /// UserName элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox UserName;
 
         /// <summary>
         /// Password элемент управления.
@@ -51,21 +69,12 @@ namespace Zovprofil.Account
         protected global::System.Web.UI.WebControls.TextBox Password;
 
         /// <summary>
-        /// RememberMe элемент управления.
+        /// LogoutButton элемент управления.
         /// </summary>
         /// <remarks>
         /// Автоматически создаваемое поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox RememberMe;
-
-        /// <summary>
-        /// RegisterHyperLink элемент управления.
-        /// </summary>
-        /// <remarks>
-        /// Автоматически создаваемое поле.
-        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink RegisterHyperLink;
+        protected global::System.Web.UI.WebControls.PlaceHolder LogoutButton;
     }
 }
