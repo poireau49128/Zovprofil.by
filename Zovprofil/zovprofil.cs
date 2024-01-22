@@ -91,6 +91,52 @@ namespace Zovprofil
             }
         }
 
+        public static DataTable FillExclusiveCategories(int Type, int ClientId = 116)
+        {
+            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT DISTINCT(CCI.Category) " +
+                                                            "FROM[infiniu2_catalog].[dbo].[ClientsCatalogImages] AS CCI " +
+                                                                "INNER JOIN[infiniu2_catalog].[dbo].[ClientsCatalogDecorConfig] AS CCDC ON CCI.ConfigID = CCDC.ConfigID " +
+                                                                "INNER JOIN[infiniu2_catalog].[dbo].[DecorConfig] AS DC ON " +
+                                                                    "DC.DecorID = CCDC.DecorID " +
+                                                                    "AND DC.ColorID = CCDC.ColorID " +
+                                                                    "AND DC.PatinaID = CCDC.PatinaID " +
+                                                                    "AND DC.InsetTypeID = CCDC.InsetTypeID " +
+                                                                    "AND DC.InsetColorID = CCDC.InsetColorID " +
+                                                                "INNER JOIN[infiniu2_marketingreference].[dbo].[ExcluziveCatalog] AS EC ON EC.MatrixId = DC.MatrixId " +
+                                                            "WHERE CCI.ProductType = " + Type + " AND ClientId = " + ClientId, ConnectionString))
+            {
+                using (DataTable DT = new DataTable())
+                {
+                    DA.Fill(DT);
+                    DT.Columns.Add("FileName", System.Type.GetType("System.String"));
+
+                    foreach (DataRow Row in DT.Rows)
+                    {
+                        using (SqlDataAdapter sDA = new SqlDataAdapter("SELECT TOP 1 FileName " +
+                                                                        "FROM[infiniu2_catalog].[dbo].[ClientsCatalogImages] AS CCI " +
+                                                                            "INNER JOIN[infiniu2_catalog].[dbo].[ClientsCatalogDecorConfig] AS CCDC ON CCI.ConfigID = CCDC.ConfigID " +
+                                                                            "INNER JOIN[infiniu2_catalog].[dbo].[DecorConfig] AS DC ON " +
+                                                                                "DC.DecorID = CCDC.DecorID " +
+                                                                                "AND DC.ColorID = CCDC.ColorID " +
+                                                                                "AND DC.PatinaID = CCDC.PatinaID " +
+                                                                                "AND DC.InsetTypeID = CCDC.InsetTypeID " +
+                                                                                "AND DC.InsetColorID = CCDC.InsetColorID " +
+                                                                            "INNER JOIN[infiniu2_marketingreference].[dbo].[ExcluziveCatalog] AS EC ON EC.MatrixId = DC.MatrixId " +
+                                                                        "WHERE CCI.ProductType = " + Type + " AND ClientId = " + ClientId + " AND Category = '" + Row["Category"].ToString() + "'", ConnectionString))
+                        {
+                            using (DataTable sDT = new DataTable())
+                            {
+                                sDA.Fill(sDT);
+                                Row["FileName"] = sDT.Rows[0]["FileName"];
+                            }
+                        }
+                    }
+
+                    return DT;
+                }
+            }
+        }
+
         public static DataTable FillProducts(int Type, string Category)
         {
             string Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 ORDER BY Name ASC";

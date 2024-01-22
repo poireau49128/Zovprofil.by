@@ -96,6 +96,24 @@ namespace Zovprofil.zovprofil
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl DecorContainer;
 
         /// <summary>
+        /// DecorsExclusive элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DecorsExclusive;
+
+        /// <summary>
+        /// DecorsForAll элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DecorsForAll;
+
+        /// <summary>
         /// PromotionContainer элемент управления.
         /// </summary>
         /// <remarks>

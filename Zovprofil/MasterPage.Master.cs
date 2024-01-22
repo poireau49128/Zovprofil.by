@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Zovprofil.Models;
 
 namespace Zovprofil
 {
@@ -15,7 +18,12 @@ namespace Zovprofil
             {
                 LogIn.Visible = false;
                 UserAuth.Visible = true;
-                Username.InnerText = "Hello, " + Context.User.Identity.Name;
+                
+
+                var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+                var currentUser = manager.FindById(Context.User.Identity.GetUserId());
+
+                Username.InnerText = "Hello, " + currentUser.ClientName;
             }
             else
             {

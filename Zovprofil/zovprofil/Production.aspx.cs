@@ -140,6 +140,8 @@ namespace Zovprofil.zovprofil
 
             DataTable CategoryDT = Catalog.FillCategories(Type);
 
+            DataTable ExclusiveDT = Catalog.FillExclusiveCategories(Type);
+
             foreach (DataRow Row in CategoryDT.Rows)
             {
                 LeftMenuItem Item = (LeftMenuItem)Page.LoadControl("~/zovprofil/Controls/LeftMenuItem.ascx");
@@ -175,7 +177,8 @@ namespace Zovprofil.zovprofil
                 }
                 if (Type == 1)
                 {
-                        DecorContainer.Controls.Add(Item);
+                        //DecorContainer.Controls.Add(Item);
+                       DecorsForAll.Controls.Add(Item);
                 }
                 if (Type == 2)
                 {
@@ -193,7 +196,39 @@ namespace Zovprofil.zovprofil
                     InteriorContainer.Controls.Add(Item);
                 }
             }
-            HtmlGenericControl horizontalLine = new HtmlGenericControl("hr");
+
+
+
+
+
+
+            foreach (DataRow Row in ExclusiveDT.Rows)
+            {
+                LeftMenuItem Item = (LeftMenuItem)Page.LoadControl("~/zovprofil/Controls/LeftMenuItem.ascx");
+                Item.Name = Row["Category"].ToString().Replace("РП-", "");
+
+                //Item.URL = "/Production?type=" + Type.ToString() + "&cat=" + Row["Category"].ToString();
+                string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
+                Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
+
+                if (Category.Length > 0)
+                    if (Item.Name == Category)
+                        Item.Selected = true;
+
+                if (Type == 1)
+                {
+                    //DecorContainer.Controls.Add(Item);
+                    DecorsExclusive.Controls.Add(Item);
+                }
+            }
+
+
+
+
+
+
+
+                HtmlGenericControl horizontalLine = new HtmlGenericControl("hr");
             horizontalLine.Style.Add("border", "none");
             horizontalLine.Style.Add("border-top", "1px solid #000");
             FrontsContainer.Controls.Add(horizontalLine);

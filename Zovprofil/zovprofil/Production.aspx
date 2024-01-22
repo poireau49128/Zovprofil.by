@@ -146,7 +146,13 @@
                             </a>
 				        </div>
 				        <div id="DecorContainer"  runat="server" class="category-content">
-				          <!-- Список категорий декоров -->
+				          <div id="DecorsExclusive" runat="server">
+
+                            </div>
+                            <hr style="width:100%;"/>
+                            <div id="DecorsForAll" runat="server">
+
+                            </div>
 				        </div>
 			        </article>
 
