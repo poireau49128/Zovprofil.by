@@ -306,13 +306,13 @@
                 </div>
             </div>
             <div class="contacts">
-                <div class="contact-item">
+                <%--<div class="contact-item">
                     <img src="/Images/img_avatar.png" alt="Alternate Text" class="contact-avatar"/>
                     <span class="contact-name">Юрий Карась</span>
                     <span class="contact-post">Логист</span>
                     <span class="contact-phone">моб. +375 (33) 624-03-40</span>
                     <span class="contact-info">Планирование отгрузок</span>
-                </div>
+                </div>--%>
                 <div class="contact-item">
                     <img src="/Images/img_avatar2.png" alt="Alternate Text" class="contact-avatar"/>
                     <span class="contact-name">Елена Эйсмонт</span>
