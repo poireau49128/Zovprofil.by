@@ -149,7 +149,7 @@
 				          <div id="DecorsExclusive" runat="server">
 
                             </div>
-                            <hr style="width:100%;"/>
+                            
                             <div id="DecorsForAll" runat="server">
 
                             </div>

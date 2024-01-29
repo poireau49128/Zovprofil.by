@@ -222,16 +222,17 @@ namespace Zovprofil.zovprofil
                 }
             }
 
-
-
-
-
-
-
-                HtmlGenericControl horizontalLine = new HtmlGenericControl("hr");
+            HtmlGenericControl horizontalLine = new HtmlGenericControl("hr");
             horizontalLine.Style.Add("border", "none");
             horizontalLine.Style.Add("border-top", "1px solid #000");
             FrontsContainer.Controls.Add(horizontalLine);
+            DecorsExclusive.Controls.Add(horizontalLine);
+
+
+
+
+
+
 
             if (Category.Length > 0 && ItemID.Length == 0)
             {
