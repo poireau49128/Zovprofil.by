@@ -187,6 +187,14 @@ namespace Zovprofil.zovprofil
 
                 foreach (DataRow Row in ProductsDT.Rows)
                 {
+                    string t = Row["FileName"].ToString();
+                    bool existFlag = Catalog.CheckFileExists("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
+                    if (!existFlag)
+                    {
+                        Catalog.ProcessProductImage("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/" + Row["FileName"].ToString(), "/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
+                    }
+
+
                     ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
                     Item.Name = Row["Name"].ToString().Replace("РП-", "") + " " + Row["Color"].ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();

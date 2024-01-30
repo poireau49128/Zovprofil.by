@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -56,14 +58,19 @@ namespace Zovprofil
 
     public class Catalog
     {
-        //public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
-        //public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
+        public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
+        public static string ftp = "ftp://localhost";
 
-        public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
-        public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
+        //public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        //public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
+        //public static string ftp = "ftp://infinium.zovprofil.by";
 
 
         public static string URL = "https://zovprofil.by/Images/ClientsCatalogImages/";
+
+        public static string ftpUsername = "infiniu2_infinium";
+        public static string ftpPassword = "vqju]nkca8ygtfibrQop";
 
         public static DataTable FillCategories(int Type)
         {
@@ -242,6 +249,122 @@ namespace Zovprofil
 
             return res;
         }
+
+
+
+
+
+
+
+
+        public static void ProcessProductImage(string sourceImagePath, string destinationImagePath)
+        {
+            if (!CheckFileExists(destinationImagePath))
+            {
+                // Загрузка большой картинки с FTP-сервера
+                byte[] imageData = DownloadImageFromFtp(sourceImagePath);
+
+                // Уменьшение картинки
+                byte[] resizedImageData = ResizeImage(imageData, 0.85, 0.85);
+
+                // Сохранение уменьшенной картинки на FTP-сервере
+                UploadImageToFtp(destinationImagePath, resizedImageData);
+            }
+        }
+
+        public static bool CheckFileExists(string filePath)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
+            request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+            request.Method = WebRequestMethods.Ftp.GetFileSize;
+
+            try
+            {
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                return true;
+            }
+            catch (WebException ex)
+            {
+                FtpWebResponse response = (FtpWebResponse)ex.Response;
+                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                    return false;
+                else
+                    throw;
+            }
+        }
+
+        private static byte[] DownloadImageFromFtp(string filePath)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
+            request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+            request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            using (Stream responseStream = response.GetResponseStream())
+            using (MemoryStream memoryStream = new MemoryStream())
+            {
+                responseStream.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
+        }
+
+        private static byte[] ResizeImage(byte[] imageData, double widthRatio, double heightRatio)
+        {
+            using (MemoryStream sourceStream = new MemoryStream(imageData))
+            using (Image sourceImage = Image.FromStream(sourceStream))
+            {
+                int newWidth = sourceImage.Width;
+                int newHeight = sourceImage.Height;
+                while (Math.Max(newWidth, newHeight) > 250)
+                {
+                    newWidth = (int)(newWidth * widthRatio);
+                    newHeight = (int)(newHeight * heightRatio);
+                }
+                    
+
+                using (Bitmap resizedImage = new Bitmap(newWidth, newHeight))
+                using (Graphics graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.CompositingQuality = CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.SmoothingMode = SmoothingMode.HighQuality;
+
+                    graphics.DrawImage(sourceImage, 0, 0, newWidth, newHeight);
+
+                    using (MemoryStream destinationStream = new MemoryStream())
+                    {
+                        resizedImage.Save(destinationStream, sourceImage.RawFormat);
+                        return destinationStream.ToArray();
+                    }
+                }
+            }
+        }
+
+        private static void UploadImageToFtp(string filePath, byte[] imageData)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
+            request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+            request.Method = WebRequestMethods.Ftp.UploadFile;
+
+            using (Stream requestStream = request.GetRequestStream())
+            {
+                requestStream.Write(imageData, 0, imageData.Length);
+            }
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                Console.WriteLine($"Upload complete, status: {response.StatusDescription}");
+            }
+        }
+
+
+
+
+
+
+
+
+
 
 
         public static string GetTechStoreImage(int TechStoreID)
