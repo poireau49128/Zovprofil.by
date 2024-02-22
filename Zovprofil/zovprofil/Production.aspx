@@ -369,17 +369,19 @@
                         </div>
                         
 
-                        <div id="MaterialDiv" runat="server">
-                            <span class="head"><b>Материал:</b><br /></span>
-                            <span class="text" id="Material" runat="server"></span>
+                        <div id="DescriptionDiv" runat="server">
+                            <span class="head"><b>Описание:</b><br /></span>
+                            <span id="Description" runat="server" class="text"></span>
                         </div>
-                        <div id="SizesDiv" runat="server" style="padding-top:30px;">
+
+			            <div id="SizesDiv" runat="server" style="padding-top:30px;">
                             <span class="head"><b>Размеры:</b><br /></span>
                             <span id="Sizes" runat="server" class="text"></span>
                         </div>
-                        <div id="DescriptionDiv" runat="server" style="padding-top:30px;">
-                            <span class="head"><b>Описание:</b><br /></span>
-                            <span id="Description" runat="server" class="text"></span>
+
+			            <div id="MaterialDiv" runat="server" style="padding-top:30px;">
+                            <span class="head"><b>Материал:</b><br /></span>
+                            <span class="text" id="Material" runat="server"></span>
                         </div>
 
                         <div id="ColorDiv" runat="server" style="padding-top:30px;">

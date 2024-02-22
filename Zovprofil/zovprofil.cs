@@ -74,7 +74,7 @@ namespace Zovprofil
 
         public static DataTable FillCategories(int Type)
         {
-            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT DISTINCT(Category) FROM ClientsCatalogImages WHERE (Category IS NOT NULL AND Category <> '') AND (ProductType = " + Type + ") AND ToSite = 1", ConnectionString))
+            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT DISTINCT(Category) FROM ClientsCatalogImages WHERE (Category IS NOT NULL AND Category <> '' AND Category NOT LIKE '%Эксклюзив ZOV%') AND (ProductType = " + Type + ") AND ToSite = 1", ConnectionString))
             {
                 using (DataTable DT = new DataTable())
                 {

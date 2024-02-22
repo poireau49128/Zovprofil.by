@@ -783,6 +783,17 @@ button {
     }
 
 @media(max-width: 768px) {
+    .product-info {
+        width: 90%;
+        margin: auto;
+        font-size: 15px;
+    }
+
+    .prom-text, .cat-description {
+        font-size: 15px;
+    }
+	
+
     .product-container {
         /*display: flex;*/
         flex-direction: column;
