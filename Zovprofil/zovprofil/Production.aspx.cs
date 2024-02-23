@@ -180,6 +180,7 @@ namespace Zovprofil.zovprofil
             }
             HtmlGenericControl hr = new HtmlGenericControl("hr");
             hr.Style["width"] = "100%";
+            hr.Style["color"] = "#fff";
 
             HtmlGenericControl link = new HtmlGenericControl("a");
             link.Attributes["href"] = "https://exclusive-zov.wellmaker.by/Production";
