@@ -90,13 +90,20 @@ namespace Zovprofil.zovprofil
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
-                    MainDescriptionDiv.InnerHtml = "Лицо будущей кухни – это мебельные фасады. На сегодняшний день существует огромное разнообразие материалов, используемых при производстве фасадов для кухни. Материалом, сочетающим в себе такие важные для потребителя характеристики, как качество исполнения, разнообразие цветов, эстетичный внешний вид и долговечность, является МДФ."
-+ "<br/><br/>Фабрика мебельных фасадов «ЗОВ - Профиль» специализируется на выпуске мебельных фасадов из МДФ, облицованных синтетическими пленками от ведущих поставщиков декоративных покрытий. На сайте представлены различные виды кухонных фасадов: глухие, с фрезерованной филенкой, витрины и фасады с решеткой."
-+ "<br/><br/>Дилеры компании «ЗОВ - Профиль» успешно применяют фасады для изготовления различных мебельных изделий. Для офисной мебели идеально подходят Марсель-1, для гостиной и спальни подходят фасады Инфинити, а детскую мебель заставит играть красками Техно - 2."
-+ "<br/><br/>Материал: МДФ, ЛМДФ, ДСтП."
-+ "<br/>Профиль: профиль 16 мм - 22 мм."
-+ "<br/>Варианты исполнения: гнутый фасад, глухой-фасад, фасад с решеткой, фасад - витрина."
-+ "<br/>Покрытие: полипропилен, ПВХ, финиш - пленка(с ЛКМ и без), шпон.";
+//                    MainDescriptionDiv.InnerHtml = "Лицо будущей кухни – это мебельные фасады. На сегодняшний день существует огромное разнообразие материалов, используемых при производстве фасадов для кухни. Материалом, сочетающим в себе такие важные для потребителя характеристики, как качество исполнения, разнообразие цветов, эстетичный внешний вид и долговечность, является МДФ."
+//+ "<br/><br/>Фабрика мебельных фасадов «ЗОВ - Профиль» специализируется на выпуске мебельных фасадов из МДФ, облицованных синтетическими пленками от ведущих поставщиков декоративных покрытий. На сайте представлены различные виды кухонных фасадов: глухие, с фрезерованной филенкой, витрины и фасады с решеткой."
+//+ "<br/><br/>Дилеры компании «ЗОВ - Профиль» успешно применяют фасады для изготовления различных мебельных изделий. Для офисной мебели идеально подходят Марсель-1, для гостиной и спальни подходят фасады Инфинити, а детскую мебель заставит играть красками Техно - 2."
+//+ "<br/><br/>Материал: МДФ, ЛМДФ, ДСтП."
+//+ "<br/>Профиль: профиль 16 мм - 22 мм."
+//+ "<br/>Варианты исполнения: гнутый фасад, глухой-фасад, фасад с решеткой, фасад - витрина."
+//+ "<br/>Покрытие: полипропилен, ПВХ, финиш - пленка(с ЛКМ и без), шпон.";
+                    MainDescriptionDiv.InnerHtml = "Лицо будущей кухни &mdash; это мебельные фасады." +
+                        "<br/>На сегодняшний день существует огромное разнообразие материалов, используемых при производстве фасадов для кухни. Фабрика мебельных фасадов &laquo;" +
+                        "ОМЦ-Профиль&raquo; использует материалы, сочетающие в себе такие важные для потребителя характеристики, как качество исполнения, разнообразие цветов, " +
+                        "эстетичный внешний вид и долговечность. Компания специализируется на выпуске мебельных фасадов из МДФ, облицованных синтетическими пленками от ведущих поставщиков " +
+                        "декоративных покрытий (полипропилен, нанофлекс, ПВХ, финиш-плёнка). Многие коллекции могут быть так же выполнены с нанесением лакокрасочных материалов." +
+                        "<br/>На сайте представлены различные виды кухонных фасадов: рамочные и фрезерованные, витрины и глухие с различными видами вставок. Так же к каждой коллекции " +
+                        "предлагаются декоративные элементы, которые придадут Вашему интерьеру индивидуальность и законченный вид.";
                 }
 
                 if (Type == 1)
@@ -632,6 +639,7 @@ namespace Zovprofil.zovprofil
             //img.Attributes.Add("src", "https://zovprofil.by/Images/ClientsCatalogImages/Thumbs/П-131 Бона ПП Фриз 713х396-1.png");
             string imageUrl = "https://zovprofil.by/Images/ClientsCatalogImages/Thumbs/" + row["FileName"];
             img.Attributes.CssStyle.Add("background-image", $"url('{imageUrl}')");
+            img.Attributes.Add("title", (string)row["Color"]);
 
             System.Web.UI.HtmlControls.HtmlGenericControl img_wrapper = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
             img_wrapper.Attributes.Add("class", "product-color-img_wrapper");
@@ -641,16 +649,16 @@ namespace Zovprofil.zovprofil
 
 
 
-            System.Web.UI.HtmlControls.HtmlGenericControl span = new System.Web.UI.HtmlControls.HtmlGenericControl("span");
-            span.Attributes.Add("class", "product-color-name");
-            span.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-            span.InnerText = (string)row["Color"];
+            //System.Web.UI.HtmlControls.HtmlGenericControl span = new System.Web.UI.HtmlControls.HtmlGenericControl("span");
+            //span.Attributes.Add("class", "product-color-name");
+            //span.ClientIDMode = System.Web.UI.ClientIDMode.Static;
+            //span.InnerText = (string)row["Color"];
 
             System.Web.UI.HtmlControls.HtmlGenericControl a = new System.Web.UI.HtmlControls.HtmlGenericControl("a");
             a.Attributes.Add("class", "product-color-block");
             a.Attributes.Add("href", "/Production?type=0&cat=" + row["Category"].ToString() + "&item=" + row["ImageID"].ToString());
             a.Controls.Add(img_wrapper);
-            a.Controls.Add(span);
+            //a.Controls.Add(span);
 
             using (StringWriter stringWriter = new StringWriter())
             {
