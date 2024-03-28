@@ -393,7 +393,8 @@ namespace Zovprofil.zovprofil
                     nCategory = nCategory.Replace(" ", "").ToLower();
                     nCategory = char.ToUpper(nCategory[0]) + nCategory.Substring(1);
 
-                    Item.Name = Row["Name"].ToString().Replace(nCategory, nCategory + "</br>") + "</br>" + sColor.ToString();
+                    //Item.Name = Row["Name"].ToString().Replace(nCategory, nCategory + "</br>") + "</br>" + sColor.ToString();
+                    Item.Name = Row["Name"].ToString() + "</br>" + sColor.ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
                     //Item.URL = "/Production?type=" + 0 + "&cat=" + Row["Category"] + "&item=" + Row["ImageID"].ToString();
                     string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
