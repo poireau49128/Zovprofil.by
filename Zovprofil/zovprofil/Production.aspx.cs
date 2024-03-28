@@ -319,7 +319,7 @@ namespace Zovprofil.zovprofil
 
                 }
                 //FillProductSlider(sFileName, sTechStoreFile, bool.Parse(sBasic), Type);
-                FillProductImages(sFileName, sTechStoreFile);
+                FillProductImages(sFileName, sTechStoreFile, sBasic, Type);
 
 
 
@@ -327,9 +327,9 @@ namespace Zovprofil.zovprofil
                 /*ProductItemImage.Src = Catalog.URL + "Thumbs/" + sFileName;*/
 
                 //ProductItemName.InnerHtml = sName;
-                if(Type == 1 || Type == 0)
-                    ProductItemName.InnerHtml = "<b>" + SplitName(Category, sName, sColor) + "</b>";
-                else
+                //if(Type == 1 || Type == 0)
+                //    ProductItemName.InnerHtml = "<b>" + SplitName(Category, sName, sColor) + "</b>";
+                //else
                     ProductItemName.InnerHtml = "<b>" + sName + "<br>" + sColor + "</b>";
 
 
@@ -670,18 +670,25 @@ namespace Zovprofil.zovprofil
             }
         }
 
-        private void FillProductImages(string ProductFile, string TechStoreFile)
+        private void FillProductImages(string ProductFile, string TechStoreFile, string Basic, int Type)
         {
             product_image_main.Style["display"] = "block";
             product_image_main.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
 
 
-            if (TechStoreFile != null && TechStoreFile.Contains(".tif"))
+            if (TechStoreFile == "" || TechStoreFile == null)
+                return;
+
+            if (TechStoreFile.Contains(".tif"))
             {
                 TechStoreFile = TiffToPng(TechStoreFile);
             }
 
-            if (TechStoreFile != "" && TechStoreFile != null)
+            if (Type == 0 && Basic == "False")
+            {
+                return;
+            }
+            else
             {
                 product_image_tech.Style["display"] = "block";
                 product_image_tech.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
