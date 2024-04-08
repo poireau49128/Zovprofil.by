@@ -611,11 +611,12 @@ namespace Zovprofil.zovprofil
                                     Basic,
                                     ROW_NUMBER() OVER (PARTITION BY Category, Color ORDER BY Basic DESC) AS rn
                                 FROM [infiniu2_catalog].[dbo].[ClientsCatalogImages]
-                                WHERE Category = @Category AND Color <> '' AND Color IS NOT NULL AND ToSite = 1
+                                WHERE Category = @Category AND Color <> '' AND Color IS NOT NULL AND ToSite = 1 AND Basic = 1
                             )
                             SELECT ImageID, FileName, Category, Color, Basic
                             FROM CTE
-                            WHERE rn = 1";
+                            WHERE rn = 1
+                            ORDER BY Color ASC";
 
             using (SqlConnection connection = new SqlConnection(Catalog.ConnectionString))
             {

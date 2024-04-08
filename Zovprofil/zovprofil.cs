@@ -102,7 +102,7 @@ namespace Zovprofil
         {
             string Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE ProductType = '" + Type + "'" + " AND Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 ORDER BY Name ASC";
             if (Type == 0)
-                Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE ProductType = '" + Type + "' AND Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 AND Basic = 1 ORDER BY Name ASC";
+                Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE ProductType = '" + Type + "' AND Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 AND Basic = 1 ORDER BY Color ASC";
             else if(Type == 3)//ready
                 Select = "SELECT FileName, Name, Color, ImageID FROM ClientsCatalogImages WHERE Category = '" + Category + "'" + " AND ToSite = 1 AND MainSlider = 0 AND CatSlider = 0 ORDER BY Name ASC";
 
