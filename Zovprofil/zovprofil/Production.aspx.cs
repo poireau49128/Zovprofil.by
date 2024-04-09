@@ -375,17 +375,18 @@ namespace Zovprofil.zovprofil
                     RelatedDecorsDiv.Style["display"] = "flex";
 
                 DataTable NotBasicDT = Catalog.FillNotBasicFronts(sMatrixID);
+                //MessageBox.Show(sMatrixID.ToString());
 
                 if (sProductType == "0" && NotBasicDT.Rows.Count > 1)
                     NotBasicFrontsDiv.Style["display"] = "flex";
 
 
                 //MessageBox.Show(NotBasicDT.Rows.Count.ToString());
+                ProductItem temp_item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
+                bool flag = false;
                 foreach (DataRow Row in NotBasicDT.Rows)
                 {
-                    if (Row["ImageID"].ToString() == ItemID)
-                        continue;
-
+                    
                     ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
 
                     string nCategory = Row["Category"].ToString().Replace("Эксклюзив ZOV: ", "");
@@ -400,8 +401,19 @@ namespace Zovprofil.zovprofil
                     string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
                     Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
 
+
+                    if (Row["ImageID"].ToString() == ItemID)
+                    {
+                        var productText = Item.FindControl("ProdCategory") as HtmlGenericControl;
+                        productText.Style["color"] = "#A3C2B9";
+                        temp_item = Item;
+                        flag = true;
+                        continue;
+                    }
                     NotBasicFronts.Controls.Add(Item);
                 }
+                if (flag)
+                    NotBasicFronts.Controls.Add(temp_item);
 
 
             }
