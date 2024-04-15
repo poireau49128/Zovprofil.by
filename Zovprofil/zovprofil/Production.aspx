@@ -263,26 +263,6 @@
 
 
                 <div id="ProductItemCont" runat="server" class="product-container">
-                    <%--<div class="product-images">
-                        <img id="product_image_main" runat="server" src="#" alt="" />
-                        <img id="product_image_tech" runat="server" src="#" alt="" />
-                    </div>--%>
-
-
-                    <%--<div id="prod-im" class="swiper swiper-main" rewind="true">
-                        <div id="prod-im-w" class="swiper-wrapper">
-                            <div id="prod-im-s1" class="swiper-slide">
-                                <img id="product_image_main" runat="server" src="#" alt="" />
-                            </div>
-                            <div id="prod-im-s2" class="swiper-slide">
-                                <img id="product_image_tech" runat="server" src="#" alt="" />
-                            </div>
-                        </div>
-                        <div class="swiper-scrollbar"></div>
-                    </div>--%>
-
-
-
                     <div id="prod-im" class="product-images" rewind="true">
                         <div id="prod-im-w">
                             <div id="prod-im-s1">
