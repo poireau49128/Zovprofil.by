@@ -275,6 +275,42 @@
                         <div class="swiper-scrollbar"></div>
                     </div>
 
+                    <script>
+                        const productImageMain = document.getElementById('product_image_main');
+                        const productImageTech = document.getElementById('product_image_tech');
+                        const imageContainer = document.createElement('div');
+                        imageContainer.id = 'image-container';
+                        imageContainer.style.display = 'none';
+
+                        document.body.appendChild(imageContainer);
+
+                        function openImage(imageElement) {
+                            const fullscreenImage = document.createElement('img');
+                            fullscreenImage.src = imageElement.src.replace('Thumbs/', '');
+                            console.log(imageElement.src);
+                            fullscreenImage.id = 'fullscreen-image';
+
+                            imageContainer.innerHTML = '';
+                            imageContainer.appendChild(fullscreenImage);
+                            imageContainer.style.display = 'block';
+                        }
+
+                        productImageMain.addEventListener('click', () => {
+                            openImage(productImageMain);
+                        });
+
+                        if (productImageTech) {
+                            productImageTech.addEventListener('click', () => {
+                                openImage(productImageTech);
+                            });
+                        }
+
+                        imageContainer.addEventListener('click', (event) => {
+                            if (event.target === imageContainer) {
+                                imageContainer.style.display = 'none';
+                            }
+                        });
+                    </script>
 
 
                     <script>
