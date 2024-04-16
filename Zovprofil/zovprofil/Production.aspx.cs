@@ -313,6 +313,13 @@ namespace Zovprofil.zovprofil
                 try
                 {
                     sTechStoreFile = Catalog.GetTechStoreImage(Convert.ToInt32(sTechID));
+
+                    string t = sFileName;
+                    bool existFlag = Catalog.CheckFileExists("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + sFileName);
+                    if (!existFlag)
+                    {
+                        Catalog.ProcessProductImage("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/" + sFileName, "/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + sFileName);
+                    }
                 }
                 catch
                 {
