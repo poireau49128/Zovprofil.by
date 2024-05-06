@@ -3,15 +3,6 @@
 
     <link href="../Styles/news.css" rel="stylesheet" />
 
-    <%--<div class="news-h">
-        <div class="textcont">
-            <span class="t1">Новости компании</span>
-            <span class="t2">Новинки, акции, выставки</span>
-        </div>
-        <div class="im1"></div>
-        <div class="im2"></div>
-    </div>--%>
-
     <%--<div class="news-cont">--%>
         <div id="NewsContainer" runat="server" class="container"></div>
     <%--</div>--%>

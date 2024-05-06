@@ -58,13 +58,13 @@ namespace Zovprofil
 
     public class Catalog
     {
-        public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
-        public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
-        public static string ftp = "ftp://localhost";
+        //public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        //public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
+        //public static string ftp = "ftp://localhost";
 
-        //public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
-        //public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
-        //public static string ftp = "ftp://infinium.zovprofil.by";
+        public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
+        public static string ftp = "ftp://infinium.zovprofil.by";
 
 
         public static string URL = "https://zovprofil.by/Images/ClientsCatalogImages/";
@@ -462,7 +462,7 @@ namespace Zovprofil
                                 "AND CCF.InsetTypeID = FC.InsetTypeID " +
                                 "AND CCF.PatinaID = FC.PatinaID " +
                                 "AND CCF.InsetColorID = FC.InsetColorID " +
-                            "WHERE ConfigID = @configid";
+                            "WHERE ConfigID = @configid AND Enabled = 1";
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {

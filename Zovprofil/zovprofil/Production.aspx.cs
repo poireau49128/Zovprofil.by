@@ -344,10 +344,15 @@ namespace Zovprofil.zovprofil
                 Material.InnerHtml = sMaterial.Replace("\n", "<br />");
                 Sizes.InnerHtml = sSizes.Replace("\n", "<br />");
 
-                if(Type == 0)
+
+                int sMatrixID = 0;
+                Catalog.GetMatrixIdFromConfID(Convert.ToInt32(sConfigID), ref sMatrixID);
+
+
+                if (Type == 0)
                 {
                     ColorDiv.Style["display"] = "block";
-                    foreach (DataRow row in GetCategoryColors(Category).Rows)
+                    foreach (DataRow row in GetCategoryColors(GetBasicCategory(sMatrixID)).Rows)
                     {
                         Colors.InnerHtml += CreateCategoryColorsLinks(row);
                     }
@@ -358,8 +363,7 @@ namespace Zovprofil.zovprofil
 
 
 
-                int sMatrixID = 0;
-                Catalog.GetMatrixIdFromConfID(Convert.ToInt32(sConfigID), ref sMatrixID);
+                
 
                 DataTable ProductsDT = Catalog.FillRelatedDecors(sMatrixID);
 
@@ -382,6 +386,7 @@ namespace Zovprofil.zovprofil
                     RelatedDecorsDiv.Style["display"] = "flex";
 
                 DataTable NotBasicDT = Catalog.FillNotBasicFronts(sMatrixID);
+                //MessageBox.Show($"{sMatrixID} - {NotBasicDT.Rows.Count}");
                 //MessageBox.Show(sMatrixID.ToString());
 
                 if (sProductType == "0" && NotBasicDT.Rows.Count > 1)
@@ -618,6 +623,45 @@ namespace Zovprofil.zovprofil
             return null;
         }
 
+
+        private string GetBasicCategory(int sMatrixID)
+        {
+            string Select = @"SELECT [Category]
+                        FROM CollectionsConfig 
+                        INNER JOIN FrontsConfig 
+                            ON CollectionsConfig.ConfigId2 = FrontsConfig.MatrixID 
+                        INNER JOIN ClientsCatalogFrontsConfig 
+                            ON FrontsConfig.FrontID = ClientsCatalogFrontsConfig.FrontID 
+                                AND ClientsCatalogFrontsConfig.ColorID = FrontsConfig.ColorID 
+                                AND ClientsCatalogFrontsConfig.PatinaID = FrontsConfig.PatinaID 
+                                AND ClientsCatalogFrontsConfig.InsetColorID = FrontsConfig.InsetColorID 
+                                AND ClientsCatalogFrontsConfig.InsetTypeID = FrontsConfig.InsetTypeID 
+                        INNER JOIN ClientsCatalogImages 
+                            ON ClientsCatalogFrontsConfig.ConfigID = ClientsCatalogImages.ConfigID 
+                        WHERE CollectionsConfig.ConfigId1 = @sMatrixID AND ProductType = 0 AND ToSite = 1 AND Category NOT LIKE '%Эксклюзив%' AND Basic = 1";
+
+
+            using (SqlConnection conn = new SqlConnection(Catalog.ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(Select, conn);
+                cmd.Parameters.Add("@sMatrixID", SqlDbType.Int);
+                cmd.Parameters["@sMatrixID"].Value = sMatrixID;
+
+                try
+                {
+                    conn.Open();
+                    return cmd.ExecuteScalar().ToString();
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                }
+            }
+
+
+
+            
+        }
 
         private DataTable GetCategoryColors(string category)
         {
