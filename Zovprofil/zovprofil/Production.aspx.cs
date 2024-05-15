@@ -216,7 +216,7 @@ namespace Zovprofil.zovprofil
 
 
                     ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
-                    Item.Name = Row["Name"].ToString().Replace("РП-", "") + " " + Row["Color"].ToString();
+                    Item.Name = Row["Name"].ToString().Replace("РП-", "") + "<br/>" + Row["Color"].ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
 
                     //Item.URL = "/Production?type=" + Type + "&cat=" + Category + "&item=" + Row["ImageID"].ToString();
