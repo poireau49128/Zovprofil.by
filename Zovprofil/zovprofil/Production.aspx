@@ -2,97 +2,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
     <link href="../Styles/production.css" rel="stylesheet" />
-    <%--<link href="../Styles/bootstrap.css" rel="stylesheet" />--%>
     <script src="../Scripts/jquery-3.1.0.min.js"></script>
-    <%--<script src="../Scripts/bootstrap.min.js"></script>--%>
     
     <input type="hidden" id="URL" runat="server" />
     <input type="hidden" runat="server" id="hSlidesCount" />
     <input type="hidden" runat="server" id="hDesc" />
 
     <div style="text-align:center" class="main-container">
-        <%--<div style="/*width:1000px;*/ display:inline-block; margin-top:30px; margin-bottom:30px;">--%>
-
-
-
-            <%--<div style="display:inline-block; float:left; /* width:300px*/; border: 1px solid #f5f5f5;">
-                <div style="text-align:left; background-color:white; padding-left:15px; padding-top:3px; padding-bottom:5px;">
-                    <div>
-                        <a href="/Production?type=0">
-                            <img src="/Images/fronts.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="FrontsCat" runat="server" class="lmenu-cat">
-                                ФАСАДЫ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageFronts" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="FrontsContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <a href="/Production?type=2">
-                            <img src="/Images/cup.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="CabCat" runat="server" class="lmenu-cat">
-                                МЕБЕЛЬ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageCup" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="CabsContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <a href="/Production?type=1">
-                            <img src="/Images/profile.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="DecorCat" runat="server"  class="lmenu-cat">
-                                ДЕКОР И ПОГОНАЖ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageProfile" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="DecorContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <a href="/Production?type=4">
-                            <img src="/Images/promotion.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="PromCat" runat="server" class="lmenu-cat">
-                                РЕКЛАМНАЯ ПРОДУКЦИЯ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImagePromotion" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="PromotionContainer" runat="server" class="lmenu-cat-cont"></div>
-
-                        <a href="/Production?type=5">
-                            <img src="/Images/interior.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="InteriorCat" runat="server" class="lmenu-cat">
-                                ИНТЕРЬЕРНЫЕ ДЕКОРЫ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageInterior" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="InteriorContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <div id="ReadyContainer" runat="server" class="lmenu-cat-cont"></div>
-                    </div>
-                </div>
-                <div style="text-align:left; background-color:white; height:48px; margin-top:15px; padding-left:15px; padding-top:3px; padding-bottom:5px;">
-                   <a href="/Downloads">
-                        <img src="/Images/download.png" style="float:left; width:20px; margin-top:14px;" />
-                        <div class="lmenu-cat">
-                            Скачать каталоги
-                        </div>
-                        <img src="/Images/right.png" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                    </a>
-                </div>
-                <a href="http://www.wm-shop.by/" onclick="ymetr()" target="_blank" style="margin-right:-4px;">
-                    <div class="shopc noselect">
-                        <img src="/Images/cart.png" class="img" />
-                        <span class="but">ИНТЕРНЕТ-МАГАЗИН</span>
-                    </div>
-                </a>
-            </div>--%>
-
-
-
-
-
-
-
             <nav>
 			    <div id="Sidebar" class="sidebar">
 			      <div class="sidebar-content">

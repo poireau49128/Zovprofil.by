@@ -58,13 +58,13 @@ namespace Zovprofil
 
     public class Catalog
     {
-        public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
-        public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
-        public static string ftp = "ftp://localhost";
+        //public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        //public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
+        //public static string ftp = "ftp://localhost";
 
-        //public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
-        //public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
-        //public static string ftp = "ftp://infinium.zovprofil.by";
+        public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
+        public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
+        public static string ftp = "ftp://infinium.zovprofil.by";
 
 
         public static string URL = "https://zovprofil.by/Images/ClientsCatalogImages/";
@@ -266,10 +266,16 @@ namespace Zovprofil
                 byte[] imageData = DownloadImageFromFtp(sourceImagePath);
 
                 // Уменьшение картинки
-                byte[] resizedImageData = ResizeImage(imageData, 0.85, 0.85);
+                if (imageData != null)
+                {
+                    byte[] resizedImageData = ResizeImage(imageData, 0.85, 0.85);
 
-                // Сохранение уменьшенной картинки на FTP-сервере
-                UploadImageToFtp(destinationImagePath, resizedImageData);
+                    // Сохранение уменьшенной картинки на FTP-сервере
+                    UploadImageToFtp(destinationImagePath, resizedImageData);
+                }
+                    
+
+                
             }
         }
 
@@ -296,17 +302,25 @@ namespace Zovprofil
 
         private static byte[] DownloadImageFromFtp(string filePath)
         {
-            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
-            request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
-            request.Method = WebRequestMethods.Ftp.DownloadFile;
-
-            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
-            using (Stream responseStream = response.GetResponseStream())
-            using (MemoryStream memoryStream = new MemoryStream())
+            try
             {
-                responseStream.CopyTo(memoryStream);
-                return memoryStream.ToArray();
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
+                request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+                request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                using (Stream responseStream = response.GetResponseStream())
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    responseStream.CopyTo(memoryStream);
+                    return memoryStream.ToArray();
+                }
             }
+            catch
+            {
+                return null;
+            }
+            
         }
 
         private static byte[] ResizeImage(byte[] imageData, double widthRatio, double heightRatio)
