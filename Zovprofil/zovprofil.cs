@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Web;
 
 namespace Zovprofil
 {
@@ -58,16 +57,21 @@ namespace Zovprofil
     {
         //public static string ConnectionString = "Data Source=localhost;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
         //public static string ftpPath = "ftp://localhost/Documents/TechStoreDocuments/";
+        //public static string ftp = "ftp://localhost";
 
         public static string ConnectionString = "Data Source=185.204.118.40, 32433;Initial Catalog=infiniu2_catalog;Persist Security Info=True;Connection Timeout=30;User ID=infiniu2_infinium;Password=InF476()*";
         public static string ftpPath = "ftp://infinium.zovprofil.by/Documents/TechStoreDocuments/";
+        public static string ftp = "ftp://infinium.zovprofil.by";
 
 
         public static string URL = "https://zovprofil.by/Images/ClientsCatalogImages/";
 
+        public static string ftpUsername = "infiniu2_infinium";
+        public static string ftpPassword = "vqju]nkca8ygtfibrQop";
+
         public static DataTable FillCategories(int Type)
         {
-            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT DISTINCT(Category) FROM ClientsCatalogImages WHERE (Category IS NOT NULL AND Category <> '') AND (ProductType = " + Type + ") AND ToSite = 1", ConnectionString))
+            using (SqlDataAdapter DA = new SqlDataAdapter("SELECT DISTINCT(Category) FROM ClientsCatalogImages WHERE (Category IS NOT NULL AND Category <> '' AND Category NOT LIKE '%Эксклюзив ZOV%') AND (ProductType = " + Type + ") AND ToSite = 1", ConnectionString))
             {
                 using (DataTable DT = new DataTable())
                 {
@@ -76,7 +80,7 @@ namespace Zovprofil
 
                     foreach (DataRow Row in DT.Rows)
                     {
-                        using (SqlDataAdapter sDA = new SqlDataAdapter("SELECT TOP 1 FileName FROM ClientsCatalogImages WHERE Category = '" + Row["Category"].ToString() + "' AND ToSite = 1 AND ProductType != 3", ConnectionString))
+                        using (SqlDataAdapter sDA = new SqlDataAdapter("SELECT TOP 1 FileName FROM ClientsCatalogImages WHERE ProductType = " + Type + " AND Category = '" + Row["Category"].ToString() + "' AND ToSite = 1 AND ProductType != 3", ConnectionString))
                         {
                             using (DataTable sDT = new DataTable())
                             {
@@ -139,9 +143,10 @@ namespace Zovprofil
 
         public static DataTable FillProducts(int Type, string Category)
         {
-            string Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 ORDER BY Name ASC";
-
-            if(Type == 3)//ready
+            string Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE ProductType = '" + Type + "'" + " AND Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 ORDER BY Name ASC";
+            if (Type == 0)
+                Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE ProductType = '" + Type + "' AND Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 AND Basic = 1 ORDER BY Color ASC";
+            else if(Type == 3)//ready
                 Select = "SELECT FileName, Name, Color, ImageID FROM ClientsCatalogImages WHERE Category = '" + Category + "'" + " AND ToSite = 1 AND MainSlider = 0 AND CatSlider = 0 ORDER BY Name ASC";
 
             using (SqlDataAdapter DA = new SqlDataAdapter(Select, ConnectionString))
@@ -290,6 +295,136 @@ namespace Zovprofil
         }
 
 
+
+
+
+
+
+
+        public static void ProcessProductImage(string sourceImagePath, string destinationImagePath)
+        {
+            if (!CheckFileExists(destinationImagePath))
+            {
+                // Загрузка большой картинки с FTP-сервера
+                byte[] imageData = DownloadImageFromFtp(sourceImagePath);
+
+                // Уменьшение картинки
+                if (imageData != null)
+                {
+                    byte[] resizedImageData = ResizeImage(imageData, 0.85, 0.85);
+
+                    // Сохранение уменьшенной картинки на FTP-сервере
+                    UploadImageToFtp(destinationImagePath, resizedImageData);
+                }
+                    
+
+                
+            }
+        }
+
+        public static bool CheckFileExists(string filePath)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
+            request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+            request.Method = WebRequestMethods.Ftp.GetFileSize;
+
+            try
+            {
+                FtpWebResponse response = (FtpWebResponse)request.GetResponse();
+                return true;
+            }
+            catch (WebException ex)
+            {
+                FtpWebResponse response = (FtpWebResponse)ex.Response;
+                if (response.StatusCode == FtpStatusCode.ActionNotTakenFileUnavailable)
+                    return false;
+                else
+                    throw;
+            }
+        }
+
+        private static byte[] DownloadImageFromFtp(string filePath)
+        {
+            try
+            {
+                FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
+                request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+                request.Method = WebRequestMethods.Ftp.DownloadFile;
+
+                using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+                using (Stream responseStream = response.GetResponseStream())
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    responseStream.CopyTo(memoryStream);
+                    return memoryStream.ToArray();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+            
+        }
+
+        private static byte[] ResizeImage(byte[] imageData, double widthRatio, double heightRatio)
+        {
+            using (MemoryStream sourceStream = new MemoryStream(imageData))
+            using (Image sourceImage = Image.FromStream(sourceStream))
+            {
+                int newWidth = sourceImage.Width;
+                int newHeight = sourceImage.Height;
+                while (Math.Max(newWidth, newHeight) > 450)
+                {
+                    newWidth = (int)(newWidth * widthRatio);
+                    newHeight = (int)(newHeight * heightRatio);
+                }
+                    
+
+                using (Bitmap resizedImage = new Bitmap(newWidth, newHeight))
+                using (Graphics graphics = Graphics.FromImage(resizedImage))
+                {
+                    graphics.CompositingQuality = CompositingQuality.HighQuality;
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.SmoothingMode = SmoothingMode.HighQuality;
+
+                    graphics.DrawImage(sourceImage, 0, 0, newWidth, newHeight);
+
+                    using (MemoryStream destinationStream = new MemoryStream())
+                    {
+                        resizedImage.Save(destinationStream, sourceImage.RawFormat);
+                        return destinationStream.ToArray();
+                    }
+                }
+            }
+        }
+
+        private static void UploadImageToFtp(string filePath, byte[] imageData)
+        {
+            FtpWebRequest request = (FtpWebRequest)WebRequest.Create(ftp + filePath);
+            request.Credentials = new NetworkCredential(ftpUsername, ftpPassword);
+            request.Method = WebRequestMethods.Ftp.UploadFile;
+
+            using (Stream requestStream = request.GetRequestStream())
+            {
+                requestStream.Write(imageData, 0, imageData.Length);
+            }
+
+            using (FtpWebResponse response = (FtpWebResponse)request.GetResponse())
+            {
+                Console.WriteLine($"Upload complete, status: {response.StatusDescription}");
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
         public static string GetTechStoreImage(int TechStoreID)
         {
             using (SqlDataAdapter DA = new SqlDataAdapter("SELECT * FROM TechStoreDocuments" +
@@ -384,7 +519,7 @@ namespace Zovprofil
                                 "AND CCF.InsetTypeID = FC.InsetTypeID " +
                                 "AND CCF.PatinaID = FC.PatinaID " +
                                 "AND CCF.InsetColorID = FC.InsetColorID " +
-                            "WHERE ConfigID = @configid";
+                            "WHERE ConfigID = @configid AND Enabled = 1";
 
             using (SqlConnection conn = new SqlConnection(ConnectionString))
             {
@@ -454,7 +589,7 @@ namespace Zovprofil
                                     "AND ClientsCatalogFrontsConfig.InsetTypeID = FrontsConfig.InsetTypeID " +
                             "INNER JOIN ClientsCatalogImages " +
                                 "ON ClientsCatalogFrontsConfig.ConfigID = ClientsCatalogImages.ConfigID " +
-                            "WHERE CollectionsConfig.ConfigId1 = @MatrixID AND ProductType = 0 AND ToSite = 1";
+                            "WHERE CollectionsConfig.ConfigId1 = @MatrixID AND ProductType = 0 AND ToSite = 1 AND Category NOT LIKE '%Эксклюзив%'";
 
             using (SqlConnection connection = new SqlConnection(ConnectionString))
             {

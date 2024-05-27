@@ -54,54 +54,26 @@ namespace Zovprofil.zovprofil
             if (Request.QueryString["item"] != null)
                 ItemID = Request.QueryString["item"];
 
-            if (Category.Length == 0)
-            {
-                if (Type == 0)
-                {
-                    //FrontsCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                if (Type == 1)
-                {
-                    //DecorCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                if (Type == 2)
-                {
-                    //CabCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                if (Type == 4)
-                {
-                    //PromCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                //if (Type == 3)
-                //{
-                //    ReadyCat.Attributes.Add("class", "lmenu-cat selected");
-                //}
-            }
+            
 
             if (Category == "")
             {
                 if (Type == 0)
                 {
-                    //ExpImageFronts.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
-                    MainDescriptionDiv.InnerHtml = "Лицо будущей кухни – это мебельные фасады. На сегодняшний день существует огромное разнообразие материалов, используемых при производстве фасадов для кухни. Материалом, сочетающим в себе такие важные для потребителя характеристики, как качество исполнения, разнообразие цветов, эстетичный внешний вид и долговечность, является МДФ."
-+ "<br/><br/>Фабрика мебельных фасадов «ЗОВ - Профиль» специализируется на выпуске мебельных фасадов из МДФ, облицованных синтетическими пленками от ведущих поставщиков декоративных покрытий. На сайте представлены различные виды кухонных фасадов: глухие, с фрезерованной филенкой, витрины и фасады с решеткой."
-+ "<br/><br/>Дилеры компании «ЗОВ - Профиль» успешно применяют фасады для изготовления различных мебельных изделий. Для офисной мебели идеально подходят Марсель-1, для гостиной и спальни подходят фасады Инфинити, а детскую мебель заставит играть красками Техно - 2."
-+ "<br/><br/>Материал: МДФ, ЛМДФ, ДСтП."
-+ "<br/>Профиль: профиль 16 мм - 22 мм."
-+ "<br/>Варианты исполнения: гнутый фасад, глухой-фасад, фасад с решеткой, фасад - витрина."
-+ "<br/>Покрытие: полипропилен, ПВХ, финиш - пленка(с ЛКМ и без), шпон.";
+                    MainDescriptionDiv.InnerHtml = "Лицо будущей кухни &mdash; это мебельные фасады." +
+                        "<br/>На сегодняшний день существует огромное разнообразие материалов, используемых при производстве фасадов для кухни. Фабрика мебельных фасадов &laquo;" +
+                        "ОМЦ-Профиль&raquo; использует материалы, сочетающие в себе такие важные для потребителя характеристики, как качество исполнения, разнообразие цветов, " +
+                        "эстетичный внешний вид и долговечность. Компания специализируется на выпуске мебельных фасадов из МДФ, облицованных синтетическими пленками от ведущих поставщиков " +
+                        "декоративных покрытий (полипропилен, нанофлекс, ПВХ, финиш-плёнка). Многие коллекции могут быть так же выполнены с нанесением лакокрасочных материалов." +
+                        "<br/>На сайте представлены различные виды кухонных фасадов: рамочные и фрезерованные, витрины и глухие с различными видами вставок. Так же к каждой коллекции " +
+                        "предлагаются декоративные элементы, которые придадут Вашему интерьеру индивидуальность и законченный вид.";
                 }
 
                 if (Type == 1)
                 {
-                    //ExpImageProfile.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -113,7 +85,6 @@ namespace Zovprofil.zovprofil
 
                 if (Type == 2)
                 {
-                    //ExpImageCup.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -122,7 +93,6 @@ namespace Zovprofil.zovprofil
 
                 if (Type == 4)
                 {
-                    //ExpImagePromotion.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -130,7 +100,6 @@ namespace Zovprofil.zovprofil
                 }
                 if (Type == 5)
                 {
-                    //ExpImageInterior.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -146,8 +115,6 @@ namespace Zovprofil.zovprofil
             {
                 LeftMenuItem Item = (LeftMenuItem)Page.LoadControl("~/zovprofil/Controls/LeftMenuItem.ascx");
                 Item.Name = Row["Category"].ToString().Replace("РП-", "");
-
-                //Item.URL = "/Production?type=" + Type.ToString() + "&cat=" + Row["Category"].ToString();
                 string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
                 Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
 
@@ -196,6 +163,19 @@ namespace Zovprofil.zovprofil
                     InteriorContainer.Controls.Add(Item);
                 }
             }
+            HtmlGenericControl hr = new HtmlGenericControl("hr");
+            hr.Style["width"] = "100%";
+            hr.Style["color"] = "#fff";
+
+            HtmlGenericControl link = new HtmlGenericControl("a");
+            link.Attributes["href"] = "https://exclusive-zov.wellmaker.by/Production";
+            link.InnerHtml = "Эксклюзив ZOV";
+            link.Attributes["class"] = "lmenu-item";
+            link.Style["text-align"] = "left";
+
+            FrontsContainer.Controls.Add(hr);
+            FrontsContainer.Controls.Add(link);
+
 
 
 
@@ -242,11 +222,17 @@ namespace Zovprofil.zovprofil
 
                 foreach (DataRow Row in ProductsDT.Rows)
                 {
+                    bool existFlag = Catalog.CheckFileExists("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
+                    if (!existFlag)
+                    {
+                        Catalog.ProcessProductImage("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/" + Row["FileName"].ToString(), "/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
+                    }
+
+
                     ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
-                    Item.Name = Row["Name"].ToString().Replace("РП-", "") + " " + Row["Color"].ToString();
+                    Item.Name = Row["Name"].ToString().Replace("РП-", "") + "<br/>" + Row["Color"].ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
 
-                    //Item.URL = "/Production?type=" + Type + "&cat=" + Category + "&item=" + Row["ImageID"].ToString();
                     string encodedCategory = Uri.EscapeDataString(Category);
                     Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
 
@@ -294,7 +280,6 @@ namespace Zovprofil.zovprofil
                     else
                         Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
 
-                    //Item.URL = "/Production?type=" + Type.ToString() + "&cat=" + Row["Category"].ToString();
                     string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
                     Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
 
@@ -309,7 +294,6 @@ namespace Zovprofil.zovprofil
 
                 ProductMenu.Visible = false;
                 ProductItemCont.Style.Add("display", "flex");
-                //ProductItemCont.Style.Add("flex-direction", "row");
 
                 string sFileName = "";
                 string sName = "";
@@ -340,13 +324,20 @@ namespace Zovprofil.zovprofil
                 try
                 {
                     sTechStoreFile = Catalog.GetTechStoreImage(Convert.ToInt32(sTechID));
+
+                    string t = sFileName;
+                    bool existFlag = Catalog.CheckFileExists("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + sFileName);
+                    if (!existFlag)
+                    {
+                        Catalog.ProcessProductImage("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/" + sFileName, "/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + sFileName);
+                    }
                 }
                 catch
                 {
 
                 }
                 //FillProductSlider(sFileName, sTechStoreFile, bool.Parse(sBasic), Type);
-                FillProductImages(sFileName, sTechStoreFile);
+                FillProductImages(sFileName, sTechStoreFile, sBasic, Type);
 
 
 
@@ -354,9 +345,9 @@ namespace Zovprofil.zovprofil
                 /*ProductItemImage.Src = Catalog.URL + "Thumbs/" + sFileName;*/
 
                 //ProductItemName.InnerHtml = sName;
-                if(Type == 10)
-                    ProductItemName.InnerHtml = "<b>" + SplitName(Category, sName, sColor) + "</b>";
-                else
+                //if(Type == 1 || Type == 0)
+                //    ProductItemName.InnerHtml = "<b>" + SplitName(Category, sName, sColor) + "</b>";
+                //else
                     ProductItemName.InnerHtml = "<b>" + sName + "<br>" + sColor + "</b>";
 
 
@@ -364,10 +355,15 @@ namespace Zovprofil.zovprofil
                 Material.InnerHtml = sMaterial.Replace("\n", "<br />");
                 Sizes.InnerHtml = sSizes.Replace("\n", "<br />");
 
-                if(Type == 0)
+
+                int sMatrixID = 0;
+                Catalog.GetMatrixIdFromConfID(Convert.ToInt32(sConfigID), ref sMatrixID);
+
+
+                if (Type == 0)
                 {
                     ColorDiv.Style["display"] = "block";
-                    foreach (DataRow row in GetCategoryColors(Category).Rows)
+                    foreach (DataRow row in GetCategoryColors(GetBasicCategory(sMatrixID)).Rows)
                     {
                         Colors.InnerHtml += CreateCategoryColorsLinks(row);
                     }
@@ -378,8 +374,7 @@ namespace Zovprofil.zovprofil
 
 
 
-                int sMatrixID = 0;
-                Catalog.GetMatrixIdFromConfID(Convert.ToInt32(sConfigID), ref sMatrixID);
+                
 
                 DataTable ProductsDT = Catalog.FillRelatedDecors(sMatrixID);
 
@@ -407,12 +402,12 @@ namespace Zovprofil.zovprofil
                     NotBasicFrontsDiv.Style["display"] = "flex";
 
 
-                //MessageBox.Show(NotBasicDT.Rows.Count.ToString());
+                //чтобы текущий фасад был последним
+                ProductItem temp_item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
+                bool flag = false;
                 foreach (DataRow Row in NotBasicDT.Rows)
                 {
-                    if (Row["ImageID"].ToString() == ItemID)
-                        continue;
-
+                    
                     ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
 
                     string nCategory = Row["Category"].ToString().Replace("Эксклюзив ZOV: ", "");
@@ -420,14 +415,24 @@ namespace Zovprofil.zovprofil
                     nCategory = nCategory.Replace(" ", "").ToLower();
                     nCategory = char.ToUpper(nCategory[0]) + nCategory.Substring(1);
 
-                    Item.Name = Row["Name"].ToString().Replace(nCategory, nCategory + "</br>") + "</br>" + sColor.ToString();
+                    Item.Name = Row["Name"].ToString() + "</br>" + sColor.ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
-                    //Item.URL = "/Production?type=" + 0 + "&cat=" + Row["Category"] + "&item=" + Row["ImageID"].ToString();
                     string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
                     Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
 
+
+                    if (Row["ImageID"].ToString() == ItemID)
+                    {
+                        var productText = Item.FindControl("ProdCategory") as HtmlGenericControl;
+                        productText.Style["color"] = "#A3C2B9";
+                        temp_item = Item;
+                        flag = true;
+                        continue;
+                    }
                     NotBasicFronts.Controls.Add(Item);
                 }
+                if (flag)
+                    NotBasicFronts.Controls.Add(temp_item);
 
 
             }
@@ -626,6 +631,45 @@ namespace Zovprofil.zovprofil
         }
 
 
+        private string GetBasicCategory(int sMatrixID)
+        {
+            string Select = @"SELECT [Category]
+                        FROM CollectionsConfig 
+                        INNER JOIN FrontsConfig 
+                            ON CollectionsConfig.ConfigId2 = FrontsConfig.MatrixID 
+                        INNER JOIN ClientsCatalogFrontsConfig 
+                            ON FrontsConfig.FrontID = ClientsCatalogFrontsConfig.FrontID 
+                                AND ClientsCatalogFrontsConfig.ColorID = FrontsConfig.ColorID 
+                                AND ClientsCatalogFrontsConfig.PatinaID = FrontsConfig.PatinaID 
+                                AND ClientsCatalogFrontsConfig.InsetColorID = FrontsConfig.InsetColorID 
+                                AND ClientsCatalogFrontsConfig.InsetTypeID = FrontsConfig.InsetTypeID 
+                        INNER JOIN ClientsCatalogImages 
+                            ON ClientsCatalogFrontsConfig.ConfigID = ClientsCatalogImages.ConfigID 
+                        WHERE CollectionsConfig.ConfigId1 = @sMatrixID AND ProductType = 0 AND ToSite = 1 AND Category NOT LIKE '%Эксклюзив%' AND Basic = 1";
+
+
+            using (SqlConnection conn = new SqlConnection(Catalog.ConnectionString))
+            {
+                SqlCommand cmd = new SqlCommand(Select, conn);
+                cmd.Parameters.Add("@sMatrixID", SqlDbType.Int);
+                cmd.Parameters["@sMatrixID"].Value = sMatrixID;
+
+                try
+                {
+                    conn.Open();
+                    return cmd.ExecuteScalar().ToString();
+                }
+                catch (Exception ex)
+                {
+                    return "";
+                }
+            }
+
+
+
+            
+        }
+
         private DataTable GetCategoryColors(string category)
         {
             string query = @"WITH CTE AS (
@@ -637,11 +681,12 @@ namespace Zovprofil.zovprofil
                                     Basic,
                                     ROW_NUMBER() OVER (PARTITION BY Category, Color ORDER BY Basic DESC) AS rn
                                 FROM [infiniu2_catalog].[dbo].[ClientsCatalogImages]
-                                WHERE Category = @Category AND Color <> '' AND Color IS NOT NULL
+                                WHERE Category = @Category AND Color <> '' AND Color IS NOT NULL AND ToSite = 1 AND Basic = 1
                             )
                             SELECT ImageID, FileName, Category, Color, Basic
                             FROM CTE
-                            WHERE rn = 1";
+                            WHERE rn = 1
+                            ORDER BY Color ASC";
 
             using (SqlConnection connection = new SqlConnection(Catalog.ConnectionString))
             {
@@ -663,28 +708,19 @@ namespace Zovprofil.zovprofil
             System.Web.UI.HtmlControls.HtmlGenericControl img = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
             img.Attributes.Add("class", "product-color-image");
             img.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-            //img.Attributes.Add("src", "https://zovprofil.by/Images/ClientsCatalogImages/Thumbs/П-131 Бона ПП Фриз 713х396-1.png");
             string imageUrl = "https://zovprofil.by/Images/ClientsCatalogImages/Thumbs/" + row["FileName"];
             img.Attributes.CssStyle.Add("background-image", $"url('{imageUrl}')");
+            img.Attributes.Add("title", (string)row["Color"]);
 
             System.Web.UI.HtmlControls.HtmlGenericControl img_wrapper = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
             img_wrapper.Attributes.Add("class", "product-color-img_wrapper");
             img_wrapper.ClientIDMode = System.Web.UI.ClientIDMode.Static;
             img_wrapper.Controls.Add(img);
 
-
-
-
-            System.Web.UI.HtmlControls.HtmlGenericControl span = new System.Web.UI.HtmlControls.HtmlGenericControl("span");
-            span.Attributes.Add("class", "product-color-name");
-            span.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-            span.InnerText = (string)row["Color"];
-
             System.Web.UI.HtmlControls.HtmlGenericControl a = new System.Web.UI.HtmlControls.HtmlGenericControl("a");
             a.Attributes.Add("class", "product-color-block");
             a.Attributes.Add("href", "/Production?type=0&cat=" + row["Category"].ToString() + "&item=" + row["ImageID"].ToString());
             a.Controls.Add(img_wrapper);
-            a.Controls.Add(span);
 
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -696,18 +732,25 @@ namespace Zovprofil.zovprofil
             }
         }
 
-        private void FillProductImages(string ProductFile, string TechStoreFile)
+        private void FillProductImages(string ProductFile, string TechStoreFile, string Basic, int Type)
         {
             product_image_main.Style["display"] = "block";
             product_image_main.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
 
 
-            if (TechStoreFile != null && TechStoreFile.Contains(".tif"))
+            if (TechStoreFile == "" || TechStoreFile == null)
+                return;
+
+            if (TechStoreFile.Contains(".tif"))
             {
                 TechStoreFile = TiffToPng(TechStoreFile);
             }
 
-            if (TechStoreFile != "" && TechStoreFile != null)
+            if (Type == 0 && Basic == "False")
+            {
+                return;
+            }
+            else
             {
                 product_image_tech.Style["display"] = "block";
                 product_image_tech.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
@@ -730,86 +773,5 @@ namespace Zovprofil.zovprofil
             }
             return "";
         }
-
-
-
-        //public void FillProductSlider(string ProductFile, string TechStoreFile, bool Basic, int Type)
-        //{
-        //    string sliderUrls = "";
-
-        //    int count = 1;
-
-        //    if (Basic == true || Type == 1)
-        //        count = 2;
-
-        //    if (TechStoreFile == "")
-        //        count = 1;
-
-
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        System.Web.UI.HtmlControls.HtmlGenericControl img = new System.Web.UI.HtmlControls.HtmlGenericControl("img");
-        //        img.Attributes.Add("class", "im");
-        //        img.ID = "im" + (i + 1).ToString();
-        //        img.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-        //        img.Attributes.Add("onclick", "OpenFrontSliderImage()");
-
-        //        if (i == 1)
-        //        {
-        //            //string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "TechStore", TechStoreFile.ToString());
-        //            //if (File.Exists(imagePath))
-        //            //{
-        //            //    img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
-        //            //    sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
-        //            //}
-        //            //else
-        //            //{
-        //            //    img.Attributes.Add("src", "/Images/TechStore/pict_stub.png");
-        //            //    sliderUrls += "/Images/TechStore/pict_stub.png;";
-        //            //}
-
-        //            //img.Attributes.Add("cache-control", "no-cache");
-        //            img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
-        //            sliderUrls += "/Images/TechStore/" + TechStoreFile.ToString() + ";";
-        //            img.Attributes.Add("cache-control", "no-cache");
-        //        }
-        //        else
-        //        {
-        //            //if(Catalog.IsFileExist(Catalog.URL + "Thumbs/" + ProductFile))
-        //                img.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
-        //            //else
-        //            //    img.Attributes.Add("src", Catalog.URL + ProductFile);
-
-        //            sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
-        //        }
-
-        //        if (i == 0)
-        //        {
-        //            img.Style.Add("opacity", "1");
-        //        }
-
-        //        System.Web.UI.HtmlControls.HtmlGenericControl pdiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-        //        if (i == 0)
-        //        {
-        //            pdiv.Attributes.Add("class", "sl-p");
-        //        }
-
-        //        pdiv.ID = "slp" + (i + 1).ToString();
-        //        pdiv.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-
-        //        System.Web.UI.HtmlControls.HtmlGenericControl div = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-        //        div.Attributes.Add("class", "sl");
-        //        div.ID = "sl" + (i + 1).ToString();
-        //        div.Attributes.Add("onclick", "SelectImage(" + (i + 1) + ")");
-        //        div.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-        //        div.Controls.Add(pdiv);
-
-        //        FrontSliderNavCont.Controls.Add(div);
-        //        FrontImagesSliderCont.Controls.Add(img);
-        //    }
-        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "SetSliderUrls", "SetSliderUrls('" + sliderUrls + "');", true);
-
-        //    hSlidesCount.Value = count.ToString();
-        //}
     }
 }

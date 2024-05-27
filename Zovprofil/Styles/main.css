@@ -291,7 +291,7 @@ button {
 
     .categories {
         grid-template-columns: repeat(1, 1fr);
-        raw-gap: 10px;
+        gap: 10px;
     }
 
     .category h3 {

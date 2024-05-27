@@ -297,7 +297,7 @@ ga('send', 'pageview');
             </div>
         </div>
 
-       <footer>
+       <footer class="test-footer">
 		<div class="container">
 			<div class="footer">
 				<div class="links">
@@ -327,6 +327,35 @@ ga('send', 'pageview');
 			</div>
 		</div>
 	</footer>
+
+
+        <%--<script type="text/javascript">
+            function positionFooter() {
+                var footer = document.querySelector('.test-footer');
+
+                var header = document.querySelector('header');
+                var body = document.querySelector('#MasterForm');
+
+                var bodyHeight = header.offsetHeight + body.offsetHeight;
+                var windowHeight = window.innerHeight;
+
+                console.log("header", header.offsetHeight, "body", body.offsetHeight, "fbody", bodyHeight, "window", windowHeight);
+
+                if (bodyHeight < windowHeight) {
+                    footer.style.position = 'fixed';
+                    footer.style.bottom = '0';
+                } else {
+                    footer.style.position = 'static';
+                }
+            }
+
+            positionFooter(); // Вызов функции при загрузке страницы
+
+            window.addEventListener('resize', positionFooter); // Вызов функции при изменении размера окна
+        </script>--%>
+
+
+
     </form>
 
 

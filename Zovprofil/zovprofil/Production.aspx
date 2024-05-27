@@ -2,97 +2,13 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder" runat="server">
 
     <link href="../Styles/production.css" rel="stylesheet" />
-    <%--<link href="../Styles/bootstrap.css" rel="stylesheet" />--%>
     <script src="../Scripts/jquery-3.1.0.min.js"></script>
-    <%--<script src="../Scripts/bootstrap.min.js"></script>--%>
     
     <input type="hidden" id="URL" runat="server" />
     <input type="hidden" runat="server" id="hSlidesCount" />
     <input type="hidden" runat="server" id="hDesc" />
 
     <div style="text-align:center" class="main-container">
-        <%--<div style="/*width:1000px;*/ display:inline-block; margin-top:30px; margin-bottom:30px;">--%>
-
-
-
-            <%--<div style="display:inline-block; float:left; /* width:300px*/; border: 1px solid #f5f5f5;">
-                <div style="text-align:left; background-color:white; padding-left:15px; padding-top:3px; padding-bottom:5px;">
-                    <div>
-                        <a href="/Production?type=0">
-                            <img src="/Images/fronts.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="FrontsCat" runat="server" class="lmenu-cat">
-                                ФАСАДЫ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageFronts" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="FrontsContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <a href="/Production?type=2">
-                            <img src="/Images/cup.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="CabCat" runat="server" class="lmenu-cat">
-                                МЕБЕЛЬ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageCup" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="CabsContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <a href="/Production?type=1">
-                            <img src="/Images/profile.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="DecorCat" runat="server"  class="lmenu-cat">
-                                ДЕКОР И ПОГОНАЖ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageProfile" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="DecorContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <a href="/Production?type=4">
-                            <img src="/Images/promotion.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="PromCat" runat="server" class="lmenu-cat">
-                                РЕКЛАМНАЯ ПРОДУКЦИЯ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImagePromotion" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="PromotionContainer" runat="server" class="lmenu-cat-cont"></div>
-
-                        <a href="/Production?type=5">
-                            <img src="/Images/interior.png" style="float:left; width:20px; margin-top:14px;" />
-                            <div id="InteriorCat" runat="server" class="lmenu-cat">
-                                ИНТЕРЬЕРНЫЕ ДЕКОРЫ
-                            </div>
-                            <img src="/Images/dn.png" id="ExpImageInterior" runat="server" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                        </a>
-                        <div id="InteriorContainer" runat="server" class="lmenu-cat-cont"></div>
-
-
-                        <div id="ReadyContainer" runat="server" class="lmenu-cat-cont"></div>
-                    </div>
-                </div>
-                <div style="text-align:left; background-color:white; height:48px; margin-top:15px; padding-left:15px; padding-top:3px; padding-bottom:5px;">
-                   <a href="/Downloads">
-                        <img src="/Images/download.png" style="float:left; width:20px; margin-top:14px;" />
-                        <div class="lmenu-cat">
-                            Скачать каталоги
-                        </div>
-                        <img src="/Images/right.png" style="margin-top: 21px; float: right; margin-right: 15px;" />
-                    </a>
-                </div>
-                <a href="http://www.wm-shop.by/" onclick="ymetr()" target="_blank" style="margin-right:-4px;">
-                    <div class="shopc noselect">
-                        <img src="/Images/cart.png" class="img" />
-                        <span class="but">ИНТЕРНЕТ-МАГАЗИН</span>
-                    </div>
-                </a>
-            </div>--%>
-
-
-
-
-
-
-
             <nav>
 			    <div id="Sidebar" class="sidebar">
 			      <div class="sidebar-content">
@@ -294,26 +210,6 @@
 
 
                 <div id="ProductItemCont" runat="server" class="product-container">
-                    <%--<div class="product-images">
-                        <img id="product_image_main" runat="server" src="#" alt="" />
-                        <img id="product_image_tech" runat="server" src="#" alt="" />
-                    </div>--%>
-
-
-                    <%--<div id="prod-im" class="swiper swiper-main" rewind="true">
-                        <div id="prod-im-w" class="swiper-wrapper">
-                            <div id="prod-im-s1" class="swiper-slide">
-                                <img id="product_image_main" runat="server" src="#" alt="" />
-                            </div>
-                            <div id="prod-im-s2" class="swiper-slide">
-                                <img id="product_image_tech" runat="server" src="#" alt="" />
-                            </div>
-                        </div>
-                        <div class="swiper-scrollbar"></div>
-                    </div>--%>
-
-
-
                     <div id="prod-im" class="product-images" rewind="true">
                         <div id="prod-im-w">
                             <div id="prod-im-s1">
@@ -326,6 +222,42 @@
                         <div class="swiper-scrollbar"></div>
                     </div>
 
+                    <script>
+                        const productImageMain = document.getElementById('product_image_main');
+                        const productImageTech = document.getElementById('product_image_tech');
+                        const imageContainer = document.createElement('div');
+                        imageContainer.id = 'image-container';
+                        imageContainer.style.display = 'none';
+
+                        document.body.appendChild(imageContainer);
+
+                        function openImage(imageElement) {
+                            const fullscreenImage = document.createElement('img');
+                            fullscreenImage.src = imageElement.src.replace('Thumbs/', '');
+                            console.log(imageElement.src);
+                            fullscreenImage.id = 'fullscreen-image';
+
+                            imageContainer.innerHTML = '';
+                            imageContainer.appendChild(fullscreenImage);
+                            imageContainer.style.display = 'block';
+                        }
+
+                        productImageMain.addEventListener('click', () => {
+                            openImage(productImageMain);
+                        });
+
+                        if (productImageTech) {
+                            productImageTech.addEventListener('click', () => {
+                                openImage(productImageTech);
+                            });
+                        }
+
+                        imageContainer.addEventListener('click', (event) => {
+                            if (event.target === imageContainer) {
+                                imageContainer.style.display = 'none';
+                            }
+                        });
+                    </script>
 
 
                     <script>
@@ -339,15 +271,6 @@
                             var src = img.getAttribute("src");
 
                             const screenSize = window.innerWidth;
-
-
-
-                            //console.log(screenSize <= 768);
-                            //console.log(src);
-                            //console.log(!src.includes('###'));
-                            //console.log(screenSize <= 768 && src && !src.includes('###'));
-
-
 
                             if (screenSize <= 768 && src && !src.includes('#')) {
                                 
@@ -400,17 +323,19 @@
                         </div>
                         
 
-                        <div id="MaterialDiv" runat="server">
-                            <span class="head"><b>Материал:</b><br /></span>
-                            <span class="text" id="Material" runat="server"></span>
+                        <div id="DescriptionDiv" runat="server">
+                            <span class="head"><b>Описание:</b><br /></span>
+                            <span id="Description" runat="server" class="text"></span>
                         </div>
-                        <div id="SizesDiv" runat="server" style="padding-top:30px;">
+
+			            <div id="SizesDiv" runat="server" style="padding-top:30px;">
                             <span class="head"><b>Размеры:</b><br /></span>
                             <span id="Sizes" runat="server" class="text"></span>
                         </div>
-                        <div id="DescriptionDiv" runat="server" style="padding-top:30px;">
-                            <span class="head"><b>Описание:</b><br /></span>
-                            <span id="Description" runat="server" class="text"></span>
+
+			            <div id="MaterialDiv" runat="server" style="padding-top:30px;">
+                            <span class="head"><b>Материал:</b><br /></span>
+                            <span class="text" id="Material" runat="server"></span>
                         </div>
 
                         <div id="ColorDiv" runat="server" style="padding-top:30px;">
@@ -455,39 +380,7 @@
 
 
 
-                    </div>
-
-                    
-                    <%--<div class="image-div">
-                        <div id="ProductItem" runat="server" onclick="OpenImage(this)">
-                            <div class="prod-item-back">
-                                <div>
-                                    <img id="ProductItemImage" runat="server" src="about:blank" ondragstart="return false;"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
-
-                    
-
-
-
-
-                    <%--<div class="image-div">
-                        <div id="FrontSliderCont" runat="server" class="im-sl-back-f noselect">
-                            <div>
-                                <div id="FrontImagesSliderCont" style="position:relative" runat="server" class="slider-container">
-                                    <div>
-                                        <div class="nav" id="FrontSliderNavCont" runat="server"></div>
-                                    </div>
-                                    <div id="FrontImageName" class="image-name"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
-
-
-                    
+                    </div>                    
                 </div>
 
 
@@ -606,18 +499,6 @@
             document.getElementById("DescriptionText").style.display = "none";
     })
 
-    //function OpenImage(e)
-    //{
-    //    $('#ImageDialogModal').modal('show');
-
-    //    document.getElementById('ItemImage').src = document.getElementById('URL').value + e.id;
-    //}
-
-    //function OpenSliderImage() {
-    //    $('#ImageDialogModal').modal('show');
-
-    //    document.getElementById('ItemImage').src = Catalog.URL + SliderUrls[ci - 1];
-    //}
     function OpenImage(e) {
         $('#ImageDialogModal').modal('show');
 
@@ -627,16 +508,12 @@
     function OpenSliderImage() {
         $('#ImageDialogModal').modal('show');
 
-        document.getElementById('ItemImage').src = /*'/Images/ClientsCatalogImages/' + */SliderUrls[ci - 1];
+        document.getElementById('ItemImage').src = SliderUrls[ci - 1];
     }
 
 
     function OpenFrontSliderImage() {
         $('#ImageDialogModal').modal('show');
-
-        //if(ci == 0)
-        //    document.getElementById('ItemImage').src = '/Images/ClientsCatalogImages/' + SliderUrls[ci - 1];
-        //else
         document.getElementById('ItemImage').src = SliderUrls[ci - 1];
     }
 
