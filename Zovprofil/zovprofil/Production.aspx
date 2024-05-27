@@ -241,15 +241,6 @@
 
                             const screenSize = window.innerWidth;
 
-
-
-                            //console.log(screenSize <= 768);
-                            //console.log(src);
-                            //console.log(!src.includes('###'));
-                            //console.log(screenSize <= 768 && src && !src.includes('###'));
-
-
-
                             if (screenSize <= 768 && src && !src.includes('#')) {
                                 
                                 block.classList.add('swiper');
@@ -358,39 +349,7 @@
 
 
 
-                    </div>
-
-                    
-                    <%--<div class="image-div">
-                        <div id="ProductItem" runat="server" onclick="OpenImage(this)">
-                            <div class="prod-item-back">
-                                <div>
-                                    <img id="ProductItemImage" runat="server" src="about:blank" ondragstart="return false;"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
-
-                    
-
-
-
-
-                    <%--<div class="image-div">
-                        <div id="FrontSliderCont" runat="server" class="im-sl-back-f noselect">
-                            <div>
-                                <div id="FrontImagesSliderCont" style="position:relative" runat="server" class="slider-container">
-                                    <div>
-                                        <div class="nav" id="FrontSliderNavCont" runat="server"></div>
-                                    </div>
-                                    <div id="FrontImageName" class="image-name"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>--%>
-
-
-                    
+                    </div>                    
                 </div>
 
 
@@ -509,18 +468,6 @@
             document.getElementById("DescriptionText").style.display = "none";
     })
 
-    //function OpenImage(e)
-    //{
-    //    $('#ImageDialogModal').modal('show');
-
-    //    document.getElementById('ItemImage').src = document.getElementById('URL').value + e.id;
-    //}
-
-    //function OpenSliderImage() {
-    //    $('#ImageDialogModal').modal('show');
-
-    //    document.getElementById('ItemImage').src = Catalog.URL + SliderUrls[ci - 1];
-    //}
     function OpenImage(e) {
         $('#ImageDialogModal').modal('show');
 
@@ -530,16 +477,12 @@
     function OpenSliderImage() {
         $('#ImageDialogModal').modal('show');
 
-        document.getElementById('ItemImage').src = /*'/Images/ClientsCatalogImages/' + */SliderUrls[ci - 1];
+        document.getElementById('ItemImage').src = SliderUrls[ci - 1];
     }
 
 
     function OpenFrontSliderImage() {
         $('#ImageDialogModal').modal('show');
-
-        //if(ci == 0)
-        //    document.getElementById('ItemImage').src = '/Images/ClientsCatalogImages/' + SliderUrls[ci - 1];
-        //else
         document.getElementById('ItemImage').src = SliderUrls[ci - 1];
     }
 

@@ -54,49 +54,15 @@ namespace Zovprofil.zovprofil
             if (Request.QueryString["item"] != null)
                 ItemID = Request.QueryString["item"];
 
-            if (Category.Length == 0)
-            {
-                if (Type == 0)
-                {
-                    //FrontsCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                if (Type == 1)
-                {
-                    //DecorCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                if (Type == 2)
-                {
-                    //CabCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                if (Type == 4)
-                {
-                    //PromCat.Attributes.Add("class", "lmenu-cat selected");
-                }
-
-                //if (Type == 3)
-                //{
-                //    ReadyCat.Attributes.Add("class", "lmenu-cat selected");
-                //}
-            }
+            
 
             if (Category == "")
             {
                 if (Type == 0)
                 {
-                    //ExpImageFronts.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
-//                    MainDescriptionDiv.InnerHtml = "Лицо будущей кухни – это мебельные фасады. На сегодняшний день существует огромное разнообразие материалов, используемых при производстве фасадов для кухни. Материалом, сочетающим в себе такие важные для потребителя характеристики, как качество исполнения, разнообразие цветов, эстетичный внешний вид и долговечность, является МДФ."
-//+ "<br/><br/>Фабрика мебельных фасадов «ЗОВ - Профиль» специализируется на выпуске мебельных фасадов из МДФ, облицованных синтетическими пленками от ведущих поставщиков декоративных покрытий. На сайте представлены различные виды кухонных фасадов: глухие, с фрезерованной филенкой, витрины и фасады с решеткой."
-//+ "<br/><br/>Дилеры компании «ЗОВ - Профиль» успешно применяют фасады для изготовления различных мебельных изделий. Для офисной мебели идеально подходят Марсель-1, для гостиной и спальни подходят фасады Инфинити, а детскую мебель заставит играть красками Техно - 2."
-//+ "<br/><br/>Материал: МДФ, ЛМДФ, ДСтП."
-//+ "<br/>Профиль: профиль 16 мм - 22 мм."
-//+ "<br/>Варианты исполнения: гнутый фасад, глухой-фасад, фасад с решеткой, фасад - витрина."
-//+ "<br/>Покрытие: полипропилен, ПВХ, финиш - пленка(с ЛКМ и без), шпон.";
                     MainDescriptionDiv.InnerHtml = "Лицо будущей кухни &mdash; это мебельные фасады." +
                         "<br/>На сегодняшний день существует огромное разнообразие материалов, используемых при производстве фасадов для кухни. Фабрика мебельных фасадов &laquo;" +
                         "ОМЦ-Профиль&raquo; использует материалы, сочетающие в себе такие важные для потребителя характеристики, как качество исполнения, разнообразие цветов, " +
@@ -108,7 +74,6 @@ namespace Zovprofil.zovprofil
 
                 if (Type == 1)
                 {
-                    //ExpImageProfile.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -120,7 +85,6 @@ namespace Zovprofil.zovprofil
 
                 if (Type == 2)
                 {
-                    //ExpImageCup.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -129,7 +93,6 @@ namespace Zovprofil.zovprofil
 
                 if (Type == 4)
                 {
-                    //ExpImagePromotion.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -137,7 +100,6 @@ namespace Zovprofil.zovprofil
                 }
                 if (Type == 5)
                 {
-                    //ExpImageInterior.Src = "/Images/up.png";
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
@@ -151,8 +113,6 @@ namespace Zovprofil.zovprofil
             {
                 LeftMenuItem Item = (LeftMenuItem)Page.LoadControl("~/zovprofil/Controls/LeftMenuItem.ascx");
                 Item.Name = Row["Category"].ToString().Replace("РП-", "");
-
-                //Item.URL = "/Production?type=" + Type.ToString() + "&cat=" + Row["Category"].ToString();
                 string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
                 Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
 
@@ -207,7 +167,6 @@ namespace Zovprofil.zovprofil
 
                 foreach (DataRow Row in ProductsDT.Rows)
                 {
-                    string t = Row["FileName"].ToString();
                     bool existFlag = Catalog.CheckFileExists("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
                     if (!existFlag)
                     {
@@ -219,7 +178,6 @@ namespace Zovprofil.zovprofil
                     Item.Name = Row["Name"].ToString().Replace("РП-", "") + "<br/>" + Row["Color"].ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
 
-                    //Item.URL = "/Production?type=" + Type + "&cat=" + Category + "&item=" + Row["ImageID"].ToString();
                     string encodedCategory = Uri.EscapeDataString(Category);
                     Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
 
@@ -267,7 +225,6 @@ namespace Zovprofil.zovprofil
                     else
                         Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
 
-                    //Item.URL = "/Production?type=" + Type.ToString() + "&cat=" + Row["Category"].ToString();
                     string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
                     Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
 
@@ -282,7 +239,6 @@ namespace Zovprofil.zovprofil
 
                 ProductMenu.Visible = false;
                 ProductItemCont.Style.Add("display", "flex");
-                //ProductItemCont.Style.Add("flex-direction", "row");
 
                 string sFileName = "";
                 string sName = "";
@@ -386,14 +342,12 @@ namespace Zovprofil.zovprofil
                     RelatedDecorsDiv.Style["display"] = "flex";
 
                 DataTable NotBasicDT = Catalog.FillNotBasicFronts(sMatrixID);
-                //MessageBox.Show($"{sMatrixID} - {NotBasicDT.Rows.Count}");
-                //MessageBox.Show(sMatrixID.ToString());
 
                 if (sProductType == "0" && NotBasicDT.Rows.Count > 1)
                     NotBasicFrontsDiv.Style["display"] = "flex";
 
 
-                //MessageBox.Show(NotBasicDT.Rows.Count.ToString());
+                //чтобы текущий фасад был последним
                 ProductItem temp_item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
                 bool flag = false;
                 foreach (DataRow Row in NotBasicDT.Rows)
@@ -406,10 +360,8 @@ namespace Zovprofil.zovprofil
                     nCategory = nCategory.Replace(" ", "").ToLower();
                     nCategory = char.ToUpper(nCategory[0]) + nCategory.Substring(1);
 
-                    //Item.Name = Row["Name"].ToString().Replace(nCategory, nCategory + "</br>") + "</br>" + sColor.ToString();
                     Item.Name = Row["Name"].ToString() + "</br>" + sColor.ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
-                    //Item.URL = "/Production?type=" + 0 + "&cat=" + Row["Category"] + "&item=" + Row["ImageID"].ToString();
                     string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
                     Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
 
@@ -701,7 +653,6 @@ namespace Zovprofil.zovprofil
             System.Web.UI.HtmlControls.HtmlGenericControl img = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
             img.Attributes.Add("class", "product-color-image");
             img.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-            //img.Attributes.Add("src", "https://zovprofil.by/Images/ClientsCatalogImages/Thumbs/П-131 Бона ПП Фриз 713х396-1.png");
             string imageUrl = "https://zovprofil.by/Images/ClientsCatalogImages/Thumbs/" + row["FileName"];
             img.Attributes.CssStyle.Add("background-image", $"url('{imageUrl}')");
             img.Attributes.Add("title", (string)row["Color"]);
@@ -711,19 +662,10 @@ namespace Zovprofil.zovprofil
             img_wrapper.ClientIDMode = System.Web.UI.ClientIDMode.Static;
             img_wrapper.Controls.Add(img);
 
-
-
-
-            //System.Web.UI.HtmlControls.HtmlGenericControl span = new System.Web.UI.HtmlControls.HtmlGenericControl("span");
-            //span.Attributes.Add("class", "product-color-name");
-            //span.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-            //span.InnerText = (string)row["Color"];
-
             System.Web.UI.HtmlControls.HtmlGenericControl a = new System.Web.UI.HtmlControls.HtmlGenericControl("a");
             a.Attributes.Add("class", "product-color-block");
             a.Attributes.Add("href", "/Production?type=0&cat=" + row["Category"].ToString() + "&item=" + row["ImageID"].ToString());
             a.Controls.Add(img_wrapper);
-            //a.Controls.Add(span);
 
             using (StringWriter stringWriter = new StringWriter())
             {
@@ -776,84 +718,5 @@ namespace Zovprofil.zovprofil
             }
             return "";
         }
-
-        //public void FillProductSlider(string ProductFile, string TechStoreFile, bool Basic, int Type)
-        //{
-        //    string sliderUrls = "";
-
-        //    int count = 1;
-
-        //    if (Basic == true || Type == 1)
-        //        count = 2;
-
-        //    if (TechStoreFile == "")
-        //        count = 1;
-
-
-        //    for (int i = 0; i < count; i++)
-        //    {
-        //        System.Web.UI.HtmlControls.HtmlGenericControl img = new System.Web.UI.HtmlControls.HtmlGenericControl("img");
-        //        img.Attributes.Add("class", "im");
-        //        img.ID = "im" + (i + 1).ToString();
-        //        img.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-        //        img.Attributes.Add("onclick", "OpenFrontSliderImage()");
-
-        //        if (i == 1)
-        //        {
-        //            //string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Images", "TechStore", TechStoreFile.ToString());
-        //            //if (File.Exists(imagePath))
-        //            //{
-        //            //    img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
-        //            //    sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
-        //            //}
-        //            //else
-        //            //{
-        //            //    img.Attributes.Add("src", "/Images/TechStore/pict_stub.png");
-        //            //    sliderUrls += "/Images/TechStore/pict_stub.png;";
-        //            //}
-
-        //            //img.Attributes.Add("cache-control", "no-cache");
-        //            img.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
-        //            sliderUrls += "/Images/TechStore/" + TechStoreFile.ToString() + ";";
-        //            img.Attributes.Add("cache-control", "no-cache");
-        //        }
-        //        else
-        //        {
-        //            //if(Catalog.IsFileExist(Catalog.URL + "Thumbs/" + ProductFile))
-        //                img.Attributes.Add("src", Catalog.URL + "Thumbs/" + ProductFile);
-        //            //else
-        //            //    img.Attributes.Add("src", Catalog.URL + ProductFile);
-
-        //            sliderUrls += Catalog.URL + ProductFile.ToString() + ";";
-        //        }
-
-        //        if (i == 0)
-        //        {
-        //            img.Style.Add("opacity", "1");
-        //        }
-
-        //        System.Web.UI.HtmlControls.HtmlGenericControl pdiv = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-        //        if (i == 0)
-        //        {
-        //            pdiv.Attributes.Add("class", "sl-p");
-        //        }
-
-        //        pdiv.ID = "slp" + (i + 1).ToString();
-        //        pdiv.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-
-        //        System.Web.UI.HtmlControls.HtmlGenericControl div = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
-        //        div.Attributes.Add("class", "sl");
-        //        div.ID = "sl" + (i + 1).ToString();
-        //        div.Attributes.Add("onclick", "SelectImage(" + (i + 1) + ")");
-        //        div.ClientIDMode = System.Web.UI.ClientIDMode.Static;
-        //        div.Controls.Add(pdiv);
-
-        //        FrontSliderNavCont.Controls.Add(div);
-        //        FrontImagesSliderCont.Controls.Add(img);
-        //    }
-        //    ScriptManager.RegisterStartupScript(this, this.GetType(), "SetSliderUrls", "SetSliderUrls('" + sliderUrls + "');", true);
-
-        //    hSlidesCount.Value = count.ToString();
-        //}
     }
 }
