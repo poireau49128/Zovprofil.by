@@ -35,6 +35,7 @@ namespace Zovprofil.zovprofil
             int Type = 0;
             string Category = "";
             string ItemID = "";
+            string SubCategory = "";
 
             URL.Value = Catalog.URL;
 
@@ -50,6 +51,9 @@ namespace Zovprofil.zovprofil
 
             if (Request.QueryString["cat"] != null)
                 Category = Request.QueryString["cat"];
+
+            if (Request.QueryString["subcat"] != null)
+                SubCategory = Request.QueryString["subcat"];
 
             if (Request.QueryString["item"] != null)
                 ItemID = Request.QueryString["item"];
@@ -77,10 +81,10 @@ namespace Zovprofil.zovprofil
                     MainImageDiv.Src = "/Images/fronts_category.jpg";
                     MainImageDiv.Style["display"] = "block";
                     MainDescriptionDiv.Style.Add("display", "block");
-                    MainDescriptionDiv.InnerHtml = "ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ придают кухне особенный индивидуальный вид. Компания предлагает широкий ассортимент элементов декора для заполнения фасада кухни и обогащения композиционной составляющей кухни: багеты (прямые и гнутые), пилястры, полочницы и бутылочницы, арки, балясины, баллюстрады (прямые и гнутые), декоративные накладки и плинтусы." +
+                    MainDescriptionDiv.InnerHtml = "ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ придают кухне особенный индивидуальный вид. Компания предлагает широкий ассортимент элементов декора для заполнения фасада кухни и обогащения композиционной составляющей кухни: багеты, пилястры, полочницы и бутылочницы, арки, баллюстрады, декоративные накладки и плинтусы." +
 "<br /><br/>Все декоративные элементы из МДФ соответствуют цвету, материалу и фактуре предлагаемых кухонных фасадов." +
-"<br /><br/>ПОГОНАЖНЫЕ ИЗДЕЛИЯ. СООО «ЗОВ - Профиль» производит мебельный профиль МДФ различной конфигурации, применяемый в производстве корпусной и кухонной мебели: погонажный и наборный профиль, карнизы, накладки, вставки для фасадов, профильные планки." +
-"<br /><br/>Облицовка: меламиновая бумага, плёнка ПП и ПВХ от ведущих поставщиков.<br/>Формат чертежа: любой удобный для заказчика.";
+"<br /><br/>ПОГОНАЖНЫЕ ИЗДЕЛИЯ. ООО «ОМЦ - Профиль» производит мебельный профиль МДФ различной конфигурации, применяемый в производстве корпусной и кухонной мебели: погонажный и наборный профиль, карнизы, накладки, вставки для фасадов, профильные планки." +
+"<br /><br/>Облицовка: меламиновая бумага, плёнка ПП и ПВХ от ведущих поставщиков.";
                 }
 
                 if (Type == 2)
@@ -127,7 +131,7 @@ namespace Zovprofil.zovprofil
                 }
                 if (Type == 1)
                 {
-                        DecorContainer.Controls.Add(Item);
+                    DecorContainer.Controls.Add(Item);
                 }
                 if (Type == 2)
                 {
@@ -159,11 +163,55 @@ namespace Zovprofil.zovprofil
             FrontsContainer.Controls.Add(link);
 
 
-            if (Category.Length > 0 && ItemID.Length == 0)
+
+
+
+            if (Category.Length == 0)
+            {
+                foreach (DataRow Row in CategoryDT.Rows)
+                {
+                    ProductMenuItem Item = (ProductMenuItem)Page.LoadControl("~/zovprofil/Controls/ProductMenuItem.ascx");
+                    Item.ProductCategory = Row["Category"].ToString();
+
+                    Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+                    string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
+                    Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
+
+                    ProductMenu.Controls.Add(Item);
+                }
+            }
+            else if (Type == 1 && Category.Length > 0 && SubCategory.Length == 0)
+            {
+                DataTable BasicDecorsDT = Catalog.FillBasicDecors(Category);
+                foreach (DataRow Row in BasicDecorsDT.Rows)
+                {
+                    ProductMenuItem Item = (ProductMenuItem)Page.LoadControl("~/zovprofil/Controls/ProductMenuItem.ascx");
+
+
+                    string name = Row["Name"].ToString();
+                    int spaceIndex = name.IndexOf(' ');
+                    Item.ProductCategory = spaceIndex >= 0 ? name.Substring(0, spaceIndex) : name;
+
+
+
+                    //Item.ProductCategory = Row["Name"].ToString().Substring(0, Row["Name"].ToString().IndexOf(' '));
+
+                    Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+                    string encodedCategory = Uri.EscapeDataString(Category);
+                    Item.URL = $"/Production?type={Type}&cat={encodedCategory}&subcat={Item.ProductCategory}";
+
+                    ProductMenu.Controls.Add(Item);
+                }
+            }
+            else if (ItemID.Length == 0)
             {
                 MainDescriptionDiv.Style.Add("display", "none");
 
-                DataTable ProductsDT = Catalog.FillProducts(Type, Category);
+                DataTable ProductsDT;
+                if (Type == 1)
+                    ProductsDT = Catalog.FillNotBasicDecors(SubCategory, Category);
+                else
+                    ProductsDT = Catalog.FillProducts(Type, Category);
 
                 foreach (DataRow Row in ProductsDT.Rows)
                 {
@@ -173,64 +221,111 @@ namespace Zovprofil.zovprofil
                         Catalog.ProcessProductImage("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/" + Row["FileName"].ToString(), "/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
                     }
 
-
                     ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
-                    Item.Name = Row["Name"].ToString().Replace("РП-", "") + "<br/>" + Row["Color"].ToString();
+                    Item.Name = Row["Name"].ToString() + "<br/>" + Row["Color"].ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
-
                     string encodedCategory = Uri.EscapeDataString(Category);
-                    Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
 
-
-                    ProductMenu.Controls.Add(Item);
-                }
-            }
-            else
-            {
-                foreach (DataRow Row in CategoryDT.Rows)
-                {
-                    ProductMenuItem Item = (ProductMenuItem)Page.LoadControl("~/zovprofil/Controls/ProductMenuItem.ascx");
-                    Item.ProductCategory = Row["Category"].ToString().Replace("РП-", "");
-     
-                    if (Type == 2)
-                    {
-                        if (Item.ProductCategory.ToLower() == "куб")
-                        {
-                            Item.ProductImageUrl = "https://zovprofil.by/Images/КУБ.jpeg";
-                        }
-                        else if (Item.ProductCategory.ToLower() == "норманн")
-                        {
-                            Item.ProductImageUrl = "https://zovprofil.by/Images/НОРМАНН.jpeg";
-                        }
-                        else if (Item.ProductCategory.ToLower() == "патриция")
-                        {
-                            Item.ProductImageUrl = "https://zovprofil.by/Images/патриция.jpeg";
-                        }
-                        else if (Item.ProductCategory.ToLower() == "мягкая")
-                        {
-                            Item.ProductImageUrl = "https://zovprofil.by/Images/мягкая.jpeg";
-                        }
-                        else
-                            Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
-                    }
-                    if(Type == 5)
-                    {
-                        if(Item.ProductCategory.ToLower() == "панель наборная")
-                        {
-                            Item.ProductImageUrl = "https://zovprofil.by/Images/мягкая.jpeg";
-                        }
-                        else
-                            Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
-                    }
+                    if(Type == 1)
+                        Item.URL = $"/Production?type={Type}&cat={encodedCategory}&subcat={SubCategory}&item={Row["ImageID"]}";
                     else
-                        Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
-
-                    string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
-                    Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
+                        Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
 
                     ProductMenu.Controls.Add(Item);
                 }
             }
+
+
+
+
+
+            //if (Category.Length > 0 && ItemID.Length == 0)
+            //{
+            //    MainDescriptionDiv.Style.Add("display", "none");
+
+            //    DataTable ProductsDT = Catalog.FillProducts(Type, Category);
+
+            //    foreach (DataRow Row in ProductsDT.Rows)
+            //    {
+            //        bool existFlag = Catalog.CheckFileExists("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
+            //        if (!existFlag)
+            //        {
+            //            Catalog.ProcessProductImage("/zovprofil.by/wwwroot/Images/ClientsCatalogImages/" + Row["FileName"].ToString(), "/zovprofil.by/wwwroot/Images/ClientsCatalogImages/Thumbs/" + Row["FileName"].ToString());
+            //        }
+
+
+            //        ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
+            //        Item.Name = Row["Name"].ToString().Replace("РП-", "") + "<br/>" + Row["Color"].ToString();
+            //        Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+
+            //        string encodedCategory = Uri.EscapeDataString(Category);
+            //        Item.URL = $"/Production?type={Type}&cat={encodedCategory}&item={Row["ImageID"]}";
+
+
+
+
+
+
+            //        if(Type == 1)
+            //        {
+            //            string temp = Row["Name"].ToString();
+            //            Item.Name = temp.Substring(0, temp.IndexOf(' '));
+
+            //            Item.URL = $"/Production?type={Type}&cat={encodedCategory}&subcat={Item.Name}";
+            //        }
+            //        ProductMenu.Controls.Add(Item);
+            //    }
+            //}
+            ////else if (SubCategory.Length == 0)
+            ////{
+
+            ////}
+            //else
+            //{
+            //    foreach (DataRow Row in CategoryDT.Rows)
+            //    {
+            //        ProductMenuItem Item = (ProductMenuItem)Page.LoadControl("~/zovprofil/Controls/ProductMenuItem.ascx");
+            //        Item.ProductCategory = Row["Category"].ToString();
+     
+            //        //if (Type == 2)
+            //        //{
+            //        //    if (Item.ProductCategory.ToLower() == "куб")
+            //        //    {
+            //        //        Item.ProductImageUrl = "https://zovprofil.by/Images/КУБ.jpeg";
+            //        //    }
+            //        //    else if (Item.ProductCategory.ToLower() == "норманн")
+            //        //    {
+            //        //        Item.ProductImageUrl = "https://zovprofil.by/Images/НОРМАНН.jpeg";
+            //        //    }
+            //        //    else if (Item.ProductCategory.ToLower() == "патриция")
+            //        //    {
+            //        //        Item.ProductImageUrl = "https://zovprofil.by/Images/патриция.jpeg";
+            //        //    }
+            //        //    else if (Item.ProductCategory.ToLower() == "мягкая")
+            //        //    {
+            //        //        Item.ProductImageUrl = "https://zovprofil.by/Images/мягкая.jpeg";
+            //        //    }
+            //        //    else
+            //        //        Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+            //        //}
+            //        //if(Type == 5)
+            //        //{
+            //        //    if(Item.ProductCategory.ToLower() == "панель наборная")
+            //        //    {
+            //        //        Item.ProductImageUrl = "https://zovprofil.by/Images/мягкая.jpeg";
+            //        //    }
+            //        //    else
+            //        //        Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+            //        //}
+            //        //else
+            //            Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
+
+            //        string encodedCategory = Uri.EscapeDataString(Row["Category"].ToString());
+            //        Item.URL = $"/Production?type={Type}&cat={encodedCategory}";
+
+            //        ProductMenu.Controls.Add(Item);
+            //    }
+            //}
 
             if (ItemID.Length > 0)
             {
@@ -308,6 +403,17 @@ namespace Zovprofil.zovprofil
                 if (Type == 0)
                 {
                     ColorDiv.Style["display"] = "block";
+                    int test1 = sMatrixID;
+                    string test2 = GetBasicCategory(sMatrixID);
+                    DataRow test3;
+                    string test4 = "";
+                    foreach (DataRow row in GetCategoryColors(GetBasicCategory(sMatrixID)).Rows)
+                    {
+                        test3 = row;
+                        test4 += CreateCategoryColorsLinks(row);
+                    }
+
+
                     foreach (DataRow row in GetCategoryColors(GetBasicCategory(sMatrixID)).Rows)
                     {
                         Colors.InnerHtml += CreateCategoryColorsLinks(row);
@@ -329,7 +435,7 @@ namespace Zovprofil.zovprofil
                 {
                     ProductItem Item = (ProductItem)Page.LoadControl("~/zovprofil/Controls/ProductItem.ascx");
 
-                    Item.Name = Row["Name"].ToString().ToUpper() + "</br>" + Row["Color"].ToString();
+                    Item.Name = Row["Name"].ToString() + "</br>" + Row["Color"].ToString();
                     Item.ProductImageUrl = Catalog.URL + "Thumbs/" + Row["FileName"].ToString();
                     Item.URL = "/Production?type=" + 1 + "&cat=" + Row["Category"] + "&item=" + Row["ImageID"].ToString();
 
@@ -338,7 +444,7 @@ namespace Zovprofil.zovprofil
                     haveDecors = true;
                 }
 
-                if (haveDecors)
+                if (haveDecors && Type == 0)
                     RelatedDecorsDiv.Style["display"] = "flex";
 
                 DataTable NotBasicDT = Catalog.FillNotBasicFronts(sMatrixID);
@@ -648,6 +754,40 @@ namespace Zovprofil.zovprofil
             }
         }
 
+
+        private DataTable GetColorsByName(string name, string type)
+        {
+            string query = @"WITH CTE AS (
+                                SELECT
+                                    ImageID,
+                                    FileName,
+                                    Category,
+                                    Color,
+                                    Basic,
+                                    ROW_NUMBER() OVER (PARTITION BY Category, Color ORDER BY Basic DESC) AS rn
+                                FROM [infiniu2_catalog].[dbo].[ClientsCatalogImages]
+                                WHERE Category = @Category AND Color <> '' AND Color IS NOT NULL AND ToSite = 1 AND Basic = 1
+                            )
+                            SELECT ImageID, FileName, Category, Color, Basic
+                            FROM CTE
+                            WHERE rn = 1
+                            ORDER BY Color ASC";
+
+            using (SqlConnection connection = new SqlConnection(Catalog.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Category", name);
+
+                    DataTable dataTable = new DataTable();
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    adapter.Fill(dataTable);
+
+                    return dataTable;
+                }
+            }
+        }
+
         private string CreateCategoryColorsLinks(DataRow row)
         {
             System.Web.UI.HtmlControls.HtmlGenericControl img = new System.Web.UI.HtmlControls.HtmlGenericControl("div");
@@ -698,7 +838,7 @@ namespace Zovprofil.zovprofil
             else
             {
                 product_image_tech.Style["display"] = "block";
-                product_image_tech.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile + "?" + DateTime.Now.Ticks);
+                product_image_tech.Attributes.Add("src", "/Images/TechStore/" + TechStoreFile);
             }
         }
 

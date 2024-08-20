@@ -185,7 +185,7 @@
                                 <img id="product_image_main" runat="server" src="#" alt="" />
                             </div>
                             <div id="prod_im_s2" runat="server">
-                                <img id="product_image_tech" runat="server" src="#" alt="" />
+                                <img id="product_image_tech" runat="server" alt="" />
                             </div>
                         </div>
                         <div class="swiper-scrollbar"></div>
@@ -364,7 +364,7 @@
                     </div>
 
                     <div id="RelatedDecorsDiv" runat="server" class="related">
-                        <span class="head" style="font-weight: bold">Декоры:</span>
+                        <span class="head" style="font-weight: bold">Декоративные элементы:</span>
                         <div id="RelatedDecors" runat="server" class="pr-menu-cont"></div>
                     </div>
                 </div>

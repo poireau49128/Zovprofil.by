@@ -1,10 +1,9 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="MasterPage.master.cs" Inherits="Zovprofil.MasterPage" %>
+<%@ Register TagPrefix="uc" TagName="CookieBanner" Src="/CookieBanner.ascx" %>
 
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-<%--<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>--%>
     <meta charset="UTF-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -15,7 +14,7 @@
 
     <link runat="server" rel="shortcut icon" href="/Images/favicon.ico" type="image/x-icon"/>
     <link href="Styles/master.css" rel="stylesheet" />
-    <script src="https://mc.yandex.ru/metrika/tag.js"></script>
+<%--    <script src="https://mc.yandex.ru/metrika/tag.js"></script>--%>
 
 
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
@@ -23,27 +22,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="Scripts/burger.js"></script>
-
-    <%--<script src="Scripts/jquery-3.1.0.min.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/xregexp-all-min.js"></script>--%>
-    <script src="https://mc.yandex.ru/metrika/tag.js"></script>
-
-    <%--<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="../Scripts/swiper.js"></script>--%>
-
-    <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-88396607-1', 'auto');
-ga('send', 'pageview');
-    </script>
-
-
-
 <meta name="yandex-verification" content="8b320b9979990d71" />
 
 
@@ -54,37 +32,6 @@ ga('send', 'pageview');
     })();
 </script>
 
-
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter41317194 = new Ya.Metrika({
-                    id:41317194,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true
-                });
-            } catch(e) { }
-        });
-
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/41317194" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
-
     <script>
         function ShowContent()
         {
@@ -94,6 +41,19 @@ ga('send', 'pageview');
         function ShowMessage()
         {
             $('#MessageDialogModal').modal('show');
+        }
+
+        function checkUserAcceptedAnalytical() {
+            if (getCookie('cookieAnalytical')) {
+                ymetr();
+                
+            }
+        }
+
+        function getCookie(name) {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length === 2) return parts.pop().split(';').shift();
         }
 
         function ymetr() {
@@ -141,7 +101,6 @@ ga('send', 'pageview');
 
             prod = $('input[name="prod"]:checked').val();
 
-            /*$('#MessageDialogModal').modal('hide');*/
             var modal = document.getElementById("MessageDialogModal");
             modal.style.display = "none";
 
@@ -184,7 +143,7 @@ ga('send', 'pageview');
 					<div style="margin: auto;">+375 (152) 60-81-63</div>
 				</div>
 
-                <a href="http://www.wm-shop.by/" onclick="ymetr()" target="_blank">
+                <a href="http://www.wm-shop.by/" onclick="checkUserAcceptedAnalytical()" target="_blank">
 				    <div class="button-shop">
 					    <img src="/Images/cart.png" alt=""/>
 					    <div style="margin: auto;">ИНТЕРНЕТ-МАГАЗИН</div>
@@ -266,17 +225,16 @@ ga('send', 'pageview');
 	</header>
 
 
-    <%--<asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
-    </asp:ContentPlaceHolder>--%>
-
-
     <form id="MasterForm" runat="server">
+        
+
         <asp:ScriptManager runat="server" ID="ScriptManager1">
             <Services>
                 <asp:ServiceReference Path="~/Service.asmx" />
             </Services>
         </asp:ScriptManager> 
         <div id="MasterDiv" class="master-content">
+            <uc:CookieBanner ID="CookieBanner1" runat="server" />
             <div id="Content" class="content">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
                 </asp:ContentPlaceHolder>
@@ -299,7 +257,6 @@ ga('send', 'pageview');
 						<a target="_blank" href="https://www.facebook.com/%D0%A1-%D0%9E%D0%9E%D0%9E-%D0%97%D0%9E%D0%92-%D0%9F%D1%80%D0%BE%D1%84%D0%B8%D0%BB%D1%8C-150153668848633/"><img src="/Images/facebook.svg" alt=""></a>
 						<a target="_blank" href="https://www.instagram.com/omcprofil.by/"><img src="/Images/instagram.svg" alt=""></a>
 						<a target="_blank" href="https://t.me/OMC_Profil"><img src="/Images/telegram.svg" alt=""></a>
-						<%--<a href="#"><img src="/Images/whatsapp.svg" alt=""></a>--%>
 					</div>
 				</div>
 				<div class="copyright">2017-2024 © ООО "ОМЦ-Профиль"</div>
@@ -313,35 +270,6 @@ ga('send', 'pageview');
 			</div>
 		</div>
 	</footer>
-
-
-        <%--<script type="text/javascript">
-            function positionFooter() {
-                var footer = document.querySelector('.test-footer');
-
-                var header = document.querySelector('header');
-                var body = document.querySelector('#MasterForm');
-
-                var bodyHeight = header.offsetHeight + body.offsetHeight;
-                var windowHeight = window.innerHeight;
-
-                console.log("header", header.offsetHeight, "body", body.offsetHeight, "fbody", bodyHeight, "window", windowHeight);
-
-                if (bodyHeight < windowHeight) {
-                    footer.style.position = 'fixed';
-                    footer.style.bottom = '0';
-                } else {
-                    footer.style.position = 'static';
-                }
-            }
-
-            positionFooter(); // Вызов функции при загрузке страницы
-
-            window.addEventListener('resize', positionFooter); // Вызов функции при изменении размера окна
-        </script>--%>
-
-
-
     </form>
 
 

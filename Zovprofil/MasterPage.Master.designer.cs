@@ -18,7 +18,7 @@ namespace Zovprofil
         /// head элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
@@ -27,7 +27,7 @@ namespace Zovprofil
         /// MasterForm элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm MasterForm;
@@ -36,16 +36,25 @@ namespace Zovprofil
         /// ScriptManager1 элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// CookieBanner1 элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически созданное поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::Infinium.MasterControls.CookieBanner CookieBanner1;
+
+        /// <summary>
         /// ContentPlaceHolder элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder;

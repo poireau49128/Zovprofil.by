@@ -129,6 +129,18 @@
                         </div>
                     </a>
                 </div>
+                                <div class="downitem">
+                    <img src="/Images/WordFile.png" class="file-ic" />
+                    <div class="data">
+                        <span class="name">Политика в отношении обработки cookie</span>
+                        <span class="desc">Политика в отношении обработки cookie</span>
+                    </div>
+                    <a href="https://zovprofil.by/Files/Политика в отношении обработки cookie.docx">
+                        <div class="down-but">
+                            <img src="/Images/download.png" class="download" />
+                        </div>
+                    </a>
+                </div>
                 <div class="downitem">
                     <img src="/Images/PDFFile.png" class="file-ic" />
                     <div class="data">

@@ -70,6 +70,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CookieBanner.ascx" />
     <Content Include="CheckBox.ascx" />
     <Content Include="favicon.ico" />
     <Content Include="home\produkcziya\korpusnay-mebel\patricziya1.html" />
@@ -92,6 +93,8 @@
     <Content Include="Service.asmx" />
     <Content Include="Styles\about.css" />
     <Content Include="Styles\Contacts.css" />
+    <Content Include="Styles\cookieBanner.css" />
+    <Content Include="Styles\customCheckbox.css" />
     <Content Include="Styles\downloads.css" />
     <Content Include="Styles\MainStyles.css" />
     <Content Include="Styles\news.css" />
@@ -131,6 +134,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CookieBanner.ascx.cs">
+      <DependentUpon>CookieBanner.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CookieBanner.ascx.designer.cs">
+      <DependentUpon>CookieBanner.ascx</DependentUpon>
+    </Compile>
     <Compile Include="CheckBox.ascx.cs">
       <DependentUpon>CheckBox.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -97,19 +97,109 @@ namespace Zovprofil
 
         public static DataTable FillProducts(int Type, string Category)
         {
-            string Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE ProductType = '" + Type + "'" + " AND Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 ORDER BY Name ASC";
+            string Select = @"SELECT FileName, Name, Description, Material, Sizes, Color, ImageID 
+                                FROM ClientsCatalogImages 
+                                WHERE ProductType = @type AND Category = @category AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 " +
+                                "ORDER BY Name ASC";
             if (Type == 0)
-                Select = "SELECT FileName, Name, Description, Material, Sizes, Color, ImageID FROM ClientsCatalogImages WHERE ProductType = '" + Type + "' AND Category = '" + Category + "'" + " AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 AND Basic = 1 ORDER BY Color ASC";
-            else if(Type == 3)//ready
-                Select = "SELECT FileName, Name, Color, ImageID FROM ClientsCatalogImages WHERE Category = '" + Category + "'" + " AND ToSite = 1 AND MainSlider = 0 AND CatSlider = 0 ORDER BY Name ASC";
+                Select = @"SELECT FileName, Name, Description, Material, Sizes, Color, ImageID 
+                            FROM ClientsCatalogImages 
+                            WHERE ProductType = @type AND Category = @category AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 AND Basic = 1 
+                            ORDER BY Color ASC";
+            else if(Type == 1)
+                Select = @"SELECT FileName, c.Name, Description, Material, Sizes, Color, ImageID 
+                            FROM ClientsCatalogImages as c
+                            INNER JOIN(
+	                            SELECT Name, MIN(Color) AS FirstColor, MIN(FileName) as FileN
+	                            FROM ClientsCatalogImages 
+	                            WHERE ProductType = @type AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 AND Category = @category
+	                            GROUP BY NAME
+                            ) as t ON c.Name=t.Name and c.Color=t.FirstColor
+                            WHERE ProductType = @type AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0 AND Category = @category 
+                            ORDER BY c.Name";
 
-            using (SqlDataAdapter DA = new SqlDataAdapter(Select, ConnectionString))
+
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
             {
-                using (DataTable DT = new DataTable())
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(Select, connection))
                 {
-                    DA.Fill(DT);
+                    command.Parameters.AddWithValue("@type", Type);
+                    command.Parameters.AddWithValue("@category", Category);
+                    using (SqlDataAdapter DA = new SqlDataAdapter(command))
+                    {
+                        using (DataTable DT = new DataTable())
+                        {
+                            DA.Fill(DT);
+                            return DT;
+                        }
+                    }
+                }
+            }
+        }
 
-                    return DT;
+        public static DataTable FillBasicDecors(string Category)
+        {
+            string Select = @"SELECT Name, FileName, 
+                                CASE 
+                                    WHEN CHARINDEX(' ', Name) > 0 THEN SUBSTRING(Name, 1, CHARINDEX(' ', Name) - 1)
+                                    ELSE Name
+                                END AS unique_name
+                            FROM (
+                                SELECT *, ROW_NUMBER() OVER (PARTITION BY 
+                                    CASE 
+                                        WHEN CHARINDEX(' ', Name) > 0 THEN SUBSTRING(Name, 1, CHARINDEX(' ', Name) - 1)
+                                        ELSE Name
+                                    END
+                                    ORDER BY color) as rn
+                                FROM ClientsCatalogImages
+                                WHERE ProductType = 1 AND Category LIKE @category AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0
+                            ) as UniqueUsers
+                            WHERE rn = 1
+                            ORDER BY unique_name";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(Select, connection))
+                {
+                    command.Parameters.AddWithValue("@category", Category);
+                    using (SqlDataAdapter DA = new SqlDataAdapter(command))
+                    {
+                        using (DataTable DT = new DataTable())
+                        {
+                            DA.Fill(DT);
+                            return DT;
+                        }
+                    }
+                }
+            }
+        }
+
+        public static DataTable FillNotBasicDecors(string name, string category)
+        {
+            string Select = @"SELECT FileName, Name, Description, Color, ImageID 
+                                FROM ClientsCatalogImages 
+                                WHERE ProductType = 1 AND Category LIKE @category AND ToSite = 1 AND CatSlider = 0 AND MainSlider = 0
+                                    AND (
+                                        (Name LIKE @name AND LEN(Name) = LEN(@name)) OR
+                                        (Name LIKE @name + ' %')
+                                    )
+                                ORDER BY Color ASC";
+            using (SqlConnection connection = new SqlConnection(ConnectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(Select, connection))
+                {
+                    command.Parameters.AddWithValue("@name", name);
+                    command.Parameters.AddWithValue("@category", category);
+                    using (SqlDataAdapter DA = new SqlDataAdapter(command))
+                    {
+                        using (DataTable DT = new DataTable())
+                        {
+                            DA.Fill(DT);
+                            return DT;
+                        }
+                    }
                 }
             }
         }

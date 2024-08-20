@@ -18,7 +18,7 @@ namespace Zovprofil.zovprofil
         /// hCountryID элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hCountryID;
@@ -27,7 +27,7 @@ namespace Zovprofil.zovprofil
         /// hCityID элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hCityID;
@@ -36,7 +36,7 @@ namespace Zovprofil.zovprofil
         /// hFurniture элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hFurniture;
@@ -45,7 +45,7 @@ namespace Zovprofil.zovprofil
         /// hFronts элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hFronts;
@@ -54,7 +54,7 @@ namespace Zovprofil.zovprofil
         /// hProfile элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden hProfile;
@@ -63,7 +63,7 @@ namespace Zovprofil.zovprofil
         /// CountryLabel элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CountryLabel;
@@ -72,7 +72,7 @@ namespace Zovprofil.zovprofil
         /// CountryDiv элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CountryDiv;
@@ -81,7 +81,7 @@ namespace Zovprofil.zovprofil
         /// CityLabel элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CityLabel;
@@ -90,7 +90,7 @@ namespace Zovprofil.zovprofil
         /// CityDiv элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CityDiv;
@@ -99,7 +99,7 @@ namespace Zovprofil.zovprofil
         /// FurnitureCheckBox элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::Infinium.MasterControls.CheckBox FurnitureCheckBox;
@@ -108,7 +108,7 @@ namespace Zovprofil.zovprofil
         /// ProfileCheckBox элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::Infinium.MasterControls.CheckBox ProfileCheckBox;
@@ -117,7 +117,7 @@ namespace Zovprofil.zovprofil
         /// FrontsCheckBox элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::Infinium.MasterControls.CheckBox FrontsCheckBox;
@@ -126,7 +126,7 @@ namespace Zovprofil.zovprofil
         /// ShopsContainer элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl ShopsContainer;
@@ -135,7 +135,7 @@ namespace Zovprofil.zovprofil
         /// CategoriesDiv элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl CategoriesDiv;

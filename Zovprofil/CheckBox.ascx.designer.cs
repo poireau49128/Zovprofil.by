@@ -18,7 +18,7 @@ namespace Infinium.MasterControls
         /// InfiniumCheckBoxChecked элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden InfiniumCheckBoxChecked;
@@ -27,7 +27,7 @@ namespace Infinium.MasterControls
         /// CheckImage элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlImage CheckImage;
@@ -36,7 +36,7 @@ namespace Infinium.MasterControls
         /// NameLabel элемент управления.
         /// </summary>
         /// <remarks>
-        /// Автоматически создаваемое поле.
+        /// Автоматически созданное поле.
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl NameLabel;

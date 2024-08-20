@@ -55,7 +55,7 @@
                             <span class="n-de">специалист отдела маркетинга</span>
                             <div style="margin-top:5px; ">
                                 <span class="ind">моб:</span>
-                                <span class="phone">+375 (29) 155-58-94</span>
+                                <span class="phone">+375 (29) 103-33-04</span>
                             </div>
                         </div>
 
@@ -249,7 +249,7 @@
                 <div class="header-right">
                     <span>e-mail: <a href="mailto:marketing@zovprofil.by" style="font-size:15px; color:white; text-decoration:underline">marketing@zovprofil.by</a></span>
                     <span>тел/факс: +375 (152) 60-81-63</span>
-                    <span>тел.: +375 (29) 155-58-94</span>
+                    <span>тел.: +375 (29) 103-33-04</span>
                 </div>
             </div>
             <div class="contacts">
@@ -257,7 +257,7 @@
                     <img src="/Images/img_avatar2.png" alt="Alternate Text" class="contact-avatar"/>
                     <span class="contact-name">Елена Лозовицкая</span>
                     <span class="contact-post">специалист отдела маркетинга</span>
-                    <span class="contact-phone">моб. +375 (29) 155-58-94</span>
+                    <span class="contact-phone">моб. +375 (29) 103-33-04</span>
                 </div>--%>
             </div>
         </div>
@@ -324,7 +324,7 @@
                     <img src="/Images/img_avatar2.png" alt="Alternate Text" class="contact-avatar"/>
                     <span class="contact-name">Екатерина Марцулевич</span>
                     <span class="contact-post">ведущий экономист</span>
-                    <span class="contact-phone">моб. +375 (29) 338-64-00</span>
+                    <span class="contact-phone">моб. +375 (29)103-33-09</span>
                     <span class="contact-info">Выставление счетов и выписка документов.</span>
                 </div>
             </div>
