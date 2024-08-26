@@ -1,4 +1,12 @@
-﻿.cookie-banner {
+﻿hr {
+    background-color: #f2f2f2;
+    width: 100%;
+    display: none;
+    height: 0.1px;
+}
+
+.cookie-banner {
+    width: 100%;
     background-color: white;
     border: solid #337363 3px;
     font-size: 21px;
@@ -107,3 +115,14 @@
 
 
 
+@media(max-width: 768px) {
+    .dropdown-content {
+        height: 50vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .cookie-banner span {
+        font-size: 15px;
+    }
+}

@@ -1,7 +1,108 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" EnableViewState="false" CodeBehind="CookieBanner.ascx.cs" Inherits="Infinium.MasterControls.CookieBanner" %>
-
 <link href="./Styles/cookieBanner.css" rel="stylesheet" type="text/css" />
 <link href="./Styles/customCheckbox.css" rel="stylesheet" type="text/css" />
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        var cookieConsent = getCookie('cookieConsent');
+        if (!cookieConsent) {
+            document.querySelector('.cookie-banner').style.display = 'flex';
+        }
+    });
+
+
+    function expireTime(days) {
+        var now = new Date();
+        var time = now.getTime();
+        var expireTime = time + 1000 * 60 * 60 * 24 * days;
+        now.setTime(expireTime);
+        return now.toUTCString();
+    }
+
+    function toggleDropdown() {
+        var hr = document.getElementById("hr");
+        hr.style.display = "block";
+
+        var dropdown = document.getElementById("dropdown");
+        dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "flex" : "none";
+    }
+
+
+    function rejectCookies(event) {
+        document.querySelector('.cookie-banner').style.display = 'none';
+        document.cookie = "cookieConsent=reject; expires=" + expireTime(365) + "; path=/";
+    }
+
+
+    function setConsentCookieAndReload() {
+        document.cookie = "cookieConsent=accept; expires=" + expireTime(365) + "; path=/";
+        document.querySelector('.cookie-banner').style.display = 'none';
+
+        var analyticalCheckbox = document.getElementById('analytical');
+        if (analyticalCheckbox.checked) {
+            document.cookie = "cookieAnalytical=accept; expires=" + expireTime(365) + "; path=/";
+        }
+
+        var functionalCheckbox = document.getElementById('functional');
+        if (functionalCheckbox.checked) {
+            document.cookie = "cookieFunctional=accept; expires=" + expireTime(365) + "; path=/";
+        }
+
+        var technicalCheckbox = document.getElementById('technical');
+        if (technicalCheckbox.checked) {
+            document.cookie = "cookieTechnical=accept; expires=0; path=/";
+        }
+
+        location.reload();
+    }
+
+    function checkCookieConsentAndInitialize() {
+        var consentCookie = getCookie("cookieConsent");
+        var cookieAnalytical = getCookie("cookieAnalytical");
+        if (consentCookie === "accept" && cookieAnalytical === "accept") {
+            initializeYandexMetrica();
+        }
+    }
+
+    function initializeYandexMetrica() {
+        (function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+                (m[i].a = m[i].a || []).push(arguments);
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+                if (document.scripts[j].src === r) {
+                    return;
+                }
+            }
+            k = e.createElement(t);
+            a = e.getElementsByTagName(t)[0];
+            k.async = 1;
+            k.src = r;
+            a.parentNode.insertBefore(k, a);
+        })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+        ym(98116915, "init", {
+            clickmap: true,
+            trackLinks: true,
+            accurateTrackBounce: true,
+            webvisor: true
+        });
+    }
+
+
+    function getCookie(name) {
+        var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+        if (match) return match[2];
+    }
+
+    checkCookieConsentAndInitialize();
+</script>
+<%--<button class="button-accept" onclick="setConsentCookieAndReload()">Согласен</button>--%>
+
+
 
 <div class="container">
     <div class="cookie-banner">
@@ -28,9 +129,9 @@
             Необходимы в статистических целях, позволяют подсчитывать количество и длительность посещений Сайта, анализировать, как пользователи используют Сайт, что помогает улучшать его производительность и делать более удобным для пользования.
             </span>
         </div>
-        <hr style="background-color: #f2f2f2; width: 100%; height: 0.1px"/>
+        
         </div>
-
+        <hr id="hr"/>
         <span>
         Нажимая "Принять", Вы даете согласие на обработку cookie-файлов, в том числе аналитических в соответствии с <b><a class="cookie-link" href="https://zovprofil.by/Files/Политика в отношении обработки cookie.docx">Политикой в отношении обработки cookie-файлов</a></b>
         </span>
@@ -41,117 +142,7 @@
         </div>
         <div class="buttons">
         <button class="button-cancel" onclick="rejectCookies()">Отклонить</button>
-        <button class="button-accept" onclick="acceptCookies()">Принять</button>
+        <button class="button-accept" onclick="setConsentCookieAndReload()">Принять</button>
         </div>
     </div>
 </div>
-
-<script>
-    var isCookieAnalyticalAccepted = false;
-    document.addEventListener('DOMContentLoaded', function () {
-        var cookieConsent = getCookie('cookieConsent');
-        if (!cookieConsent) {
-            document.querySelector('.cookie-banner').style.display = 'flex';
-            isCookieAnalyticalAccepted = false;
-        }
-    });
-
-    function toggleDropdown() {
-        var dropdown = document.getElementById("dropdown");
-        dropdown.style.display = dropdown.style.display === "none" || dropdown.style.display === "" ? "flex" : "none";
-    }
-
-
-    
-    function acceptCookies() {
-        var now = new Date();
-        var time = now.getTime();
-        var expireTime = time + 1000 * 36000;
-        now.setTime(expireTime);
-
-
-        var analyticalCheckbox = document.getElementById('analytical');
-        if (analyticalCheckbox.checked) {
-            document.cookie = "cookieAnalytical=true; expires=" + now.toUTCString() +"; path=/";
-            initializeGoogleAnalytics();
-            initializeYandexMetrica();
-            isCookieAnalyticalAccepted = true;
-        }
-
-        var functionalCheckbox = document.getElementById('functional');
-        if (functionalCheckbox.checked) {
-            
-            document.cookie = "cookieFunctional=true; expires="+now.toUTCString()+"; path=/";
-        }
-
-        var technicalCheckbox = document.getElementById('technical');
-        if (technicalCheckbox.checked) {
-            document.cookie = "cookieTechnical=true; expires=0; path=/";
-        }
-
-
-        document.querySelector('.cookie-banner').style.display = 'none';
-        document.cookie = "cookieConsent=true; expires=" + now.toUTCString() +"; path=/";
-    }
-
-    function rejectCookies(event) {
-        document.querySelector('.cookie-banner').style.display = 'none';
-        document.cookie = "cookieConsent=reject; expires=" + now.toUTCString() +"; path=/";
-    }
-
-    function getCookie(name) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
-    }
-
-
-
-    function initializeGoogleAnalytics() {
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments);
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m);
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-88396607-1', 'auto');
-        ga('send', 'pageview');
-    }
-
-    function initializeYandexMetrica() {
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function () {
-                try {
-                    w.yaCounter41317194 = new Ya.Metrika({
-                        id: 41317194,
-                        clickmap: true,
-                        trackLinks: true,
-                        accurateTrackBounce: true,
-                        webvisor: true
-                    });
-                } catch (e) { }
-            });
-
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () {
-                    n.parentNode.insertBefore(s, n);
-                };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else {
-                f();
-            }
-        })(document, window, "yandex_metrika_callbacks");
-    }
-</script>

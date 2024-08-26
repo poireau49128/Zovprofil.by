@@ -249,6 +249,7 @@
 						<li><a href="/Main">Главная</a></li>
 						<li><a href="/Contacts">Контакты</a></li>
 						<li><a href="/Wheretobuy">Где купить</a></li>
+                        <li><button style="padding: 0;" onclick="removeAllCookies()">Настройка cookie-файлов</button></li>
 					</ul>
 				</div>
 				<div class="social">
@@ -358,6 +359,18 @@
     </div>
 
 <script>
+    function removeAllCookies() {
+        var cookies = document.cookie.split(';');
+
+        cookies.forEach(function (cookie) {
+            var parts = cookie.split('=');
+            var name = parts[0].trim();
+
+            document.cookie = name + "=false; expires=Fri, 31 Dec 1999 23:59:59 GMT; path=/";
+        });
+    }
+
+
     function hideModal() {
         var modal = document.getElementById("MessageDialogModal");
         modal.style.display = "none";
