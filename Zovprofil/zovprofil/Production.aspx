@@ -452,20 +452,20 @@
     $(document).ready(function () {
         ShowContent();
 
-        if (document.getElementById('hSlidesCount').value != "") {
+        //if (document.getElementById('hSlidesCount').value != "") {
 
-            if (parseInt(document.getElementById('hSlidesCount').value) > 1)
-                ih = setInterval(Loop, 4000);
+        //    if (parseInt(document.getElementById('hSlidesCount').value) > 1)
+        //        ih = setInterval(Loop, 4000);
 
-            document.getElementById("ImageName").innerHTML = SliderNames[0]
-            if (document.getElementById('hDesc').value != "")
-                document.getElementById("DescriptionText").innerHTML = document.getElementById('hDesc').value
-            else {
-                document.getElementById("DescriptionText").style.display = "none";
-            }
-        }
-        else
-            document.getElementById("DescriptionText").style.display = "none";
+        //    document.getElementById("ImageName").innerHTML = SliderNames[0]
+        //    if (document.getElementById('hDesc').value != "")
+        //        document.getElementById("DescriptionText").innerHTML = document.getElementById('hDesc').value
+        //    else {
+        //        document.getElementById("DescriptionText").style.display = "none";
+        //    }
+        //}
+        //else
+        //    document.getElementById("DescriptionText").style.display = "none";
     })
 
     function OpenImage(e) {

@@ -49,5 +49,5 @@
     }
     /* стили для чекбокса, находящегося в состоянии disabled */
     .custom-checkbox:disabled + label::before {
-        background-color: #e9ecef;
+        background-color: #c4ccd4;
     }

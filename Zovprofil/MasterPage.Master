@@ -12,6 +12,12 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+
+
+
+
     <link runat="server" rel="shortcut icon" href="/Images/favicon.ico" type="image/x-icon"/>
     <link href="Styles/master.css" rel="stylesheet" />
 <%--    <script src="https://mc.yandex.ru/metrika/tag.js"></script>--%>
@@ -20,8 +26,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com"/>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script src="Scripts/burger.js"></script>
+    <%--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--%>
+	
 <meta name="yandex-verification" content="8b320b9979990d71" />
 
 
@@ -234,9 +240,11 @@
             </Services>
         </asp:ScriptManager> 
         <div id="MasterDiv" class="master-content">
-            <uc:CookieBanner ID="CookieBanner1" runat="server" />
+            
             <div id="Content" class="content">
+                <uc:CookieBanner ID="CookieBanner1" runat="server" />
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder" runat="server">
+                    
                 </asp:ContentPlaceHolder>
             </div>
         </div>
@@ -382,5 +390,10 @@
         $('.header-burger, .menu-overlay').removeClass('active');
     }
 </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="Scripts/burger.js"></script>
 </body>
 </html>
