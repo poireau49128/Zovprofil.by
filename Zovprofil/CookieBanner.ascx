@@ -84,7 +84,7 @@
             k.src = r;
             a.parentNode.insertBefore(k, a);
         })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-        ym(98116915, "init", {
+        ym(98171550, "init", {
             clickmap: true,
             trackLinks: true,
             accurateTrackBounce: true,
@@ -133,7 +133,7 @@
         </div>
         <hr id="hr"/>
         <span>
-        Нажимая "Принять", Вы даете согласие на обработку cookie-файлов, в том числе аналитических в соответствии с <b><a class="cookie-link" href="https://zovprofil.by/Files/Политика в отношении обработки cookie.docx">Политикой в отношении обработки cookie-файлов</a></b>
+        Нажимая "Принять", Вы даете согласие на обработку cookie-файлов, в том числе аналитических в соответствии с <b><a class="cookie-link" target="_blank" href="https://zovprofil.by/Files/Политика в отношении обработки cookie.pdf">Политикой в отношении обработки cookie-файлов</a></b>
         </span>
 
         <div class="button-container" onclick="toggleDropdown()">

@@ -129,13 +129,25 @@
                         </div>
                     </a>
                 </div>
-                                <div class="downitem">
-                    <img src="/Images/WordFile.png" class="file-ic" />
+                <div class="downitem">
+                    <img src="/Images/PDFFile.png" class="file-ic" />
+                    <div class="data">
+                        <span class="name">Потребительский кредит «На родныя тавары»</span>
+                        <span class="desc">Кредит от ОАО «АСБ БЕЛАРУСБАНК» на покупку мебели</span>
+                    </div>
+                    <a href="https://zovprofil.by/Files/Потребительский кредит «На родныя тавары».pdf">
+                        <div class="down-but">
+                            <img src="/Images/download.png" class="download" />
+                        </div>
+                    </a>
+                </div>
+                <div class="downitem">
+                    <img src="/Images/PDFFile.png" class="file-ic" />
                     <div class="data">
                         <span class="name">Политика в отношении обработки cookie</span>
                         <span class="desc">Политика в отношении обработки cookie</span>
                     </div>
-                    <a href="https://zovprofil.by/Files/Политика в отношении обработки cookie.docx">
+                    <a href="https://zovprofil.by/Files/Политика в отношении обработки cookie.pdf">
                         <div class="down-but">
                             <img src="/Images/download.png" class="download" />
                         </div>

@@ -126,6 +126,35 @@
 		        </div>
 		    </div>
 	    </div>
+
+		<div class="swiper-slide">
+			<div class="block">
+				<div class="sub-block">
+					<div class="sub-content">
+					<h1>Кредит</h1>
+					<div class="text">
+						Кредит от ОАО «АСБ БЕЛАРУСБАНК» на покупку мебели
+					</div>
+					<button><a href="https://zovprofil.by/Files/Потребительский кредит «На родныя тавары».pdf" style="color: white">Подробнее</a></button>
+					</div>
+				</div>
+				<div class="image">
+				<picture>
+					<source style="object-fit: fill;" srcset="/Images/credit1.jpg" media="(min-width: 1300px)" />
+					<img src="/Images/credit.jpg" alt="" style="object-fit: fill;"/>
+				</picture>
+
+				<div class="sub-block">
+					<h1>Кредит</h1>
+					<div class="text">
+						Кредит от ОАО «АСБ БЕЛАРУСБАНК» на покупку мебели
+					</div>
+					<button><a href="https://zovprofil.by/Files/Потребительский кредит «На родныя тавары».pdf" target="_blank" style="color: white">Подробнее</a></button>
+				</div>
+				</div>
+			</div>
+		</div>
+
 	  </div>
 
 	  <div class="swiper-scrollbar"></div>
