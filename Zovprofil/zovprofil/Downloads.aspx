@@ -117,13 +117,13 @@
             </div>
             <div id="InfoCont" style="display:none">
                 <div class="downitem">
-                    <img src="/Images/WordFile.png" class="file-ic" />
+                    <img src="/Images/PDFFile.png" class="file-ic" />
                     <div class="data">
                         <span class="name">Памятка по эксплуатации</span>
                         <span class="desc">Рекомендации по эксплуатации мебельных фасадов и погонажных изделий, условия
 исполнения гарантийных обязательств.</span>
                     </div>
-                    <a href="https://zovprofil.by/Files/Памятка корпоративному клиенту.doc">
+                    <a href="https://zovprofil.by/Files/Памятка клиенту ОМЦ-Профиль.pdf">
                         <div class="down-but">
                             <img src="/Images/download.png" class="download" />
                         </div>
